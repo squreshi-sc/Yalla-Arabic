@@ -80,6 +80,7 @@ h2{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:v
 .speak{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 .speak button{padding:6px 10px;font-size:13px;font-weight:700}
 .speak button.playing{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.speak .chk{border-color:var(--accent);color:var(--accent)}
 .speak .rec.on{background:var(--bad);border-color:var(--bad);color:#fff}
 .speak .done[aria-pressed="true"]{background:var(--good-soft);border-color:var(--good);color:var(--good)}
 .spacer{flex:1}
@@ -169,7 +170,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       <span class="hint small" id="pos"></span>
     </div>
     <div class="progress" aria-hidden="true"><i id="lessonBar"></i></div>
-    <p class="hint small">Tap <b>Record me</b> and say the phrase. You get a match score, then hear the native voice and yours. Tick <b>Learned</b> when you can say it without looking.</p>
+    <p class="hint small"><b>Check me</b>: say the phrase and get a match score. <b>Record me</b>: record yourself and listen back. Tick <b>Learned</b> when you can say it without looking.</p>
     <div class="cards" id="cards"></div>
   </section>
 
@@ -289,8 +290,8 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   track.addEventListener("play", () => { stopClip(); track.playbackRate = rate; });
   track.addEventListener("loadedmetadata", () => track.playbackRate = rate);
 
-  /* ---------- Recording + pronunciation check ---------- */
-  let recState = null; const myTakes = new Map();
+  /* ---------- Check me (speech score) and Record me (hear yourself) ---------- */
+  const myTakes = new Map(); let active = null;
   const SRx = window.SpeechRecognition || window.webkitSpeechRecognition;
   const NUM = {"0":"صفر","1":"واحد","2":"اثنين","3":"ثلاثه","4":"اربعه","5":"خمسه","6":"سته","7":"سبعه","8":"ثمانيه","9":"تسعه","10":"عشره","20":"عشرين","50":"خمسين","100":"ميه","1000":"الف"};
   function arNorm(s){
@@ -305,64 +306,81 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     return Math.max(0, 1 - lev(a,b)/Math.max(a.length,b.length));
   }
   window.__similarity = similarity;
-  function showFeedback(fb, p, heard, onAgain, markLearned){
-    fb.replaceChildren(); fb.hidden = false;
-    const again = el("button",null,"Try again"); again.onclick = onAgain;
-    const learn = el("button",null,"Mark learned"); learn.onclick = () => { markLearned(); learn.disabled = true; learn.textContent = "Learned"; };
-    if (heard == null){
-      fb.className = "fb self";
-      fb.append(el("span",null,"Automatic check isn't available here. Listen to both: did yours sound the same?"), learn, again);
-      learn.textContent = "Yes, mark learned";
-      return;
-    }
-    const best = heard.reduce((m,h) => Math.max(m, similarity(h, p.ar)), 0);
-    const top = heard[0] || "", pct = Math.round(best*100);
-    let cls, msg;
-    if (best >= .8){ cls = "good"; msg = "Mumtaaz! Very clear."; }
-    else if (best >= .55){ cls = "ok"; msg = "Close! Listen once more and try again."; }
-    else { cls = "bad"; msg = top ? "Not quite yet. Play AR slow, then try again." : "I didn't catch that. Speak a bit louder and closer to the mic."; }
-    fb.className = "fb " + cls;
-    const meter = el("div","meter"), bar = el("i"); bar.style.width = pct + "%"; meter.append(bar);
-    fb.append(el("b",null,msg), el("span",null,pct + "% match"));
-    if (top) fb.append(el("span",null,"I heard:"), el("span","heard",top));
-    fb.append(meter, again);
-    if (best >= .8) fb.append(learn);
+  function stopActive(){ if (active) active.stop(); }
+  function fbSet(fb, cls, ...nodes){ fb.hidden = false; fb.className = "fb " + cls; fb.replaceChildren(...nodes); }
+  const SR_ERR = {
+    "not-allowed": "The microphone is blocked for this site. Click the icon left of the address bar and allow Microphone, then try again.",
+    "service-not-allowed": "The browser blocked speech recognition. Use Chrome or Edge and allow the microphone.",
+    "network": "The speech check needs internet (it uses Google's speech service). Check your connection and try again.",
+    "language-not-supported": "This browser can't recognise Arabic speech. Please use Chrome or Edge.",
+    "audio-capture": "No microphone found, or another app is using it. Close other apps using the mic and try again."
+  };
+  function checkMe(p, btn, fb, markLearned){
+    if (active && active.btn === btn){ active.stop(); return; }
+    stopActive(); stopClip(); track.pause();
+    let sr; try { sr = new SRx(); } catch(e){ fbSet(fb, "bad", el("span",null,"Speech check isn't available in this browser. Use Record me instead.")); return; }
+    sr.lang = "ar-AE"; sr.interimResults = true; sr.maxAlternatives = 5; sr.continuous = false;
+    let finals = [], interim = "", err = null, gotSound = false;
+    const live = el("span",null,"Listening… say the phrase now.");
+    fbSet(fb, "self", live);
+    sr.onsoundstart = () => { gotSound = true; };
+    sr.onspeechstart = () => { gotSound = true; };
+    sr.onresult = e => {
+      finals = []; interim = "";
+      for (let i=0;i<e.results.length;i++){ const r = e.results[i]; if (r.isFinal){ for (let j=0;j<r.length;j++) finals.push(r[j].transcript); } else interim += r[0].transcript; }
+      if (interim) live.textContent = "Hearing: " + interim;
+    };
+    sr.onerror = e => { err = e.error; };
+    sr.onend = () => {
+      btn.classList.remove("on"); btn.textContent = "Check me"; active = null;
+      const again = el("button",null,"Try again"); again.onclick = () => checkMe(p, btn, fb, markLearned);
+      if (err && err !== "no-speech" && err !== "aborted"){ fbSet(fb, "bad", el("span",null, SR_ERR[err] || ("The speech check stopped (" + err + "). Try again.")), again); return; }
+      const heard = finals.length ? finals : (interim ? [interim] : []);
+      if (!heard.length){
+        fbSet(fb, "bad", el("b",null, gotSound ? "I heard sound but couldn't make out Arabic words." : "I didn't hear any speech."),
+          el("span",null, gotSound ? "Speak a little slower and clearer, right after tapping." : "Start speaking right after tapping. If it keeps happening, check Windows Sound settings that the right microphone is selected."), again);
+        return;
+      }
+      const best = heard.reduce((m,h) => Math.max(m, similarity(h, p.ar)), 0), pct = Math.round(best*100);
+      const cls = best >= .8 ? "good" : best >= .55 ? "ok" : "bad";
+      const msg = best >= .8 ? "Mumtaaz! Very clear." : best >= .55 ? "Close! Listen once more and try again." : "Not quite yet. Play AR slow, then try again.";
+      const meter = el("div","meter"), bar = el("i"); bar.style.width = pct + "%"; meter.append(bar);
+      const nodes = [el("b",null,msg), el("span",null,pct + "% match"), el("span",null,"I heard:"), el("span","heard",heard[0]), meter, again];
+      if (best >= .8){ const learn = el("button",null,"Mark learned"); learn.onclick = () => { markLearned(); learn.disabled = true; learn.textContent = "Learned"; }; nodes.push(learn); }
+      fbSet(fb, cls, ...nodes);
+    };
+    try { sr.start(); } catch(e){ fbSet(fb, "bad", el("span",null,"Couldn't start the speech check. Try again.")); return; }
+    active = { btn, stop: () => { try { sr.stop(); } catch(e){} } };
+    btn.classList.add("on"); btn.textContent = "Listening…";
+    setTimeout(() => { if (active && active.btn === btn) active.stop(); }, 9000);
   }
-  async function toggleRecord(p, key, btn, mineBtn, fb, markLearned){
-    if (recState && recState.btn === btn){ recState.stop(); return; }
-    if (recState) recState.stop();
-    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder){ btn.textContent = "Not supported"; btn.disabled = true; return; }
+  async function recordMe(p, key, btn, mineBtn, fb, markLearned){
+    if (active && active.btn === btn){ active.stop(); return; }
+    stopActive();
+    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder){ fbSet(fb, "bad", el("span",null,"Recording isn't supported in this browser.")); return; }
     let stream;
-    try { stream = await navigator.mediaDevices.getUserMedia({audio:true}); }
-    catch(e){ btn.textContent = "Mic blocked"; return; }
+    try { stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true}}); }
+    catch(e){ fbSet(fb, "bad", el("span",null, SR_ERR["not-allowed"])); return; }
     stopClip(); track.pause();
-    fb.hidden = false; fb.className = "fb self"; fb.replaceChildren(el("span",null,"Listening… say the phrase. It stops by itself, or tap Stop."));
     const rec = new MediaRecorder(stream), chunks = [];
-    let heard = SRx ? [] : null, srDone = !SRx, recDone = false, sr = null;
-    const again = () => toggleRecord(p, key, btn, mineBtn, fb, markLearned);
-    const finish = () => {
-      if (!recDone || !srDone) return;
+    fbSet(fb, "self", el("span",null,"Recording… say the phrase, then tap Stop."));
+    rec.ondataavailable = e => chunks.push(e.data);
+    rec.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      btn.classList.remove("on"); btn.textContent = "Record me"; active = null;
       const url = URL.createObjectURL(new Blob(chunks, {type: rec.mimeType || "audio/webm"}));
       if (myTakes.get(key)) URL.revokeObjectURL(myTakes.get(key));
       myTakes.set(key, url); mineBtn.hidden = false;
-      showFeedback(fb, p, heard, again, markLearned);
-      compare(p, url, mineBtn);
+      const again = el("button",null,"Record again"); again.onclick = () => recordMe(p, key, btn, mineBtn, fb, markLearned);
+      const cmp = el("button",null,"Compare with native"); cmp.onclick = () => compare(p, url, mineBtn);
+      const learn = el("button",null,"Sounds right, mark learned"); learn.onclick = () => { markLearned(); learn.disabled = true; learn.textContent = "Learned"; };
+      fbSet(fb, "self", el("span",null,"Playing your recording. Does it sound like the native voice?"), cmp, again, learn);
+      play(url, mineBtn);
     };
-    rec.ondataavailable = e => chunks.push(e.data);
-    rec.onstop = () => { stream.getTracks().forEach(t => t.stop()); btn.classList.remove("on"); btn.textContent = "Record me"; recState = null; recDone = true; finish(); };
-    if (SRx){
-      try {
-        sr = new SRx(); sr.lang = "ar-AE"; sr.interimResults = false; sr.maxAlternatives = 5; sr.continuous = false;
-        sr.onresult = e => { for (let i=0;i<e.results.length;i++) for (let j=0;j<e.results[i].length;j++) heard && heard.push(e.results[i][j].transcript); };
-        sr.onerror = e => { if (e.error !== "no-speech" && e.error !== "aborted") heard = null; };
-        sr.onend = () => { srDone = true; if (rec.state === "recording") setTimeout(() => { if (rec.state === "recording") rec.stop(); }, 400); else finish(); };
-        sr.start();
-      } catch(e){ heard = null; srDone = true; }
-    }
     rec.start();
-    recState = { btn, stop: () => { if (rec.state === "recording") rec.stop(); try { sr && sr.stop(); } catch(e){} } };
+    active = { btn, stop: () => { if (rec.state === "recording") rec.stop(); } };
     btn.classList.add("on"); btn.textContent = "Stop";
-    setTimeout(() => { if (recState && recState.btn === btn && rec.state === "recording") recState.stop(); }, 8000);
+    setTimeout(() => { if (active && active.btn === btn) active.stop(); }, 8000);
   }
   function compare(p, url, mineBtn){
     if (p.audio?.ar) play(p.audio.ar, null, () => setTimeout(() => play(url, mineBtn), 400));
@@ -382,12 +400,15 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       if (!p.audio||!p.audio[k]) return;
       const b = el("button",null,lab); b.onclick = () => play(p.audio[k], b); s.append(b);
     });
-    const rec = el("button","rec","Record me");
-    const mine = el("button",null,"Play mine"); mine.hidden = !myTakes.get(key);
+    const markL = () => { if (!learned.has(key)) done.click(); };
     const fb = el("div","fb"); fb.hidden = true;
-    rec.onclick = () => toggleRecord(p, key, rec, mine, fb, () => { if (!learned.has(key)) done.click(); });
-    mine.onclick = () => compare(p, myTakes.get(key), mine);
-    s.append(rec, mine, el("span","spacer"));
+    const chk = el("button","rec chk","Check me"); chk.title = "Say the phrase and get a match score";
+    chk.onclick = () => checkMe(p, chk, fb, markL); if (!SRx) chk.hidden = true;
+    const rec = el("button","rec","Record me"); rec.title = "Record yourself and listen back";
+    const mine = el("button",null,"Play mine"); mine.hidden = !myTakes.get(key);
+    rec.onclick = () => recordMe(p, key, rec, mine, fb, markL);
+    mine.onclick = () => play(myTakes.get(key), mine);
+    s.append(chk, rec, mine, el("span","spacer"));
     const done = el("button","done", "Learned");
     done.setAttribute("aria-pressed", String(learned.has(key)));
     done.onclick = () => {
