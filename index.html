@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Noto+Nastaliq+Urdu:wght@400;600&family=Reem+Kufi:wght@600&family=Manrope:wght@400;600;700&display=swap">
 <style>
-/* v2.3: offline mode. v2.2: Arabic, German, French via the Language menu. Layout: one narrow column — header with progress tiles, sticky toolbar (level, unit, speed), five tabs (Lessons, Dialogues, Quiz, Speak, Search). Palm green + date brown on pale sand. v2.0 */
+/* v2.5: new topics. v2.4: offline updates only when you tap Update. v2.3: offline mode. v2.2: Arabic, German, French via the Language menu. Layout: one narrow column — header with progress tiles, sticky toolbar (level, unit, speed), five tabs (Lessons, Dialogues, Quiz, Speak, Search). Palm green + date brown on pale sand. v2.0 */
 :root{
   --bg:#F2F4F1; --surface:#FFFFFF; --ink:#18231F; --muted:#5C6B65; --line:#DCE3DE;
   --accent:#0E6A57; --accent-soft:#E1EFEA; --date:#8E5226; --date-soft:#F5E9DF; --on-accent:#FFFFFF;
@@ -130,6 +130,8 @@ textarea,input[type="search"]{width:100%;min-width:0;font:inherit;font-size:17px
 .opts button.right{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
 .opts button.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
 .score{font-size:40px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.updbar{background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.updbar span{flex:1 1 200px}
 .netbar{background:var(--date-soft);color:var(--date);border-radius:10px;padding:8px 12px;font-size:14px;font-weight:600}
 .off-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
 .off-row:first-child{border-top:none}
@@ -158,6 +160,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
 </head>
 <body>
 <div class="wrap">
+  <div class="updbar" id="updBar" hidden><span id="updMsg"></span><button class="primary" id="updGo">Update</button><button id="updLater">Later</button></div>
   <div class="netbar" id="netBar" hidden>You're offline. Downloaded lessons and audio still work. Check me and the Speak tab need internet.</div>
   <header>
     <div>
@@ -279,7 +282,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
 
   <footer>
     <span>On your phone, use "Add to Home Screen" to open this like an app. Car mode keeps playing with the screen locked.</span>
-    <span>Your progress is saved on this device. Version 2.3 · <a href="https://github.com/squreshi-sc/Yalla-Arabic/releases" target="_blank" rel="noopener" style="color:inherit">all versions</a></span>
+    <span>Your progress is saved on this device. Version 2.5 · <a href="https://github.com/squreshi-sc/Yalla-Arabic/releases" target="_blank" rel="noopener" style="color:inherit">all versions</a></span>
   </footer>
 </div>
 
@@ -738,35 +741,62 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   };
 
   /* ---------- Offline mode ---------- */
-  const OFF_CACHE = "ya-audio-v1"; let OFF = null; const offBusy = {};
+  // Nothing downloads by itself. When a new version needs new audio, a notice asks you to tap Update.
+  // Update fetches only new/changed files and deletes old ones, so the result equals a fresh download.
+  const OFF_CACHE = "ya-audio-v1"; let OFF = null, VER = "?"; const offBusy = {}; let updLater = false;
   const absPath = f => new URL(f, location.href).pathname;
-  const mb = b => (b/1048576 >= 10 ? Math.round(b/1048576) : (b/1048576).toFixed(1)) + " MB";
-  function netBar(){ $("#netBar").hidden = navigator.onLine; }
-  window.addEventListener("online", netBar); window.addEventListener("offline", netBar); netBar();
+  const mb = b => (b/1048576 >= 10 ? Math.round(b/1048576) : Math.max(0.1, b/1048576).toFixed(1)) + " MB";
+  const offVer = l => { const v = get("ya-off-" + l, false); return v === true ? "2.3" : v; };   // false = not downloaded
+  function netBar(){ $("#netBar").hidden = navigator.onLine; renderUpd(); }
+  window.addEventListener("online", netBar); window.addEventListener("offline", netBar); $("#netBar").hidden = navigator.onLine;
   async function cachedSet(){ const c = await caches.open(OFF_CACHE); return new Set((await c.keys()).map(q => new URL(q.url).pathname)); }
+  function missing(l, have){ const o = OFF[l]; let n = 0, bytes = 0; o.files.forEach((f,i) => { if (!have.has(absPath(f))){ n++; bytes += (o.sizes ? o.sizes[i] : 0); } }); return {n, bytes}; }
+  async function renderUpd(){
+    const bar = $("#updBar");
+    if (!OFF || !navigator.onLine || updLater || Object.keys(offBusy).length){ bar.hidden = true; return; }
+    const have = await cachedSet(); let bytes = 0, langs = [];
+    Object.keys(OFF).forEach(l => { if (offVer(l)){ const m = missing(l, have); if (m.n){ bytes += m.bytes; langs.push(LANGS[l].name); } } });
+    if (!langs.length){ bar.hidden = true; return; }
+    $("#updMsg").textContent = `New version v${VER}: update your offline ${langs.join(" + ")} (${mb(bytes)}). Best on Wi-Fi.`;
+    bar.hidden = false;
+  }
+  $("#updGo").onclick = async () => { $("#updBar").hidden = true; for (const l of Object.keys(OFF)) if (offVer(l)) await offDownload(l); };
+  $("#updLater").onclick = () => { updLater = true; $("#updBar").hidden = true; };
   async function renderOff(){
     const box = $("#offRows");
     if (!OFF){ box.replaceChildren(el("p","hint small", navigator.onLine ? "Offline download isn't available right now. Reload the page and try again." : "Connect to the internet once to set up offline mode.")); return; }
     const have = await cachedSet();
     box.replaceChildren(...Object.keys(LANGS).filter(l => OFF[l]).map(l => {
-      const o = OFF[l], all = o.files.length, mine = get("ya-off-" + l, false);
-      const got = mine ? o.files.filter(f => have.has(absPath(f))).length : 0;
+      const o = OFF[l], all = o.files.length, m = missing(l, have);
+      if (offVer(l) && offVer(l) !== VER && !m.n) put("ya-off-" + l, VER);   // nothing new to fetch: copy is current
+      const v = offVer(l);
+      const got = v ? all - m.n : 0;
       const row = el("div","off-row"), info = el("div");
-      info.append(el("div","off-name", LANGS[l].name), el("div", "off-st" + (got === all ? " done" : ""),
-        offBusy[l] ? offBusy[l] : got === all ? `Downloaded · ${mb(o.bytes)} · works offline` : got ? `Not complete (${Math.round(100*got/all)}%) · new audio to download` : `Not downloaded · ${mb(o.bytes)}`));
+      const st = offBusy[l] ? offBusy[l]
+        : !v ? `Not downloaded · ${mb(o.bytes)}`
+        : v === "partial" ? `Not complete · ${mb(m.bytes)} still to download`
+        : !m.n ? `Downloaded · v${v} · ${mb(o.bytes)} · works offline`
+        : `Offline copy v${v} · update to v${VER} available (${mb(m.bytes)})`;
+      info.append(el("div","off-name", LANGS[l].name), el("div", "off-st" + (v && !m.n && !offBusy[l] ? " done" : ""), st));
       const btns = el("div","off-btns");
       if (!offBusy[l]){
-        if (got < all){ const b = el("button", got ? null : "primary", got ? "Finish download" : "Download"); b.onclick = () => offDownload(l); btns.append(b); }
-        if (got){ const b = el("button", null, "Remove"); b.onclick = () => offRemove(l); btns.append(b); }
+        if (!v){ const b = el("button","primary","Download"); b.onclick = () => offDownload(l); btns.append(b); }
+        else if (m.n){ const b = el("button","primary","Update"); b.onclick = () => offDownload(l); btns.append(b); }
+        if (v){
+          const fresh = el("button", null, "Re-download all"); fresh.title = "Delete this language's saved audio and download it all again";
+          fresh.onclick = () => offFresh(l);
+          const rm = el("button", null, "Remove"); rm.onclick = () => offRemove(l);
+          btns.append(fresh, rm);
+        }
       }
       const prog = el("div","off-prog"), bar = el("i"); bar.style.width = (100*got/all) + "%"; bar.id = "offBar-" + l; prog.append(bar);
       row.append(info, btns, prog); return row;
     }));
+    renderUpd();
   }
   async function offDownload(l){
     if (!navigator.onLine){ alertOff("You're offline. Connect to Wi-Fi to download."); return; }
     try { await navigator.storage?.persist?.(); } catch(e){}
-    put("ya-off-" + l, true);
     const c = await caches.open(OFF_CACHE), have = await cachedSet();
     const files = OFF[l].files, todo = files.filter(f => !have.has(absPath(f)));
     let done = files.length - todo.length, failed = 0, i = 0;
@@ -781,24 +811,33 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       }
     }
     await Promise.all(Array.from({length: 6}, worker));
-    // remove saved audio that no language uses any more (old versions)
+    if (!failed) put("ya-off-" + l, VER); else if (!offVer(l)) put("ya-off-" + l, "partial");
+    // replace, not add: delete saved audio that the current version no longer uses
     const keep = new Set(Object.values(OFF).flatMap(o => o.files.map(absPath)));
     for (const q of await c.keys()) if (!keep.has(new URL(q.url).pathname)) await c.delete(q);
     delete offBusy[l];
     await renderOff();
-    if (failed) alertOff(`${failed} file(s) didn't download. Tap "Finish download" to try again.`);
+    if (failed) alertOff(`${failed} file(s) didn't download. Tap Update to try again.`);
   }
-  async function offRemove(l){
-    const c = await caches.open(OFF_CACHE); put("ya-off-" + l, false);
-    const others = new Set(Object.keys(OFF).filter(k => k !== l && get("ya-off-" + k, false)).flatMap(k => OFF[k].files.map(absPath)));
+  async function offDelete(l){
+    const c = await caches.open(OFF_CACHE);
+    const others = new Set(Object.keys(OFF).filter(k => k !== l && offVer(k)).flatMap(k => OFF[k].files.map(absPath)));
     for (const f of OFF[l].files){ const p = absPath(f); if (!others.has(p)) await c.delete(p); }
-    renderOff();
+  }
+  async function offRemove(l){ put("ya-off-" + l, false); await offDelete(l); renderOff(); }
+  async function offFresh(l){
+    if (!navigator.onLine){ alertOff("You're offline. Connect to Wi-Fi first."); return; }
+    if (!confirm(`Delete the saved ${LANGS[l].name} audio and download all ${mb(OFF[l].bytes)} again?`)) return;
+    await offDelete(l); await offDownload(l);
   }
   function alertOff(msg){ const p = el("p","hint small", msg); p.style.color = "var(--date)"; $("#offRows").append(p); }
   async function offInit(){
     if (!("serviceWorker" in navigator) || !("caches" in window)){ $("#offRows").replaceChildren(el("p","hint small","This browser can't save the app for offline use. Use Chrome or Safari.")); return; }
     try { await navigator.serviceWorker.register("sw.js"); } catch(e){}
-    try { OFF = await fetch("offline.json", {cache:"no-cache"}).then(r => r.json()); } catch(e){ OFF = null; }
+    try {
+      const j = await fetch("offline.json", {cache:"no-cache"}).then(r => r.json());
+      if (j.langs){ OFF = j.langs; VER = j.version; } else { OFF = j; VER = "2.3"; }
+    } catch(e){ OFF = null; }
     renderOff();
   }
   offInit();
