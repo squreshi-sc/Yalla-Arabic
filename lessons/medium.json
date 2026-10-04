@@ -1,0 +1,759 @@
+[
+ {
+  "id": "ml01",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 1,
+  "date": "4 Oct 2026",
+  "title": "I want, I need, I can",
+  "phrases": [
+   {
+    "ar": "أبي أروح",
+    "roman": "Abi aroo7",
+    "en": "I want to go",
+    "ur": "میں جانا چاہتا ہوں",
+    "note": "'Abi' = I want. Others in the Gulf say 'abgha'."
+   },
+   {
+    "ar": "أحتاج مساعدة",
+    "roman": "Ahtaaj musaa'ada",
+    "en": "I need help",
+    "ur": "مجھے مدد چاہیے",
+    "note": "Same root as Urdu 'ihtiyaaj' and 'musaa'id'."
+   },
+   {
+    "ar": "أقدر أساعدك",
+    "roman": "Agdar asaa'dak",
+    "en": "I can help you",
+    "ur": "میں آپ کی مدد کر سکتا ہوں",
+    "note": "Gulf 'g' for 'q': aqdar → agdar."
+   },
+   {
+    "ar": "ما أقدر اليوم",
+    "roman": "Ma agdar al-yoam",
+    "en": "I can't today",
+    "ur": "آج نہیں کر سکتا"
+   },
+   {
+    "ar": "تبي تشرب شي؟",
+    "roman": "Tabi tishrab shay?",
+    "en": "Would you like something to drink?",
+    "ur": "کچھ پینا چاہیں گے؟",
+    "note": "'Sharbat' comes from the same root as 'tishrab'."
+   },
+   {
+    "ar": "لازم أخلص التقرير",
+    "roman": "Laazim akhallis at-taqreer",
+    "en": "I must finish the report",
+    "ur": "مجھے رپورٹ مکمل کرنی ہے",
+    "note": "Careful: Urdu 'taqreer' = speech; Arabic = report."
+   },
+   {
+    "ar": "أبي أعرف",
+    "roman": "Abi a'raf",
+    "en": "I want to know",
+    "ur": "میں جاننا چاہتا ہوں"
+   },
+   {
+    "ar": "ممكن أستخدم اللابتوب؟",
+    "roman": "Mumkin astakhdim al-laabtoob?",
+    "en": "Can I use the laptop?",
+    "ur": "کیا میں لیپ ٹاپ استعمال کر سکتا ہوں؟",
+    "note": "Same root as Urdu 'istemaal'."
+   },
+   {
+    "ar": "أحب الشغل هني",
+    "roman": "Ahibb ash-shughl hni",
+    "en": "I like working here",
+    "ur": "مجھے یہاں کام کرنا پسند ہے",
+    "note": "Same root as 'mohabbat'."
+   },
+   {
+    "ar": "ما أدري",
+    "roman": "Ma adri",
+    "en": "I don't know",
+    "ur": "مجھے نہیں معلوم",
+    "note": "Very common in the Gulf. Also: ما أعرف – ma a'raf."
+   }
+  ]
+ },
+ {
+  "id": "ml02",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 2,
+  "date": "4 Oct 2026",
+  "title": "Past tense: what I did",
+  "phrases": [
+   {
+    "ar": "رحت المكتب أمس",
+    "roman": "Riht al-maktab ams",
+    "en": "I went to the office yesterday",
+    "ur": "میں کل دفتر گیا تھا"
+   },
+   {
+    "ar": "خلصت الشغل",
+    "roman": "Khallast ash-shughl",
+    "en": "I finished the work",
+    "ur": "میں نے کام ختم کر لیا"
+   },
+   {
+    "ar": "أرسلت الإيميل الصبح",
+    "roman": "Arsalt al-email as-subh",
+    "en": "I sent the email this morning",
+    "ur": "میں نے صبح ای میل بھیج دی"
+   },
+   {
+    "ar": "كلمت المدير",
+    "roman": "Kallamt al-mudeer",
+    "en": "I spoke to the manager",
+    "ur": "میں نے مینیجر سے بات کی",
+    "note": "'Mudeer' is used in Urdu too."
+   },
+   {
+    "ar": "شفت الرسالة؟",
+    "roman": "Shift ar-risaala?",
+    "en": "Did you see the message?",
+    "ur": "کیا آپ نے پیغام دیکھا؟",
+    "note": "'Risaala' as in Urdu 'risaala'."
+   },
+   {
+    "ar": "لا، ما شفتها",
+    "roman": "Laa, ma shiftha",
+    "en": "No, I didn't see it",
+    "ur": "نہیں، میں نے نہیں دیکھا"
+   },
+   {
+    "ar": "وصلت متأخر بسبب الزحمة",
+    "roman": "Wsalt mit'akhkhir b-sabab az-zahma",
+    "en": "I arrived late because of traffic",
+    "ur": "ٹریفک کی وجہ سے دیر سے پہنچا",
+    "note": "'Sabab' as in Urdu."
+   },
+   {
+    "ar": "نسيت",
+    "roman": "Nseet",
+    "en": "I forgot",
+    "ur": "میں بھول گیا",
+    "note": "Same root as Urdu 'nisyaan'."
+   },
+   {
+    "ar": "اشتغلت لين الساعة سبع",
+    "roman": "Shtaghalt lain as-saa'a sab'",
+    "en": "I worked until seven",
+    "ur": "میں نے سات بجے تک کام کیا"
+   },
+   {
+    "ar": "سويت التحديث",
+    "roman": "Sawweit at-tahdeeth",
+    "en": "I did the update",
+    "ur": "میں نے اپڈیٹ کر دی",
+    "note": "'Sawwa' = to do (Gulf). Very useful."
+   }
+  ]
+ },
+ {
+  "id": "ml03",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 3,
+  "date": "4 Oct 2026",
+  "title": "Future: what I will do",
+  "phrases": [
+   {
+    "ar": "باكر بروح دبي",
+    "roman": "Baakir baroo7 Dubai",
+    "en": "Tomorrow I'll go to Dubai",
+    "ur": "کل میں دبئی جاؤں گا",
+    "note": "Gulf future: add 'ba-' to the verb."
+   },
+   {
+    "ar": "بخلص الشغل الساعة خمس",
+    "roman": "Bakhallis ash-shughl as-saa'a khams",
+    "en": "I'll finish work at five",
+    "ur": "پانچ بجے کام ختم کروں گا"
+   },
+   {
+    "ar": "بتصل فيك بعد الاجتماع",
+    "roman": "Battasil feek ba'd al-ijtimaa'",
+    "en": "I'll call you after the meeting",
+    "ur": "میٹنگ کے بعد آپ کو کال کروں گا"
+   },
+   {
+    "ar": "بنسوي اجتماع الأسبوع الياي",
+    "roman": "Bnsawwi ijtimaa' al-usboo' al-yaay",
+    "en": "We'll have a meeting next week",
+    "ur": "اگلے ہفتے ہم میٹنگ کریں گے"
+   },
+   {
+    "ar": "السيرفر الجديد بيوصل يوم الأحد",
+    "roman": "As-server al-yadeed biyoosal yoam al-ahad",
+    "en": "The new server will arrive on Sunday",
+    "ur": "نیا سرور اتوار کو آئے گا",
+    "note": "Emirati 'yadeed' = jadeed (new), like Urdu 'jadeed'."
+   },
+   {
+    "ar": "برسل لك التفاصيل",
+    "roman": "Barsil lik at-tafaaseel",
+    "en": "I'll send you the details",
+    "ur": "میں آپ کو تفصیلات بھیجوں گا",
+    "note": "Same as Urdu 'tafseel'."
+   },
+   {
+    "ar": "إن شاء الله بكون هناك",
+    "roman": "Inshallah bakoon hnaak",
+    "en": "God willing, I'll be there",
+    "ur": "ان شاء اللہ میں وہاں ہوں گا"
+   },
+   {
+    "ar": "متى بتخلص؟",
+    "roman": "Mita bitkhallis?",
+    "en": "When will you finish?",
+    "ur": "آپ کب ختم کریں گے؟"
+   },
+   {
+    "ar": "بشوف وأرد عليك",
+    "roman": "Bashoof w arid 'alaik",
+    "en": "I'll check and get back to you",
+    "ur": "میں دیکھ کر آپ کو بتاتا ہوں",
+    "note": "A perfect phrase for office emails and calls."
+   },
+   {
+    "ar": "ما بقدر أحضر",
+    "roman": "Ma bagdar ahdhar",
+    "en": "I won't be able to attend",
+    "ur": "میں حاضر نہیں ہو سکوں گا",
+    "note": "Same root as Urdu 'haazir'."
+   }
+  ]
+ },
+ {
+  "id": "ml04",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 4,
+  "date": "4 Oct 2026",
+  "title": "My, your, our",
+  "phrases": [
+   {
+    "ar": "مكتبي في الدور الثالث",
+    "roman": "Maktabi fi ad-door ath-thaalith",
+    "en": "My office is on the third floor",
+    "ur": "میرا دفتر تیسری منزل پر ہے",
+    "note": "'-i' = my."
+   },
+   {
+    "ar": "سيارتك وين؟",
+    "roman": "Sayyaartak wain?",
+    "en": "Where is your car?",
+    "ur": "آپ کی گاڑی کہاں ہے؟",
+    "note": "'-ak' = your (to a man), '-ich' to a woman."
+   },
+   {
+    "ar": "هذا رقمي",
+    "roman": "Haadha ragmi",
+    "en": "This is my number",
+    "ur": "یہ میرا نمبر ہے",
+    "note": "Gulf 'ragm' = raqm, like Urdu 'raqam'."
+   },
+   {
+    "ar": "إيميلك لو سمحت",
+    "roman": "Emailak law samaht",
+    "en": "Your email, please",
+    "ur": "آپ کی ای میل، مہربانی"
+   },
+   {
+    "ar": "مديري في إجازة",
+    "roman": "Mudeeri fi ijaaza",
+    "en": "My manager is on leave",
+    "ur": "میرے مینیجر چھٹی پر ہیں"
+   },
+   {
+    "ar": "شركتنا في دبي",
+    "roman": "Sharikatna fi Dubai",
+    "en": "Our company is in Dubai",
+    "ur": "ہماری کمپنی دبئی میں ہے",
+    "note": "'-na' = our."
+   },
+   {
+    "ar": "فريقنا يشتغل على المشروع",
+    "roman": "Fareegna yishtaghil 'ala al-mashroo'",
+    "en": "Our team is working on the project",
+    "ur": "ہماری ٹیم پروجیکٹ پر کام کر رہی ہے",
+    "note": "Same as Urdu 'fareeq'."
+   },
+   {
+    "ar": "بيتي قريب",
+    "roman": "Baiti gareeb",
+    "en": "My house is near",
+    "ur": "میرا گھر قریب ہے",
+    "note": "'Bait' as in 'Bait-ul-Maal'."
+   },
+   {
+    "ar": "عيالكم في أي مدرسة؟",
+    "roman": "'Iyaalkum fi ay madrasa?",
+    "en": "Which school are your kids in?",
+    "ur": "آپ کے بچے کس اسکول میں ہیں؟",
+    "note": "'-kum' = your (plural or respectful)."
+   },
+   {
+    "ar": "هذا مب ملفي",
+    "roman": "Haadha mob malaffi",
+    "en": "This isn't my file",
+    "ur": "یہ میری فائل نہیں ہے"
+   }
+  ]
+ },
+ {
+  "id": "ml05",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 5,
+  "date": "4 Oct 2026",
+  "title": "Family",
+  "phrases": [
+   {
+    "ar": "أبوي",
+    "roman": "Abooy",
+    "en": "My father",
+    "ur": "میرے والد",
+    "note": "Gulf form. Formal: أبي – abi."
+   },
+   {
+    "ar": "أمي",
+    "roman": "Ummi",
+    "en": "My mother",
+    "ur": "میری والدہ"
+   },
+   {
+    "ar": "أخوي",
+    "roman": "Akhooy",
+    "en": "My brother",
+    "ur": "میرا بھائی"
+   },
+   {
+    "ar": "أختي",
+    "roman": "Ukhti",
+    "en": "My sister",
+    "ur": "میری بہن"
+   },
+   {
+    "ar": "زوجتي",
+    "roman": "Zawjati",
+    "en": "My wife",
+    "ur": "میری بیوی",
+    "note": "Same as Urdu 'zauja'."
+   },
+   {
+    "ar": "ولدي",
+    "roman": "Wildi",
+    "en": "My son",
+    "ur": "میرا بیٹا",
+    "note": "Same root as Urdu 'walad', 'waalid'."
+   },
+   {
+    "ar": "بنتي",
+    "roman": "Binti",
+    "en": "My daughter",
+    "ur": "میری بیٹی"
+   },
+   {
+    "ar": "عندك عيال؟",
+    "roman": "'Indak 'iyaal?",
+    "en": "Do you have children?",
+    "ur": "کیا آپ کے بچے ہیں؟",
+    "note": "'Iyaal' = kids (Gulf)."
+   },
+   {
+    "ar": "أهلي في باكستان",
+    "roman": "Ahli fi Baakistaan",
+    "en": "My family is in Pakistan",
+    "ur": "میرے گھر والے پاکستان میں ہیں",
+    "note": "Same as Urdu 'ahl-e-khana'."
+   },
+   {
+    "ar": "كيف الأهل؟",
+    "roman": "Kaif al-ahal?",
+    "en": "How is the family?",
+    "ur": "گھر والے کیسے ہیں؟",
+    "note": "A very polite question in the Gulf."
+   }
+  ]
+ },
+ {
+  "id": "ml06",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 6,
+  "date": "4 Oct 2026",
+  "title": "Feelings",
+  "phrases": [
+   {
+    "ar": "أنا تعبان",
+    "roman": "Ana ta'baan",
+    "en": "I'm tired",
+    "ur": "میں تھکا ہوا ہوں"
+   },
+   {
+    "ar": "أنا مريض اليوم",
+    "roman": "Ana mareedh al-yoam",
+    "en": "I'm sick today",
+    "ur": "آج میری طبیعت ٹھیک نہیں",
+    "note": "Same as Urdu 'mareez'."
+   },
+   {
+    "ar": "أنا مبسوط",
+    "roman": "Ana mabsoot",
+    "en": "I'm happy",
+    "ur": "میں خوش ہوں",
+    "note": "In Arabic 'mabsoot' means happy."
+   },
+   {
+    "ar": "أنا زعلان",
+    "roman": "Ana za'laan",
+    "en": "I'm upset",
+    "ur": "میں ناراض ہوں"
+   },
+   {
+    "ar": "سلامتك",
+    "roman": "Salaamtak",
+    "en": "Get well soon",
+    "ur": "اللہ آپ کو صحت دے",
+    "note": "Say it when someone is ill."
+   },
+   {
+    "ar": "الحمد لله على السلامة",
+    "roman": "Al-hamdu lillaah 'ala as-salaama",
+    "en": "Glad you're back safely",
+    "ur": "خیریت سے واپسی پر شکر ہے",
+    "note": "Say it when someone returns from travel or illness."
+   },
+   {
+    "ar": "أنا مشغول وايد",
+    "roman": "Ana mashghool waayed",
+    "en": "I'm very busy",
+    "ur": "میں بہت مصروف ہوں"
+   },
+   {
+    "ar": "أنا يوعان",
+    "roman": "Ana yoo'aan",
+    "en": "I'm hungry",
+    "ur": "مجھے بھوک لگی ہے",
+    "note": "Emirati 'y' for 'j': joo'aan → yoo'aan."
+   },
+   {
+    "ar": "لا تشيل هم",
+    "roman": "La tsheel ham",
+    "en": "Don't worry",
+    "ur": "فکر نہ کریں",
+    "note": "'Ham' = worry, like Urdu 'gham'."
+   },
+   {
+    "ar": "كل شي بيكون زين",
+    "roman": "Kil shay bikoon zain",
+    "en": "Everything will be fine",
+    "ur": "سب ٹھیک ہو جائے گا"
+   }
+  ]
+ },
+ {
+  "id": "ml07",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 7,
+  "date": "4 Oct 2026",
+  "title": "IT & work problems",
+  "phrases": [
+   {
+    "ar": "السيرفر واقف",
+    "roman": "As-server waagif",
+    "en": "The server is down",
+    "ur": "سرور بند ہے",
+    "note": "'Waagif' = stopped."
+   },
+   {
+    "ar": "النظام بطيء",
+    "roman": "An-nidhaam bati'",
+    "en": "The system is slow",
+    "ur": "سسٹم سست ہے",
+    "note": "Same as Urdu 'nizaam'."
+   },
+   {
+    "ar": "الإنترنت مقطوع",
+    "roman": "Al-internet magtoo'",
+    "en": "The internet is cut off",
+    "ur": "انٹرنیٹ بند ہے"
+   },
+   {
+    "ar": "لازم نسوي ريستارت",
+    "roman": "Laazim nsawwi restart",
+    "en": "We need to restart",
+    "ur": "ہمیں ری اسٹارٹ کرنا ہوگا"
+   },
+   {
+    "ar": "كلمة السر غلط",
+    "roman": "Kalimat as-sir ghalat",
+    "en": "The password is wrong",
+    "ur": "پاس ورڈ غلط ہے",
+    "note": "'Ghalat' as in Urdu."
+   },
+   {
+    "ar": "المشكلة انحلت",
+    "roman": "Al-mushkila inhallat",
+    "en": "The problem is solved",
+    "ur": "مسئلہ حل ہو گیا",
+    "note": "'Mushkil' and 'hal' as in Urdu."
+   },
+   {
+    "ar": "أرسل لي سكرين شوت",
+    "roman": "Arsil li screenshot",
+    "en": "Send me a screenshot",
+    "ur": "مجھے اسکرین شاٹ بھیجیں"
+   },
+   {
+    "ar": "الملف كبير وايد",
+    "roman": "Al-malaff kabeer waayed",
+    "en": "The file is very big",
+    "ur": "فائل بہت بڑی ہے",
+    "note": "'Kabeer' as in Urdu 'kabeera'."
+   },
+   {
+    "ar": "عندنا صيانة الليلة",
+    "roman": "'Indana siyaana al-laila",
+    "en": "We have maintenance tonight",
+    "ur": "آج رات ہماری مینٹیننس ہے"
+   },
+   {
+    "ar": "النسخة الاحتياطية جاهزة",
+    "roman": "An-nuskha al-ihtiyaatiyya jaahza",
+    "en": "The backup is ready",
+    "ur": "بیک اپ تیار ہے",
+    "note": "'Nuskha' and 'ihtiyaat' as in Urdu."
+   }
+  ]
+ },
+ {
+  "id": "ml08",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 8,
+  "date": "4 Oct 2026",
+  "title": "Shopping & money",
+  "phrases": [
+   {
+    "ar": "بكم هذا؟",
+    "roman": "Bkam haadha?",
+    "en": "How much is this?",
+    "ur": "یہ کتنے کا ہے؟"
+   },
+   {
+    "ar": "غالي وايد",
+    "roman": "Ghaali waayed",
+    "en": "It's too expensive",
+    "ur": "بہت مہنگا ہے"
+   },
+   {
+    "ar": "في خصم؟",
+    "roman": "Fi khasm?",
+    "en": "Is there a discount?",
+    "ur": "کوئی ڈسکاؤنٹ ہے؟"
+   },
+   {
+    "ar": "عندكم مقاس أكبر؟",
+    "roman": "'Indakum magaas akbar?",
+    "en": "Do you have a bigger size?",
+    "ur": "کیا بڑا سائز ہے؟",
+    "note": "'Akbar' = bigger, as in 'Allahu akbar'."
+   },
+   {
+    "ar": "أبي أشوف هذا",
+    "roman": "Abi ashoof haadha",
+    "en": "I want to see this",
+    "ur": "مجھے یہ دیکھنا ہے"
+   },
+   {
+    "ar": "أدفع بالبطاقة",
+    "roman": "Adfa' bil-bitaaqa",
+    "en": "I'll pay by card",
+    "ur": "میں کارڈ سے ادائیگی کروں گا"
+   },
+   {
+    "ar": "كاش",
+    "roman": "Kaash",
+    "en": "Cash",
+    "ur": "نقد"
+   },
+   {
+    "ar": "ممكن الفاتورة؟",
+    "roman": "Mumkin al-faatoora?",
+    "en": "Can I have the receipt?",
+    "ur": "رسید مل سکتی ہے؟"
+   },
+   {
+    "ar": "وين الكاشير؟",
+    "roman": "Wain al-kaashier?",
+    "en": "Where is the cashier?",
+    "ur": "کیشیئر کہاں ہے؟"
+   },
+   {
+    "ar": "أبي أرجع هذا",
+    "roman": "Abi arajji' haadha",
+    "en": "I want to return this",
+    "ur": "میں یہ واپس کرنا چاہتا ہوں",
+    "note": "Same root as Urdu 'rujoo'."
+   }
+  ]
+ },
+ {
+  "id": "ml09",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 9,
+  "date": "4 Oct 2026",
+  "title": "Polite office expressions",
+  "phrases": [
+   {
+    "ar": "لو تكرمت",
+    "roman": "Law takarramt",
+    "en": "If you'd be so kind",
+    "ur": "اگر آپ مہربانی کریں",
+    "note": "Same root as Urdu 'karam'."
+   },
+   {
+    "ar": "مشكور",
+    "roman": "Mashkoor",
+    "en": "Thanks",
+    "ur": "شکریہ",
+    "note": "Very common in the Gulf. To a woman: مشكورة – mashkoora."
+   },
+   {
+    "ar": "ما قصرت",
+    "roman": "Ma gassart",
+    "en": "Thanks a lot, you did great",
+    "ur": "آپ نے کمال کر دیا",
+    "note": "Lit. 'you didn't fall short'."
+   },
+   {
+    "ar": "تحت أمرك",
+    "roman": "Taht amrak",
+    "en": "At your service",
+    "ur": "آپ کے حکم پر",
+    "note": "'Amr' = order, as in Urdu."
+   },
+   {
+    "ar": "ولا يهمك",
+    "roman": "Wala yhimmak",
+    "en": "Don't worry about it",
+    "ur": "آپ فکر نہ کریں"
+   },
+   {
+    "ar": "عذراً على التأخير",
+    "roman": "'Udhran 'ala at-ta'kheer",
+    "en": "Sorry for the delay",
+    "ur": "تاخیر کے لیے معذرت",
+    "note": "'Uzr' and 'taakheer' as in Urdu."
+   },
+   {
+    "ar": "حياك الله",
+    "roman": "Hayyaak Allah",
+    "en": "Welcome",
+    "ur": "خوش آمدید",
+    "note": "Reply: الله يحييك – Allah yhayyeek."
+   },
+   {
+    "ar": "تفضل اقعد",
+    "roman": "Tfaddal ag'ad",
+    "en": "Please have a seat",
+    "ur": "تشریف رکھیے"
+   },
+   {
+    "ar": "أشوفك على خير",
+    "roman": "Ashoofak 'ala khair",
+    "en": "See you soon",
+    "ur": "پھر ملیں گے",
+    "note": "Lit. 'I'll see you in good health'."
+   },
+   {
+    "ar": "بالتوفيق",
+    "roman": "Bit-tawfeeq",
+    "en": "Good luck",
+    "ur": "کامیابی ہو",
+    "note": "Same as Urdu 'taufeeq'."
+   }
+  ]
+ },
+ {
+  "id": "ml10",
+  "type": "lesson",
+  "level": "Medium",
+  "day": 10,
+  "date": "4 Oct 2026",
+  "title": "Weather & small talk",
+  "phrases": [
+   {
+    "ar": "الجو حار اليوم",
+    "roman": "Al-jaw haar al-yoam",
+    "en": "It's hot today",
+    "ur": "آج بہت گرمی ہے"
+   },
+   {
+    "ar": "الجو حلو",
+    "roman": "Al-jaw hilw",
+    "en": "The weather is nice",
+    "ur": "موسم اچھا ہے",
+    "note": "'Hilw' = sweet/nice, like Urdu 'halwa'."
+   },
+   {
+    "ar": "رطوبة وايد",
+    "roman": "Rutooba waayed",
+    "en": "It's very humid",
+    "ur": "بہت حبس ہے",
+    "note": "Same as Urdu 'ratoobat'."
+   },
+   {
+    "ar": "بتمطر؟",
+    "roman": "Bitmattir?",
+    "en": "Will it rain?",
+    "ur": "کیا بارش ہوگی؟"
+   },
+   {
+    "ar": "شو سويت في الويكند؟",
+    "roman": "Shu sawweit fil-weekend?",
+    "en": "What did you do on the weekend?",
+    "ur": "ویک اینڈ پر کیا کیا؟"
+   },
+   {
+    "ar": "رحت البحر",
+    "roman": "Riht al-bahar",
+    "en": "I went to the beach",
+    "ur": "میں سمندر پر گیا",
+    "note": "'Bahr' as in Urdu 'bahr' (sea)."
+   },
+   {
+    "ar": "وين تسكن؟",
+    "roman": "Wain tiskin?",
+    "en": "Where do you live?",
+    "ur": "آپ کہاں رہتے ہیں؟",
+    "note": "Same root as Urdu 'sukoonat'."
+   },
+   {
+    "ar": "أسكن في دبي",
+    "roman": "Askin fi Dubai",
+    "en": "I live in Dubai",
+    "ur": "میں دبئی میں رہتا ہوں"
+   },
+   {
+    "ar": "من متى إنت في الإمارات؟",
+    "roman": "Min mita inta fil-Imaaraat?",
+    "en": "How long have you been in the UAE?",
+    "ur": "آپ کب سے امارات میں ہیں؟"
+   },
+   {
+    "ar": "من سنين وايد",
+    "roman": "Min sineen waayed",
+    "en": "For many years",
+    "ur": "بہت سالوں سے"
+   }
+  ]
+ }
+]
