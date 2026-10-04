@@ -12,7 +12,7 @@ always in the "ar" field. Dialogue lines use different voices per speaker:
 Audio is cached in ./audio-cache by a hash of (voice, speed, text).
 Set TTS_MOCK=1 to make silent clips instead (for testing without internet).
 """
-import asyncio, hashlib, json, os, shutil, subprocess, sys
+import asyncio, hashlib, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -181,13 +181,15 @@ def main():
     built.sort(key=lambda u: (langs.get(u["lang"], 9), order.get(u["level"], 9), u["type"], u.get("day", 0), u["id"]))
     (SITE / "lessons.json").write_text(json.dumps(built, ensure_ascii=False), encoding="utf-8")
     # offline.json: every audio file per language with its size, for the "Download for offline" button.
-    offline = {}
+    # The version comes from the first "## vX.Y" heading in CHANGELOG.md.
+    m = re.search(r"^## v([\d.]+)", (ROOT / "CHANGELOG.md").read_text(encoding="utf-8"), re.M)
+    offline = {"version": m.group(1) if m else "0", "langs": {}}
     for u in built:
-        o = offline.setdefault(u["lang"], {"files": [], "bytes": 0})
+        o = offline["langs"].setdefault(u["lang"], {"files": [], "sizes": [], "bytes": 0})
         for f in [u["track"]] + [src for p in u["phrases"] for src in p["audio"].values()]:
             if f not in o["files"]:
-                o["files"].append(f)
-                o["bytes"] += (SITE / f).stat().st_size
+                size = (SITE / f).stat().st_size
+                o["files"].append(f); o["sizes"].append(size); o["bytes"] += size
     (SITE / "offline.json").write_text(json.dumps(offline), encoding="utf-8")
     for w in CACHE.glob("*.wav"):
         if not w.name.startswith("silence"):
