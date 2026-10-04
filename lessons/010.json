@@ -1,0 +1,96 @@
+{
+  "day": 10,
+  "level": "Starter",
+  "date": "4 Oct 2026",
+  "title": "Directions & places",
+  "phrases": [
+    {
+      "ar": "يمين",
+      "roman": "Yameen",
+      "en": "Right",
+      "ur": "دائیں"
+    },
+    {
+      "ar": "يسار",
+      "roman": "Yasaar",
+      "en": "Left",
+      "ur": "بائیں",
+      "note": "Emiratis also say 'shmaal'."
+    },
+    {
+      "ar": "سيدا",
+      "roman": "Seeda",
+      "en": "Straight ahead",
+      "ur": "سیدھا",
+      "note": "Sounds like Urdu 'seedha'."
+    },
+    {
+      "ar": "قريب",
+      "roman": "Gareeb",
+      "en": "Near",
+      "ur": "قریب",
+      "note": "Same as Urdu 'qareeb'."
+    },
+    {
+      "ar": "بعيد",
+      "roman": "Ba'eed",
+      "en": "Far",
+      "ur": "دور",
+      "note": "Same as Urdu 'ba'eed'."
+    },
+    {
+      "ar": "هني",
+      "roman": "Hni",
+      "en": "Here",
+      "ur": "یہاں",
+      "note": "Emirati. Formal: هنا – huna."
+    },
+    {
+      "ar": "هناك",
+      "roman": "Hnaak",
+      "en": "There",
+      "ur": "وہاں"
+    },
+    {
+      "ar": "وين الحمام؟",
+      "roman": "Wain al-hammaam?",
+      "en": "Where is the washroom?",
+      "ur": "واش روم کہاں ہے؟",
+      "note": "'Hammaam' as in Urdu."
+    },
+    {
+      "ar": "المسجد",
+      "roman": "Al-masjid",
+      "en": "The mosque",
+      "ur": "مسجد"
+    },
+    {
+      "ar": "موقف السيارات",
+      "roman": "Mawgif as-sayyaaraat",
+      "en": "Car park",
+      "ur": "پارکنگ",
+      "note": "'Sayyaara' = car."
+    },
+    {
+      "ar": "المصعد",
+      "roman": "Al-mas'ad",
+      "en": "The lift",
+      "ur": "لفٹ",
+      "note": "Many people just say 'lift'."
+    },
+    {
+      "ar": "الدور الثاني",
+      "roman": "Ad-door ath-thaani",
+      "en": "The second floor",
+      "ur": "دوسری منزل",
+      "note": "'Thaani' = second, as in Urdu 'saani'."
+    },
+    {
+      "ar": "لف يمين عند الإشارة",
+      "roman": "Liff yameen 'ind al-ishaara",
+      "en": "Turn right at the signal",
+      "ur": "سگنل سے دائیں مڑیں",
+      "note": "'Ishaara' = signal, like Urdu 'ishaara'. Useful with taxi drivers."
+    }
+  ]
+}
