@@ -1,0 +1,86 @@
+{
+  "day": 8,
+  "level": "Starter",
+  "date": "4 Oct 2026",
+  "title": "I, you, he, she: pronouns",
+  "phrases": [
+    {
+      "ar": "أنا",
+      "roman": "Ana",
+      "en": "I",
+      "ur": "میں"
+    },
+    {
+      "ar": "إنت",
+      "roman": "Inta",
+      "en": "You (to a man)",
+      "ur": "آپ / تم (مرد)"
+    },
+    {
+      "ar": "إنتي",
+      "roman": "Inti",
+      "en": "You (to a woman)",
+      "ur": "آپ / تم (عورت)"
+    },
+    {
+      "ar": "هو",
+      "roman": "Huwa",
+      "en": "He",
+      "ur": "وہ (مرد)"
+    },
+    {
+      "ar": "هي",
+      "roman": "Hiya",
+      "en": "She",
+      "ur": "وہ (عورت)"
+    },
+    {
+      "ar": "إحنا",
+      "roman": "Ihna",
+      "en": "We",
+      "ur": "ہم",
+      "note": "Formal: نحن – nahnu."
+    },
+    {
+      "ar": "إنتوا",
+      "roman": "Intu",
+      "en": "You (plural)",
+      "ur": "آپ لوگ"
+    },
+    {
+      "ar": "هم",
+      "roman": "Hum",
+      "en": "They",
+      "ur": "وہ لوگ",
+      "note": "Careful: in Urdu 'hum' means 'we'."
+    },
+    {
+      "ar": "هذا",
+      "roman": "Haadha",
+      "en": "This (masculine)",
+      "ur": "یہ",
+      "note": "'Haadha maktabi' = this is my office."
+    },
+    {
+      "ar": "هذي",
+      "roman": "Haadhi",
+      "en": "This (feminine)",
+      "ur": "یہ",
+      "note": "'Haadhi sayyaarti' = this is my car."
+    },
+    {
+      "ar": "ذاك",
+      "roman": "Dhaak",
+      "en": "That",
+      "ur": "وہ",
+      "note": "Formal: ذلك – dhaalik."
+    },
+    {
+      "ar": "أنا من باكستان، وإنت من وين؟",
+      "roman": "Ana min Baakistaan, w inta min wain?",
+      "en": "I'm from Pakistan, and where are you from?",
+      "ur": "میں پاکستان سے ہوں، اور آپ کہاں سے ہیں؟",
+      "note": "Practice sentence using the pronouns."
+    }
+  ]
+}
