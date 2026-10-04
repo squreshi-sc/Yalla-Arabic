@@ -1,0 +1,92 @@
+{
+  "day": 7,
+  "level": "Starter",
+  "date": "4 Oct 2026",
+  "title": "Question words, yes & no",
+  "phrases": [
+    {
+      "ar": "شو؟",
+      "roman": "Shu?",
+      "en": "What?",
+      "ur": "کیا؟",
+      "note": "Emirati. In other countries: 'aish' or 'maadha'."
+    },
+    {
+      "ar": "منو؟",
+      "roman": "Minu?",
+      "en": "Who?",
+      "ur": "کون؟"
+    },
+    {
+      "ar": "وين؟",
+      "roman": "Wain?",
+      "en": "Where?",
+      "ur": "کہاں؟"
+    },
+    {
+      "ar": "متى؟",
+      "roman": "Mita?",
+      "en": "When?",
+      "ur": "کب؟"
+    },
+    {
+      "ar": "ليش؟",
+      "roman": "Laish?",
+      "en": "Why?",
+      "ur": "کیوں؟"
+    },
+    {
+      "ar": "كيف؟",
+      "roman": "Kaif?",
+      "en": "How?",
+      "ur": "کیسے؟",
+      "note": "As in 'Kaif haalak?'"
+    },
+    {
+      "ar": "كم؟",
+      "roman": "Kam?",
+      "en": "How much? / How many?",
+      "ur": "کتنا؟ / کتنے؟"
+    },
+    {
+      "ar": "أي واحد؟",
+      "roman": "Ay waahid?",
+      "en": "Which one?",
+      "ur": "کون سا؟"
+    },
+    {
+      "ar": "إيه",
+      "roman": "Ee",
+      "en": "Yes",
+      "ur": "ہاں",
+      "note": "Everyday 'yes' in the Gulf. Formal: نعم – na'am."
+    },
+    {
+      "ar": "لا",
+      "roman": "Laa",
+      "en": "No",
+      "ur": "نہیں"
+    },
+    {
+      "ar": "مب",
+      "roman": "Mob",
+      "en": "Not",
+      "ur": "نہیں (نفی)",
+      "note": "Emirati: 'mob zain' = not good, 'mob mushkila' = no problem."
+    },
+    {
+      "ar": "تمام",
+      "roman": "Tamaam",
+      "en": "OK / fine",
+      "ur": "ٹھیک ہے",
+      "note": "Same as Urdu 'tamaam' (complete)."
+    },
+    {
+      "ar": "يمكن",
+      "roman": "Yimkin",
+      "en": "Maybe",
+      "ur": "شاید",
+      "note": "Same root as 'mumkin'."
+    }
+  ]
+}
