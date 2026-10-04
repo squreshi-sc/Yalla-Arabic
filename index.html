@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Noto+Nastaliq+Urdu:wght@400;600&family=Reem+Kufi:wght@600&family=Manrope:wght@400;600;700&display=swap">
 <style>
-/* Layout: one narrow column — header with progress tiles, sticky toolbar (level, unit, speed), five tabs (Lessons, Dialogues, Quiz, Speak, Search). Palm green + date brown on pale sand. v2.0 */
+/* v2.2: Arabic, German, French via the Language menu. Layout: one narrow column — header with progress tiles, sticky toolbar (level, unit, speed), five tabs (Lessons, Dialogues, Quiz, Speak, Search). Palm green + date brown on pale sand. v2.0 */
 :root{
   --bg:#F2F4F1; --surface:#FFFFFF; --ink:#18231F; --muted:#5C6B65; --line:#DCE3DE;
   --accent:#0E6A57; --accent-soft:#E1EFEA; --date:#8E5226; --date-soft:#F5E9DF; --on-accent:#FFFFFF;
@@ -35,6 +35,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:env(safe-area-inset-top,0px)}
 h1{margin:0;font-family:var(--f-kufi);font-size:30px;color:var(--accent);line-height:1.1;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
 h1 .ar{font-size:34px}
+h1 .alt{font-size:24px;color:var(--date)}
 header p{margin:4px 0 0;color:var(--muted)}
 .stats{display:flex;gap:8px;flex-wrap:wrap}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;color:var(--muted);text-align:center;min-width:92px}
@@ -46,8 +47,8 @@ button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--acc
 button:disabled{opacity:.45;cursor:not-allowed}
 .btn.primary,button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
-.toolbar{display:grid;grid-template-columns:150px minmax(0,1fr) 96px auto auto;grid-template-areas:"level unit speed rep test";gap:8px;align-items:end}
-.f-level{grid-area:level}.f-unit{grid-area:unit}.f-speed{grid-area:speed}.f-rep{grid-area:rep}.f-test{grid-area:test}
+.toolbar{display:grid;grid-template-columns:118px 118px minmax(0,1fr) 90px auto auto;grid-template-areas:"lang level unit speed rep test";gap:8px;align-items:end}
+.f-lang{grid-area:lang}.f-level{grid-area:level}.f-unit{grid-area:unit}.f-speed{grid-area:speed}.f-rep{grid-area:rep}.f-test{grid-area:test}
 .field{display:flex;flex-direction:column;gap:4px;min-width:0}
 .field span{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .field select{width:100%;min-width:0;font:inherit;font-size:14px;font-weight:600;color:var(--ink);background-color:var(--surface);border:1px solid var(--line);border-radius:8px;height:38px;padding:0 30px 0 10px;appearance:none;-webkit-appearance:none;text-overflow:ellipsis;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%237d8f88' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
@@ -77,10 +78,11 @@ h2{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:v
 .card.you{margin-left:28px;background:var(--accent-soft);border-color:transparent}
 .card.you.learned{border-color:var(--good)}
 .card.now{outline:3px solid var(--date);outline-offset:2px}
-.card.veil .arabic,.card.veil .roman,.card.veil .ur{filter:blur(9px)}
+.card.veil .arabic,.card.veil .target,.card.veil .roman,.card.veil .ur{filter:blur(9px)}
 .who{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--date)}
 .card.you .who{color:var(--accent)}
 .arabic{font-family:var(--f-ar);font-size:28px;font-weight:700;direction:rtl;text-align:right;line-height:1.6}
+.target{font-size:26px;font-weight:700;line-height:1.35}
 .roman{font-weight:700;color:var(--accent);font-size:16px}
 .ur{font-family:var(--f-ur);direction:rtl;text-align:right;font-size:18px;line-height:2.1;color:var(--muted)}
 .note{font-size:13px;color:var(--date);background:var(--date-soft);border-radius:6px;padding:5px 9px;align-self:flex-start}
@@ -134,13 +136,13 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   header p{font-size:13px}
   .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
   .stat{min-width:0;padding:6px 4px;font-size:12px}
-  .toolbar{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"unit unit unit unit" "level speed rep test";gap:8px 6px}
+  .toolbar{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"lang lang level level" "unit unit unit unit" "speed speed rep test";gap:8px 6px}
   .field select{font-size:13px;padding:0 24px 0 8px;background-position:right 7px center}
   .tog{font-size:13px;padding:0 6px}
   .tabs{gap:0}
   .tabs button{flex:1 1 0;min-width:0;padding:8px 0;font-size:13px}
   .card.them{margin-right:16px} .card.you{margin-left:16px}
-  .arabic{font-size:25px}
+  .arabic{font-size:25px} .target{font-size:23px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -149,8 +151,8 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
 <div class="wrap">
   <header>
     <div>
-      <h1><span>Yalla Arabic</span><span class="ar">يلا عربي</span></h1>
-      <p>Gulf Arabic for the office · Arabic · Roman · English · اردو</p>
+      <h1><span id="brand">Yalla Arabic</span><span class="ar" id="brandAlt">يلا عربي</span></h1>
+      <p id="tagline">Gulf Arabic for the office · Arabic · Roman · English · اردو</p>
     </div>
     <div class="stats">
       <div class="stat"><b id="stStreak">0</b> day streak</div>
@@ -161,6 +163,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
 
   <div class="bar">
     <div class="toolbar">
+      <label class="field f-lang"><span>Language</span><select id="langSel"><option value="ar">Arabic</option><option value="de">German</option><option value="fr">French</option></select></label>
       <label class="field f-level"><span>Level</span><select id="levelSel"><option value="Starter">Starter</option><option value="Medium">Medium</option><option value="Advanced">Advanced</option></select></label>
       <label class="field f-unit"><span id="unitLbl">Lesson</span><select id="unitSel"></select></label>
       <label class="field f-speed"><span>Speed</span><select id="speedSel"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
@@ -208,7 +211,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       <div class="row"><span class="lbl">Phrases</span>
         <span class="chips" id="qScope"><button data-v="unit" aria-pressed="true">This lesson</button><button data-v="level" aria-pressed="false">Whole level</button><button data-v="weak" aria-pressed="false">Not learned yet</button></span></div>
       <div class="row"><span class="lbl">Type</span>
-        <span class="chips" id="qType"><button data-v="mix" aria-pressed="true">Mixed</button><button data-v="listen" aria-pressed="false">Listen → meaning</button><button data-v="read" aria-pressed="false">Meaning → Arabic</button></span></div>
+        <span class="chips" id="qType"><button data-v="mix" aria-pressed="true">Mixed</button><button data-v="listen" aria-pressed="false">Listen → meaning</button><button data-v="read" aria-pressed="false">Meaning → <span id="qReadLbl">Arabic</span></button></span></div>
       <button class="primary" id="qStart" style="align-self:flex-start">Start 10 questions</button>
     </div>
     <div class="box" id="quizRun" hidden>
@@ -231,11 +234,11 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   <section class="panel" id="tab-speak" role="tabpanel" hidden>
     <div class="box">
       <h2>Speak &amp; translate</h2>
-      <p class="hint">Speak in English or Urdu to get the Arabic. Speak in Arabic, even broken Arabic, to get corrected.</p>
+      <p class="hint" id="speakHint">Speak in English or Urdu to get the Arabic. Speak in Arabic, even broken Arabic, to get corrected.</p>
       <div class="chips" id="seg" role="group" aria-label="Language you will speak">
         <button data-lang="en-US" aria-pressed="true">I speak English</button>
         <button data-lang="ur-PK" aria-pressed="false">اردو</button>
-        <button data-lang="ar-AE" aria-pressed="false">عربي (correct me)</button>
+        <button data-lang="target" id="segTarget" aria-pressed="false">عربي (correct me)</button>
       </div>
       <div class="talk-row">
         <button id="mic" class="mic" aria-label="Start speaking"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span id="micLabel">Tap and speak</span></button>
@@ -246,7 +249,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
         <a class="btn primary" id="toClaude" target="_blank" rel="noopener" href="#">Ask Claude teacher</a>
         <a class="btn" id="toGoogle" target="_blank" rel="noopener" href="#">Google Translate (with voice)</a>
       </div>
-      <p class="hint small">Claude gives the Gulf (spoken) Arabic with Roman letters and explains your mistakes. Google gives a quick translation with a speaker button.</p>
+      <p class="hint small" id="speakHint2">Claude gives the Gulf (spoken) Arabic with Roman letters and explains your mistakes. Google gives a quick translation with a speaker button.</p>
     </div>
   </section>
 
@@ -259,7 +262,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
 
   <footer>
     <span>On your phone, use "Add to Home Screen" to open this like an app. Car mode keeps playing with the screen locked.</span>
-    <span>Your progress is saved on this device. Version 2.0 · <a href="https://github.com/squreshi-sc/Yalla-Arabic/releases" target="_blank" rel="noopener" style="color:inherit">all versions</a></span>
+    <span>Your progress is saved on this device. Version 2.2 · <a href="https://github.com/squreshi-sc/Yalla-Arabic/releases" target="_blank" rel="noopener" style="color:inherit">all versions</a></span>
   </footer>
 </div>
 
@@ -271,7 +274,19 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   const put = (k,v) => { try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} };
   const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
   const KIND = {lesson:"Lesson", dialogue:"Dialogue"};
+  const LANGS = {
+    ar: {name:"Arabic", code:"AR", sr:"ar-AE", gt:"ar", brand:"Yalla Arabic", alt:"يلا عربي", title:"Yalla Arabic",
+         tag:"Gulf Arabic for the office · Arabic · Roman · English · اردو", seg:"عربي (correct me)", ph:"أو اكتب هنا…",
+         variety:"Gulf/Emirati Arabic for the office", wow:"Mumtaaz!", good:"Zain!", rtl:true, levels:["Starter","Medium","Advanced"]},
+    de: {name:"German", code:"DE", sr:"de-DE", gt:"de", brand:"Los geht's", alt:"Deutsch", title:"Los geht's – German",
+         tag:"German for travel and daily life · Deutsch · Say it · English · اردو", seg:"Deutsch (correct me)", ph:"Oder hier tippen…",
+         variety:"standard German (Germany) for travel and daily life", wow:"Sehr gut!", good:"Gut gemacht!", rtl:false, levels:["Starter","Medium","Advanced"]},
+    fr: {name:"French", code:"FR", sr:"fr-FR", gt:"fr", brand:"Allez", alt:"Français", title:"Allez – French",
+         tag:"French for travel and daily life · Français · Say it · English · اردو", seg:"Français (correct me)", ph:"Ou tapez ici…",
+         variety:"standard French (France) for travel and daily life", wow:"Très bien !", good:"Bravo !", rtl:false, levels:["Starter","Medium","Advanced"]}
+  };
 
+  let lang = get("ya-lang","ar"); if (!LANGS[lang]) lang = "ar";
   let units = [], all = [], level = get("ya-level","Starter"), mode = "lesson", cur = null;
   let learned = new Set(get("ya-learned", []));
   let rate = get("ya-rate", 1), loop = false;
@@ -279,7 +294,10 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   const track = $("#track");
   const pid = (U,i) => `${U.id}:${i}`;
   const lvOf = U => U.level || "Starter";
-  const inView = () => units.filter(U => lvOf(U) === level && U.type === mode);
+  const langOf = U => U.lang || "ar";
+  const L = () => LANGS[lang];
+  const langAll = () => all.filter(x => langOf(x.U) === lang);
+  const inView = () => units.filter(U => langOf(U) === lang && lvOf(U) === level && U.type === mode);
 
   /* ---------- Streak + stats ---------- */
   (function(){
@@ -293,8 +311,9 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     const b = get("ya-best", null); $("#stBest").textContent = b==null ? "–" : b+"/10";
   })();
   function updateStats(){
-    $("#stLearned").textContent = all.filter(x => learned.has(x.id)).length;
-    $("#stTotal").textContent = all.length;
+    const la = langAll();
+    $("#stLearned").textContent = la.filter(x => learned.has(x.id)).length;
+    $("#stTotal").textContent = la.length;
     if (cur){ const n = cur.phrases.filter((p,i)=>learned.has(pid(cur,i))).length; $("#unitBar").style.width = (100*n/cur.phrases.length)+"%"; }
   }
 
@@ -325,8 +344,18 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     return s.replace(/[\u064B-\u0652\u0670\u0640]/g,"").replace(/[أإآٱ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").replace(/ؤ/g,"و").replace(/ئ/g,"ي").replace(/چ/g,"ج").replace(/[^\u0621-\u064A\s]/g," ").replace(/\s+/g," ").trim();
   }
   function lev(a,b){ const m=a.length,n=b.length; if(!m) return n; if(!n) return m; let prev=Array.from({length:n+1},(_,j)=>j); for(let i=1;i<=m;i++){ const c=[i]; for(let j=1;j<=n;j++) c[j]=Math.min(prev[j]+1,c[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1)); prev=c; } return prev[n]; }
-  function similarity(said, target){
-    const a = arNorm(said).replace(/ /g,""), b = arNorm(target).replace(/ /g,"");
+  const LNUM = {
+    de: ["null","eins","zwei","drei","vier","fünf","sechs","sieben","acht","neun","zehn","elf","zwölf"],
+    fr: ["zero","un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix","onze","douze"]
+  };
+  function latNorm(s, lg){
+    s = (s||"").toLowerCase();
+    const w = LNUM[lg]; if (w) s = s.replace(/\d+/g, n => " " + (w[+n] || n) + " ");
+    return s.replace(/ß/g,"ss").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z\s]/g," ").replace(/\s+/g," ").trim();
+  }
+  function similarity(said, target, lg){
+    const nf = (!lg || lg === "ar") ? arNorm : (x => latNorm(x, lg));
+    const a = nf(said).replace(/ /g,""), b = nf(target).replace(/ /g,"");
     if (!a || !b) return 0;
     return Math.max(0, 1 - lev(a,b)/Math.max(a.length,b.length));
   }
@@ -337,14 +366,15 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     "not-allowed": "The microphone is blocked for this site. Click the icon left of the address bar and allow Microphone, then try again.",
     "service-not-allowed": "The browser blocked speech recognition. Use Chrome or Edge and allow the microphone.",
     "network": "The speech check needs internet (it uses Google's speech service). Check your connection and try again.",
-    "language-not-supported": "This browser can't recognise Arabic speech. Please use Chrome or Edge.",
+    "language-not-supported": "This browser can't recognise speech in this language. Please use Chrome or Edge.",
     "audio-capture": "No microphone found, or another app is using it. Close other apps using the mic and try again."
   };
   function checkMe(p, btn, fb, markLearned){
     if (active && active.btn === btn){ active.stop(); return; }
     stopActive(); stopClip(); track.pause(); stopRoleplay();
     let sr; try { sr = new SRx(); } catch(e){ fbSet(fb, "bad", el("span",null,"Speech check isn't available in this browser. Use Record me instead.")); return; }
-    sr.lang = "ar-AE"; sr.interimResults = true; sr.maxAlternatives = 5; sr.continuous = false;
+    const pl = LANGS[p._lang || "ar"];
+    sr.lang = pl.sr; sr.interimResults = true; sr.maxAlternatives = 5; sr.continuous = false;
     let finals = [], interim = "", err = null, gotSound = false;
     const live = el("span",null,"Listening… say the phrase now.");
     fbSet(fb, "self", live);
@@ -362,13 +392,13 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       if (err && err !== "no-speech" && err !== "aborted"){ fbSet(fb, "bad", el("span",null, SR_ERR[err] || ("The speech check stopped (" + err + "). Try again.")), again); return; }
       const heard = finals.length ? finals : (interim ? [interim] : []);
       if (!heard.length){
-        fbSet(fb, "bad", el("b",null, gotSound ? "I heard sound but couldn't make out Arabic words." : "I didn't hear any speech."),
+        fbSet(fb, "bad", el("b",null, gotSound ? `I heard sound but couldn't make out ${pl.name} words.` : "I didn't hear any speech."),
           el("span",null, gotSound ? "Speak a little slower and clearer, right after tapping." : "Start speaking right after tapping. If it keeps happening, check that the right microphone is selected."), again);
         return;
       }
-      const best = heard.reduce((m,h) => Math.max(m, similarity(h, p.ar)), 0), pct = Math.round(best*100);
+      const best = heard.reduce((m,h) => Math.max(m, similarity(h, p.ar, p._lang)), 0), pct = Math.round(best*100);
       const cls = best >= .8 ? "good" : best >= .55 ? "ok" : "bad";
-      const msg = best >= .8 ? "Mumtaaz! Very clear." : best >= .55 ? "Close! Listen once more and try again." : "Not quite yet. Play AR slow, then try again.";
+      const msg = best >= .8 ? `${pl.wow} Very clear.` : best >= .55 ? "Close! Listen once more and try again." : "Not quite yet. Play Slow, then try again.";
       const meter = el("div","meter"), bar = el("i"); bar.style.width = pct + "%"; meter.append(bar);
       const nodes = [el("b",null,msg), el("span",null,pct + "% match"), el("span",null,"I heard:"), el("span","heard",heard[0]), meter, again];
       if (best >= .8){ const learn = el("button",null,"Mark learned"); learn.onclick = () => { markLearned(); learn.disabled = true; learn.textContent = "Learned"; }; nodes.push(learn); }
@@ -417,13 +447,15 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     const key = pid(U,i);
     const c = el("article","card"); if (learned.has(key)) c.classList.add("learned");
     if (U.type === "dialogue") c.classList.add(p.g === "you" ? "you" : "them");
-    if (showFrom) c.append(el("div","from",`${lvOf(U)} · ${KIND[U.type]} ${U.day}: ${U.title||""}`));
+    const pl = LANGS[langOf(U)];
+    if (showFrom) c.append(el("div","from",`${pl.name} · ${lvOf(U)} · ${KIND[U.type]} ${U.day}: ${U.title||""}`));
     if (U.type === "dialogue") c.append(el("div","who", p.g === "you" ? "You" : (p.who || "")));
-    c.append(el("div","arabic",p.ar), el("div","roman",p.roman||""), el("div","en",p.en||""));
+    const tx = el("div", pl.rtl ? "arabic" : "target", p.ar); tx.lang = langOf(U);
+    c.append(tx, el("div","roman",p.roman||""), el("div","en",p.en||""));
     if (p.ur){ const u=el("div","ur",p.ur); u.lang="ur"; c.append(u); }
     if (p.note) c.append(el("div","note",p.note));
     const s = el("div","speak");
-    [["AR","ar"],["AR slow","ar_slow"],["EN","en"],["اردو","ur"]].forEach(([lab,k])=>{
+    [[pl.code,"ar"],[pl.code+" slow","ar_slow"],["EN","en"],["اردو","ur"]].forEach(([lab,k])=>{
       if (!p.audio||!p.audio[k]) return;
       const b = el("button",null,lab); b.onclick = () => { stopRoleplay(); play(p.audio[k], b); }; s.append(b);
     });
@@ -454,7 +486,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     $("#unitLbl").textContent = KIND[mode];
     sel.replaceChildren(...list.map(U => { const o = document.createElement("option"); o.value = U.id; o.textContent = `${U.day}. ${U.title||""}`; return o; }));
     if (!list.length){ const o = document.createElement("option"); o.textContent = `No ${KIND[mode].toLowerCase()}s yet`; sel.append(o); }
-    const saved = get(`ya-cur-${level}-${mode}`, null);
+    const saved = get(lang === "ar" ? `ya-cur-${level}-${mode}` : `ya-cur-${lang}-${level}-${mode}`, null);
     cur = list.find(U => U.id === saved) || list[0] || null;
     if (cur) sel.value = cur.id;
   }
@@ -477,15 +509,39 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     $("#pos").textContent = `${level} level · ${KIND[mode].toLowerCase()} ${i+1} of ${list.length}`;
     $("#carInfo").textContent = isD
       ? `Part 1: listen to the whole dialogue with English. Part 2: the other person speaks and you answer in the pauses. Works with the screen locked.`
-      : `Lesson ${cur.day} (${cur.phrases.length} phrases): Arabic, slow Arabic, English, Urdu, then a pause for you to repeat.`;
+      : `Lesson ${cur.day} (${cur.phrases.length} phrases): ${L().name}, slow ${L().name}, English, Urdu, then a pause for you to repeat.`;
     if (track.dataset.id !== cur.id){ track.src = cur.track; track.dataset.id = cur.id; }
-    if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({title:`${KIND[mode]} ${cur.day}: ${cur.title||""}`, artist:"Yalla Arabic"});
-    put(`ya-cur-${level}-${mode}`, cur.id);
+    if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({title:`${KIND[mode]} ${cur.day}: ${cur.title||""}`, artist:L().brand});
+    put(lang === "ar" ? `ya-cur-${level}-${mode}` : `ya-cur-${lang}-${level}-${mode}`, cur.id);
     cur.phrases.forEach((p,j) => box.append(card(p, cur, j)));
     updateStats();
   }
   $("#unitSel").onchange = e => { cur = inView().find(U => U.id === e.target.value) || cur; render(); };
   $("#levelSel").onchange = e => { level = e.target.value; put("ya-level", level); fillUnits(); render(); };
+  function fillLevels(){
+    const lvSel = $("#levelSel");
+    [...lvSel.options].forEach(o => { const n = units.filter(U => langOf(U) === lang && lvOf(U) === o.value).length; o.disabled = !n; o.textContent = n ? o.value : `${o.value} (coming soon)`; });
+    if (!units.some(U => langOf(U) === lang && lvOf(U) === level)) level = "Starter";
+    lvSel.value = level;
+  }
+  function applyLang(){
+    const c = L();
+    $("#langSel").value = lang;
+    document.title = c.title;
+    $("#brand").textContent = c.brand;
+    const alt = $("#brandAlt"); alt.textContent = c.alt; alt.className = c.rtl ? "ar" : "alt"; alt.lang = lang;
+    $("#tagline").textContent = c.tag;
+    $("#qReadLbl").textContent = c.name;
+    $("#segTarget").textContent = c.seg;
+    $("#speakHint").textContent = `Speak in English or Urdu to get the ${c.name}. Speak in ${c.name}, even broken ${c.name}, to get corrected.`;
+    $("#speakHint2").textContent = `Claude gives the ${c.variety.split(" for ")[0]} with an easy pronunciation guide and explains your mistakes. Google gives a quick translation with a speaker button.`;
+  }
+  $("#langSel").onchange = e => {
+    lang = e.target.value; put("ya-lang", lang); stopRoleplay(); stopClip(); track.pause();
+    applyLang(); fillLevels(); fillUnits(); render(); setLang(talkLang);
+    $("#quizRun").hidden = true; $("#quizEnd").hidden = true; $("#quizSetup").hidden = false;
+    const qv = $("#q"); if (qv.value) qv.dispatchEvent(new Event("input"));
+  };
   $("#btnHide").onclick = e => { const on = e.currentTarget.getAttribute("aria-pressed")!=="true"; e.currentTarget.setAttribute("aria-pressed",String(on)); document.body.classList.toggle("hide",on); };
   const auto = $("#autoNext"); auto.checked = !!get("ya-auto", false);
   auto.onchange = () => put("ya-auto", auto.checked);
@@ -518,7 +574,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       if (roleplay && p.g === "you"){
         c.classList.add("veil");
         const secs = Math.max(3, Math.round((p.ar.length / 6) + 2));
-        for (let s = secs; s > 0; s--){ if (rpRun !== run) return; status.textContent = `Your turn: say it in Arabic (${p.en})… ${s}`; await wait(1000); }
+        for (let s = secs; s > 0; s--){ if (rpRun !== run) return; status.textContent = `Your turn: say it in ${L().name} (${p.en})… ${s}`; await wait(1000); }
         if (rpRun !== run) return;
         c.classList.remove("veil"); status.textContent = "Correct version:";
       } else {
@@ -556,11 +612,11 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   let Q = [], qi = 0, score = 0, wrong = [];
   function startQuiz(){
     const scope = pick("#qScope"), type = pick("#qType");
-    const levelPool = all.filter(x => lvOf(x.U) === level);
+    const la = langAll(), levelPool = la.filter(x => lvOf(x.U) === level);
     let pool = scope === "unit" ? all.filter(x => x.U === cur) : scope === "weak" ? levelPool.filter(x => !learned.has(x.id)) : levelPool;
-    if (pool.length < 4) pool = levelPool.length >= 4 ? levelPool : all;
-    if (all.length < 4) return;
-    const distractPool = levelPool.length >= 8 ? levelPool : all;
+    if (pool.length < 4) pool = levelPool.length >= 4 ? levelPool : la;
+    if (la.length < 4) return;
+    const distractPool = levelPool.length >= 8 ? levelPool : la;
     Q = shuffle(pool).slice(0, Math.min(10, pool.length)).map(x => {
       const t = type === "mix" ? (Math.random() < .5 ? "listen" : "read") : type;
       const distract = shuffle(distractPool.filter(y => y.p.en !== x.p.en && y.p.ar !== x.p.ar)).slice(0,3);
@@ -579,10 +635,10 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       const b = el("button","primary","Play again"); b.onclick = () => q.x.p.audio?.ar && play(q.x.p.audio.ar, b); pr.append(b);
       if (q.x.p.audio?.ar) play(q.x.p.audio.ar, b);
     } else {
-      pr.append(el("div","hint","Choose the Arabic for"), el("div","big", q.x.p.en));
+      pr.append(el("div","hint",`Choose the ${L().name} for`), el("div","big", q.x.p.en));
     }
     q.opts.forEach(o => {
-      const b = el("button", q.t==="read" ? "ar" : null, q.t==="read" ? o.p.ar : o.p.en);
+      const b = el("button", q.t==="read" && L().rtl ? "ar" : null, q.t==="read" ? o.p.ar : o.p.en);
       b.onclick = () => answer(o, b); op.append(b);
     });
   }
@@ -601,7 +657,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     $("#quizRun").hidden = true; $("#quizEnd").hidden = false;
     $("#qFinal").textContent = `${score} / ${Q.length}`;
     const pct = score / Q.length;
-    $("#qMsg").textContent = pct === 1 ? "Mumtaaz! Perfect score." : pct >= .7 ? "Zain! Good work. Review the ones below." : "Keep going. Listen to these again, then try once more.";
+    $("#qMsg").textContent = pct === 1 ? `${L().wow} Perfect score.` : pct >= .7 ? `${L().good} Good work.`+" Review the ones below." : "Keep going. Listen to these again, then try once more.";
     if (Q.length === 10){ const best = get("ya-best", 0); if (score > best){ put("ya-best", score); $("#stBest").textContent = score+"/10"; } }
     const r = $("#qReview"); r.replaceChildren();
     wrong.forEach(x => r.append(card(x.p, x.U, x.i, true)));
@@ -614,25 +670,31 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   $("#q").addEventListener("input", () => {
     const t = norm($("#q").value.trim()); const r = $("#results"); r.replaceChildren();
     if (!t){ $("#qCount").textContent = ""; return; }
-    const hits = all.filter(x => [x.p.ar,x.p.roman,x.p.en,x.p.ur,x.p.note].some(f => norm(f).includes(t)));
+    const hits = langAll().filter(x => [x.p.ar,x.p.roman,x.p.en,x.p.ur,x.p.note].some(f => norm(f).includes(t)));
     $("#qCount").textContent = hits.length ? `${hits.length} phrase${hits.length>1?"s":""} found` : "Nothing found. Try another word.";
     hits.slice(0,40).forEach(x => r.append(card(x.p, x.U, x.i, true)));
   });
 
   /* ---------- Speak & translate ---------- */
-  let talkLang = get("ya-talk", "en-US");
+  let talkLang = get("ya-talk", "en-US"); if (talkLang === "ar-AE") talkLang = "target";
   const said = $("#said"), micBtn = $("#mic"), micStatus = $("#micStatus"), micLabel = $("#micLabel");
   function setLang(l){
     talkLang = l; put("ya-talk", l);
     $$("#seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
-    said.dir = l.startsWith("en") ? "ltr" : "rtl";
-    said.placeholder = l.startsWith("en") ? "Or type here… e.g. Can we meet tomorrow at 10?" : l.startsWith("ur") ? "یا یہاں لکھیں…" : "أو اكتب هنا…";
+    said.dir = l.startsWith("ur") || (l === "target" && L().rtl) ? "rtl" : "ltr";
+    said.placeholder = l.startsWith("en") ? "Or type here… e.g. Can we meet tomorrow at 10?" : l.startsWith("ur") ? "یا یہاں لکھیں…" : L().ph;
     updateLinks();
   }
   $$("#seg button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
   function claudePrompt(text){
+    if (lang !== "ar"){
+      const c = L(), who2 = `I am Shakeel, a Pakistani IT professional in Dubai (I speak Urdu, Punjabi and English). I am learning to SPEAK ${c.variety}.`;
+      if (talkLang === "target") return `${who2}\n\nHere is my attempt at saying something in ${c.name} (it came from speech recognition, so it may have errors):\n"${text}"\n\nPlease:\n1. Guess what I meant, in English.\n2. Give the correct ${c.name} version plus an easy pronunciation guide.\n3. Briefly explain my mistakes in simple English with Urdu hints.\nKeep it short.`;
+      const from2 = talkLang.startsWith("ur") ? "Urdu" : "English";
+      return `${who2}\n\nHow do I say this (${from2}) in ${c.name}?\n"${text}"\n\nGive: the ${c.name} sentence, an easy pronunciation guide, a polite and a casual version, and the key words with meanings. Keep it short.`;
+    }
     const who = "I am Shakeel, a Pakistani IT professional in Dubai (I speak Urdu, Punjabi, English and read Arabic script). I am learning to SPEAK Gulf/Emirati Arabic for the office.";
-    if (talkLang.startsWith("ar")) return `${who}\n\nHere is my attempt at saying something in Arabic (it came from speech recognition, so it may have errors):\n"${text}"\n\nPlease:\n1. Guess what I meant, in English.\n2. Give the correct Gulf Arabic version in Arabic script, plus easy Roman letters.\n3. Briefly explain my mistakes in simple English with Urdu hints.\n4. Give the formal (MSA) version too.\nKeep it short.`;
+    if (talkLang === "target") return `${who}\n\nHere is my attempt at saying something in Arabic (it came from speech recognition, so it may have errors):\n"${text}"\n\nPlease:\n1. Guess what I meant, in English.\n2. Give the correct Gulf Arabic version in Arabic script, plus easy Roman letters.\n3. Briefly explain my mistakes in simple English with Urdu hints.\n4. Give the formal (MSA) version too.\nKeep it short.`;
     const from = talkLang.startsWith("ur") ? "Urdu" : "English";
     return `${who}\n\nHow do I say this (${from}) in Gulf Arabic?\n"${text}"\n\nGive: the Gulf Arabic in Arabic script, easy Roman letters, the formal (MSA) version, and the key words with meanings (mention Urdu words that share the root). Keep it short.`;
   }
@@ -640,7 +702,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     const t = said.value.trim(); const c = $("#toClaude"), g = $("#toGoogle");
     if (!t){ c.href = "#"; g.href = "#"; return; }
     c.href = "https://claude.ai/new?q=" + encodeURIComponent(claudePrompt(t));
-    const sl = talkLang.slice(0,2), tl = sl === "ar" ? "en" : "ar";
+    const sl = talkLang === "target" ? L().gt : talkLang.slice(0,2), tl = talkLang === "target" ? "en" : L().gt;
     g.href = `https://translate.google.com/?sl=${sl}&tl=${tl}&text=${encodeURIComponent(t)}&op=translate`;
   }
   said.addEventListener("input", updateLinks);
@@ -649,7 +711,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   if (!SRx){ micBtn.disabled = true; micLabel.textContent = "Mic not supported here"; micStatus.textContent = "Voice input needs Chrome, Edge or Safari. You can still type."; }
   else micBtn.onclick = () => {
     if (listening){ srec && srec.stop(); return; }
-    srec = new SRx(); srec.lang = talkLang; srec.interimResults = true; srec.continuous = false;
+    srec = new SRx(); srec.lang = talkLang === "target" ? L().sr : talkLang; srec.interimResults = true; srec.continuous = false;
     srec.onstart = () => { listening = true; micBtn.classList.add("on"); micLabel.textContent = "Listening… tap to stop"; micStatus.textContent = ""; said.value = ""; };
     srec.onresult = e => { let t = ""; for (let i=0;i<e.results.length;i++) t += e.results[i][0].transcript; said.value = t; updateLinks(); };
     srec.onerror = e => { micStatus.textContent = e.error==="not-allowed"||e.error==="service-not-allowed" ? "Microphone is blocked. Allow the mic for this site in your browser settings." : e.error==="no-speech" ? "Didn't hear anything. Tap and try again." : "Voice input stopped. Tap to try again."; };
@@ -658,14 +720,12 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   };
 
   /* ---------- Boot ---------- */
-  setRate(rate); setLang(talkLang);
+  setRate(rate); applyLang(); setLang(talkLang);
   fetch("lessons.json", {cache:"no-cache"}).then(r=>r.json()).then(data => {
     units = data.map(U => ({...U, type: U.type || "lesson", phrases: U.phrases || U.lines || []}));
+    units.forEach(U => U.phrases.forEach(p => p._lang = langOf(U)));
     all = units.flatMap(U => U.phrases.map((p,i) => ({p, U, i, id: pid(U,i)})));
-    const lvSel = $("#levelSel");
-    [...lvSel.options].forEach(o => { const n = units.filter(U => lvOf(U) === o.value).length; o.disabled = !n; o.textContent = n ? o.value : `${o.value} (coming soon)`; });
-    if (!units.some(U => lvOf(U) === level)) level = "Starter";
-    lvSel.value = level;
+    fillLevels();
     const tab = get("ya-tab", "lesson");
     mode = tab === "dialogue" ? "dialogue" : "lesson";
     fillUnits(); render(); showTab(["lesson","dialogue","quiz","speak","search"].includes(tab) ? tab : "lesson");
