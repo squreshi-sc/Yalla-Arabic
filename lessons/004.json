@@ -1,0 +1,90 @@
+{
+  "day": 4,
+  "date": "4 Oct 2026",
+  "title": "Time, days & numbers",
+  "phrases": [
+    {
+      "ar": "كم الساعة؟",
+      "roman": "Kam as-saa'a?",
+      "en": "What time is it?",
+      "ur": "کیا ٹائم ہوا ہے؟",
+      "note": "'Kam' = how much / how many."
+    },
+    {
+      "ar": "الساعة ثنتين ونص",
+      "roman": "As-saa'a thintain w nuss",
+      "en": "It's half past two",
+      "ur": "ڈھائی بجے ہیں",
+      "note": "'Nuss' = half, from 'nisf', like Urdu 'nisf'."
+    },
+    {
+      "ar": "اليوم، باكر، أمس",
+      "roman": "Al-yoam, baakir, ams",
+      "en": "Today, tomorrow, yesterday",
+      "ur": "آج، آنے والا کل، گزرا کل",
+      "note": "Urdu uses 'kal' for both. Arabic has two words."
+    },
+    {
+      "ar": "الأحد، الاثنين، الثلاثاء",
+      "roman": "Al-ahad, al-ithnain, ath-thalaatha",
+      "en": "Sunday, Monday, Tuesday",
+      "ur": "اتوار، پیر، منگل",
+      "note": "Days are numbered: ahad 1, ithnain 2, thalaatha 3."
+    },
+    {
+      "ar": "الأربعاء، الخميس، الجمعة، السبت",
+      "roman": "Al-arbi'aa, al-khamees, al-jum'a, as-sabt",
+      "en": "Wednesday, Thursday, Friday, Saturday",
+      "ur": "بدھ، جمعرات، جمعہ، ہفتہ",
+      "note": "'Jum'a' is the same word as Urdu 'jumma'."
+    },
+    {
+      "ar": "واحد، اثنين، ثلاثة، أربعة، خمسة",
+      "roman": "Waahid, ithnain, thalaatha, arba'a, khamsa",
+      "en": "One, two, three, four, five",
+      "ur": "ایک، دو، تین، چار، پانچ",
+      "note": "Gulf speakers often say 'thintain' for two."
+    },
+    {
+      "ar": "ستة، سبعة، ثمانية، تسعة، عشرة",
+      "roman": "Sitta, sab'a, thamaanya, tis'a, 'ashara",
+      "en": "Six, seven, eight, nine, ten",
+      "ur": "چھ، سات، آٹھ، نو، دس"
+    },
+    {
+      "ar": "متى الموعد؟",
+      "roman": "Mita al-maw'id?",
+      "en": "When is the appointment?",
+      "ur": "ملاقات کب ہے؟",
+      "note": "Same root as Urdu 'wa'da' (promise)."
+    },
+    {
+      "ar": "بعد ساعة",
+      "roman": "Ba'd saa'a",
+      "en": "In one hour",
+      "ur": "ایک گھنٹے بعد",
+      "note": "'Ba'd' = after, like Urdu 'baad'."
+    },
+    {
+      "ar": "الأسبوع الياي",
+      "roman": "Al-usboo' al-yaay",
+      "en": "Next week",
+      "ur": "اگلے ہفتے",
+      "note": "Also: الشهر الياي – ash-shahar al-yaay (next month)."
+    },
+    {
+      "ar": "أنا فاضي العصر",
+      "roman": "Ana faadhi al-'asr",
+      "en": "I'm free in the afternoon",
+      "ur": "میں عصر کے وقت فارغ ہوں",
+      "note": "'Faadhi' = free, empty."
+    },
+    {
+      "ar": "خلنا نتلاقى الساعة تسع الصبح",
+      "roman": "Khallna nitlaaga as-saa'a tis' as-subh",
+      "en": "Let's meet at nine in the morning",
+      "ur": "صبح نو بجے ملتے ہیں",
+      "note": "'Subh' = Urdu 'subah'."
+    }
+  ]
+}
