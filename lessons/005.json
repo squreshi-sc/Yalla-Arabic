@@ -1,0 +1,106 @@
+{
+  "day": 5,
+  "level": "Starter",
+  "date": "4 Oct 2026",
+  "title": "Numbers 1–10 and more",
+  "phrases": [
+    {
+      "ar": "واحد",
+      "roman": "Waahid",
+      "en": "One",
+      "ur": "ایک",
+      "note": "Written ١. 'Waahid' as in Urdu 'waahid' (single)."
+    },
+    {
+      "ar": "اثنين",
+      "roman": "Ithnain",
+      "en": "Two",
+      "ur": "دو",
+      "note": "Written ٢. Gulf speakers also say 'thintain'."
+    },
+    {
+      "ar": "ثلاثة",
+      "roman": "Thalaatha",
+      "en": "Three",
+      "ur": "تین",
+      "note": "Written ٣."
+    },
+    {
+      "ar": "أربعة",
+      "roman": "Arba'a",
+      "en": "Four",
+      "ur": "چار",
+      "note": "Written ٤."
+    },
+    {
+      "ar": "خمسة",
+      "roman": "Khamsa",
+      "en": "Five",
+      "ur": "پانچ",
+      "note": "Written ٥."
+    },
+    {
+      "ar": "ستة",
+      "roman": "Sitta",
+      "en": "Six",
+      "ur": "چھ",
+      "note": "Written ٦."
+    },
+    {
+      "ar": "سبعة",
+      "roman": "Sab'a",
+      "en": "Seven",
+      "ur": "سات",
+      "note": "Written ٧."
+    },
+    {
+      "ar": "ثمانية",
+      "roman": "Thamaanya",
+      "en": "Eight",
+      "ur": "آٹھ",
+      "note": "Written ٨."
+    },
+    {
+      "ar": "تسعة",
+      "roman": "Tis'a",
+      "en": "Nine",
+      "ur": "نو",
+      "note": "Written ٩."
+    },
+    {
+      "ar": "عشرة",
+      "roman": "'Ashara",
+      "en": "Ten",
+      "ur": "دس",
+      "note": "Written ١٠. Same root as Urdu 'ashra' (ten days of Muharram)."
+    },
+    {
+      "ar": "عشرين",
+      "roman": "'Ishreen",
+      "en": "Twenty",
+      "ur": "بیس",
+      "note": "Written ٢٠."
+    },
+    {
+      "ar": "خمسين",
+      "roman": "Khamseen",
+      "en": "Fifty",
+      "ur": "پچاس",
+      "note": "Written ٥٠. Khamsa (5) + -een."
+    },
+    {
+      "ar": "مية",
+      "roman": "Miya",
+      "en": "One hundred",
+      "ur": "سو",
+      "note": "Written ١٠٠. 'Miyat dirham' = 100 dirhams."
+    },
+    {
+      "ar": "ألف",
+      "roman": "Alf",
+      "en": "One thousand",
+      "ur": "ہزار",
+      "note": "Written ١٠٠٠. 'Alf Laila' = A Thousand Nights."
+    }
+  ]
+}
