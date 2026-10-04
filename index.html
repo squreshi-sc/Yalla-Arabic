@@ -83,6 +83,16 @@ h2{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:v
 .speak .rec.on{background:var(--bad);border-color:var(--bad);color:#fff}
 .speak .done[aria-pressed="true"]{background:var(--good-soft);border-color:var(--good);color:var(--good)}
 .spacer{flex:1}
+.fb{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;border-radius:8px;padding:8px 10px;font-size:14px;margin-top:6px}
+.fb b{font-size:15px}
+.fb.good{background:var(--good-soft);color:var(--good)}
+.fb.ok{background:var(--date-soft);color:var(--date)}
+.fb.bad{background:var(--bad-soft);color:var(--bad)}
+.fb.self{background:var(--accent-soft);color:var(--ink)}
+.fb .heard{color:var(--ink);font-family:var(--f-ar);direction:rtl;font-size:17px}
+.fb .meter{flex-basis:100%;height:6px;border-radius:9px;background:var(--line);overflow:hidden}
+.fb .meter i{display:block;height:100%;background:currentColor}
+.fb button{padding:4px 10px;font-size:13px}
 .hide .card .en,.hide .card .ur,.hide .card .note{filter:blur(6px)}
 .hide .card:hover .en,.hide .card:hover .ur,.hide .card:hover .note,
 .hide .card:focus-within .en,.hide .card:focus-within .ur,.hide .card:focus-within .note{filter:none}
@@ -159,7 +169,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       <span class="hint small" id="pos"></span>
     </div>
     <div class="progress" aria-hidden="true"><i id="lessonBar"></i></div>
-    <p class="hint small">Tap <b>Record me</b>, say the phrase, tap again. You hear the native voice, then yourself. Tick <b>Learned</b> when you can say it without looking.</p>
+    <p class="hint small">Tap <b>Record me</b> and say the phrase. You get a match score, then hear the native voice and yours. Tick <b>Learned</b> when you can say it without looking.</p>
     <div class="cards" id="cards"></div>
   </section>
 
@@ -279,29 +289,80 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   track.addEventListener("play", () => { stopClip(); track.playbackRate = rate; });
   track.addEventListener("loadedmetadata", () => track.playbackRate = rate);
 
-  /* ---------- Recording ---------- */
+  /* ---------- Recording + pronunciation check ---------- */
   let recState = null; const myTakes = new Map();
-  async function toggleRecord(p, key, btn, mineBtn){
-    if (recState && recState.btn === btn){ recState.rec.stop(); return; }
-    if (recState) recState.rec.stop();
+  const SRx = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const NUM = {"0":"صفر","1":"واحد","2":"اثنين","3":"ثلاثه","4":"اربعه","5":"خمسه","6":"سته","7":"سبعه","8":"ثمانيه","9":"تسعه","10":"عشره","20":"عشرين","50":"خمسين","100":"ميه","1000":"الف"};
+  function arNorm(s){
+    s = (s||"").replace(/[٠-٩]/g, d => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
+    s = s.replace(/\d+/g, n => " " + (NUM[n] || n) + " ");
+    return s.replace(/[ً-ْٰـ]/g,"").replace(/[أإآٱ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").replace(/ؤ/g,"و").replace(/ئ/g,"ي").replace(/چ/g,"ج").replace(/[^ء-ي\s]/g," ").replace(/\s+/g," ").trim();
+  }
+  function lev(a,b){ const m=a.length,n=b.length; if(!m) return n; if(!n) return m; let prev=Array.from({length:n+1},(_,j)=>j); for(let i=1;i<=m;i++){ const cur=[i]; for(let j=1;j<=n;j++) cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1)); prev=cur; } return prev[n]; }
+  function similarity(said, target){
+    const a = arNorm(said).replace(/ /g,""), b = arNorm(target).replace(/ /g,"");
+    if (!a || !b) return 0;
+    return Math.max(0, 1 - lev(a,b)/Math.max(a.length,b.length));
+  }
+  window.__similarity = similarity;
+  function showFeedback(fb, p, heard, onAgain, markLearned){
+    fb.replaceChildren(); fb.hidden = false;
+    const again = el("button",null,"Try again"); again.onclick = onAgain;
+    const learn = el("button",null,"Mark learned"); learn.onclick = () => { markLearned(); learn.disabled = true; learn.textContent = "Learned"; };
+    if (heard == null){
+      fb.className = "fb self";
+      fb.append(el("span",null,"Automatic check isn't available here. Listen to both: did yours sound the same?"), learn, again);
+      learn.textContent = "Yes, mark learned";
+      return;
+    }
+    const best = heard.reduce((m,h) => Math.max(m, similarity(h, p.ar)), 0);
+    const top = heard[0] || "", pct = Math.round(best*100);
+    let cls, msg;
+    if (best >= .8){ cls = "good"; msg = "Mumtaaz! Very clear."; }
+    else if (best >= .55){ cls = "ok"; msg = "Close! Listen once more and try again."; }
+    else { cls = "bad"; msg = top ? "Not quite yet. Play AR slow, then try again." : "I didn't catch that. Speak a bit louder and closer to the mic."; }
+    fb.className = "fb " + cls;
+    const meter = el("div","meter"), bar = el("i"); bar.style.width = pct + "%"; meter.append(bar);
+    fb.append(el("b",null,msg), el("span",null,pct + "% match"));
+    if (top) fb.append(el("span",null,"I heard:"), el("span","heard",top));
+    fb.append(meter, again);
+    if (best >= .8) fb.append(learn);
+  }
+  async function toggleRecord(p, key, btn, mineBtn, fb, markLearned){
+    if (recState && recState.btn === btn){ recState.stop(); return; }
+    if (recState) recState.stop();
     if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder){ btn.textContent = "Not supported"; btn.disabled = true; return; }
     let stream;
     try { stream = await navigator.mediaDevices.getUserMedia({audio:true}); }
     catch(e){ btn.textContent = "Mic blocked"; return; }
     stopClip(); track.pause();
+    fb.hidden = false; fb.className = "fb self"; fb.replaceChildren(el("span",null,"Listening… say the phrase. It stops by itself, or tap Stop."));
     const rec = new MediaRecorder(stream), chunks = [];
-    rec.ondataavailable = e => chunks.push(e.data);
-    rec.onstop = () => {
-      stream.getTracks().forEach(t => t.stop());
-      btn.classList.remove("on"); btn.textContent = "Record me"; recState = null;
+    let heard = SRx ? [] : null, srDone = !SRx, recDone = false, sr = null;
+    const again = () => toggleRecord(p, key, btn, mineBtn, fb, markLearned);
+    const finish = () => {
+      if (!recDone || !srDone) return;
       const url = URL.createObjectURL(new Blob(chunks, {type: rec.mimeType || "audio/webm"}));
       if (myTakes.get(key)) URL.revokeObjectURL(myTakes.get(key));
       myTakes.set(key, url); mineBtn.hidden = false;
+      showFeedback(fb, p, heard, again, markLearned);
       compare(p, url, mineBtn);
     };
-    rec.start(); recState = {rec, btn};
+    rec.ondataavailable = e => chunks.push(e.data);
+    rec.onstop = () => { stream.getTracks().forEach(t => t.stop()); btn.classList.remove("on"); btn.textContent = "Record me"; recState = null; recDone = true; finish(); };
+    if (SRx){
+      try {
+        sr = new SRx(); sr.lang = "ar-AE"; sr.interimResults = false; sr.maxAlternatives = 5; sr.continuous = false;
+        sr.onresult = e => { for (let i=0;i<e.results.length;i++) for (let j=0;j<e.results[i].length;j++) heard && heard.push(e.results[i][j].transcript); };
+        sr.onerror = e => { if (e.error !== "no-speech" && e.error !== "aborted") heard = null; };
+        sr.onend = () => { srDone = true; if (rec.state === "recording") setTimeout(() => { if (rec.state === "recording") rec.stop(); }, 400); else finish(); };
+        sr.start();
+      } catch(e){ heard = null; srDone = true; }
+    }
+    rec.start();
+    recState = { btn, stop: () => { if (rec.state === "recording") rec.stop(); try { sr && sr.stop(); } catch(e){} } };
     btn.classList.add("on"); btn.textContent = "Stop";
-    setTimeout(() => { if (recState && recState.rec === rec) rec.stop(); }, 8000);
+    setTimeout(() => { if (recState && recState.btn === btn && rec.state === "recording") recState.stop(); }, 8000);
   }
   function compare(p, url, mineBtn){
     if (p.audio?.ar) play(p.audio.ar, null, () => setTimeout(() => play(url, mineBtn), 400));
@@ -323,7 +384,8 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     });
     const rec = el("button","rec","Record me");
     const mine = el("button",null,"Play mine"); mine.hidden = !myTakes.get(key);
-    rec.onclick = () => toggleRecord(p, key, rec, mine);
+    const fb = el("div","fb"); fb.hidden = true;
+    rec.onclick = () => toggleRecord(p, key, rec, mine, fb, () => { if (!learned.has(key)) done.click(); });
     mine.onclick = () => compare(p, myTakes.get(key), mine);
     s.append(rec, mine, el("span","spacer"));
     const done = el("button","done", "Learned");
@@ -334,7 +396,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       done.setAttribute("aria-pressed", String(learned.has(key)));
       c.classList.toggle("learned", learned.has(key)); updateStats();
     };
-    s.append(done); c.append(s);
+    s.append(done); c.append(s, fb);
     return c;
   }
 
