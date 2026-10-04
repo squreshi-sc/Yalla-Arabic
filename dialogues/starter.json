@@ -1,0 +1,387 @@
+[
+ {
+  "id": "sd01",
+  "type": "dialogue",
+  "level": "Starter",
+  "day": 1,
+  "title": "Good morning at the office",
+  "scene": "You arrive at work and greet your colleague Ahmed.",
+  "lines": [
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "صباح الخير يا شكيل!",
+    "roman": "Sabaah al-khair ya Shakeel!",
+    "en": "Good morning, Shakeel!",
+    "ur": "صبح بخیر شکیل!"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "صباح النور! كيف حالك؟",
+    "roman": "Sabaah an-noor! Kaif haalak?",
+    "en": "Good morning! How are you?",
+    "ur": "صبح بخیر! آپ کیسے ہیں؟"
+   },
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "الحمد لله، بخير. وإنت؟",
+    "roman": "Al-hamdu lillaah, bikhair. W inta?",
+    "en": "Fine, thank God. And you?",
+    "ur": "الحمدللہ، ٹھیک ہوں۔ اور آپ؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "بخير، الحمد لله.",
+    "roman": "Bikhair, al-hamdu lillaah.",
+    "en": "I'm fine, thank God.",
+    "ur": "ٹھیک ہوں، الحمدللہ۔"
+   },
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "يعطيك العافية.",
+    "roman": "Ya'teek al-'aafya.",
+    "en": "Have a good working day.",
+    "ur": "اللہ آپ کو صحت دے۔",
+    "note": "Said to someone at work."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الله يعافيك.",
+    "roman": "Allah y'aafeek.",
+    "en": "And to you.",
+    "ur": "اللہ آپ کو بھی صحت دے۔",
+    "note": "The standard reply."
+   }
+  ]
+ },
+ {
+  "id": "sd02",
+  "type": "dialogue",
+  "level": "Starter",
+  "day": 2,
+  "title": "Meeting someone new",
+  "scene": "A visitor named Khalid comes to your office.",
+  "lines": [
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "السلام عليكم.",
+    "roman": "As-salaamu 'alaykum.",
+    "en": "Peace be upon you.",
+    "ur": "السلام علیکم۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "وعليكم السلام.",
+    "roman": "Wa 'alaykum as-salaam.",
+    "en": "And peace be upon you.",
+    "ur": "وعلیکم السلام۔"
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "شو اسمك؟",
+    "roman": "Shu ismak?",
+    "en": "What is your name?",
+    "ur": "آپ کا نام کیا ہے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "اسمي شكيل. وإنت شو اسمك؟",
+    "roman": "Ismi Shakeel. W inta shu ismak?",
+    "en": "My name is Shakeel. And what's your name?",
+    "ur": "میرا نام شکیل ہے۔ اور آپ کا نام؟"
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "اسمي خالد. إنت من وين؟",
+    "roman": "Ismi Khaalid. Inta min wain?",
+    "en": "My name is Khalid. Where are you from?",
+    "ur": "میرا نام خالد ہے۔ آپ کہاں سے ہیں؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "أنا من باكستان.",
+    "roman": "Ana min Baakistaan.",
+    "en": "I'm from Pakistan.",
+    "ur": "میں پاکستان سے ہوں۔"
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "تشرفنا!",
+    "roman": "Tsharrafna!",
+    "en": "Nice to meet you!",
+    "ur": "آپ سے مل کر خوشی ہوئی!"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الشرف لي.",
+    "roman": "Ash-sharaf li.",
+    "en": "The honour is mine.",
+    "ur": "یہ میرے لیے اعزاز ہے۔",
+    "note": "Polite reply to تشرفنا."
+   }
+  ]
+ },
+ {
+  "id": "sd03",
+  "type": "dialogue",
+  "level": "Starter",
+  "day": 3,
+  "title": "Tea in the cafeteria",
+  "scene": "You order tea at the office cafeteria.",
+  "lines": [
+   {
+    "who": "Staff",
+    "g": "m",
+    "ar": "هلا، شو تبي؟",
+    "roman": "Hala, shu tabi?",
+    "en": "Hi, what would you like?",
+    "ur": "جی، کیا چاہیے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "أبي چاي لو سمحت.",
+    "roman": "Abi chaay law samaht.",
+    "en": "I'd like tea, please.",
+    "ur": "مجھے چائے چاہیے، مہربانی۔"
+   },
+   {
+    "who": "Staff",
+    "g": "m",
+    "ar": "بسكر؟",
+    "roman": "Bi-sukkar?",
+    "en": "With sugar?",
+    "ur": "چینی کے ساتھ؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "لا، بدون سكر.",
+    "roman": "Laa, bidoon sukkar.",
+    "en": "No, without sugar.",
+    "ur": "نہیں، چینی کے بغیر۔"
+   },
+   {
+    "who": "Staff",
+    "g": "m",
+    "ar": "تمام. شي ثاني؟",
+    "roman": "Tamaam. Shay thaani?",
+    "en": "OK. Anything else?",
+    "ur": "ٹھیک ہے۔ کچھ اور؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "لا، شكراً. كم الحساب؟",
+    "roman": "Laa, shukran. Kam al-hisaab?",
+    "en": "No, thanks. How much is it?",
+    "ur": "نہیں، شکریہ۔ کتنے پیسے ہوئے؟"
+   },
+   {
+    "who": "Staff",
+    "g": "m",
+    "ar": "ثلاثة دراهم.",
+    "roman": "Thalaatha daraahim.",
+    "en": "Three dirhams.",
+    "ur": "تین درہم۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "تفضل.",
+    "roman": "Tfaddal.",
+    "en": "Here you go.",
+    "ur": "یہ لیجیے۔",
+    "note": "Use it when handing something over or inviting someone in."
+   }
+  ]
+ },
+ {
+  "id": "sd04",
+  "type": "dialogue",
+  "level": "Starter",
+  "day": 4,
+  "title": "Finding your way in a building",
+  "scene": "You ask the security guard for directions.",
+  "lines": [
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "لو سمحت، وين المصعد؟",
+    "roman": "Law samaht, wain al-mas'ad?",
+    "en": "Excuse me, where is the lift?",
+    "ur": "معاف کیجیے، لفٹ کہاں ہے؟"
+   },
+   {
+    "who": "Guard",
+    "g": "m",
+    "ar": "سيدا، بعدين يمين.",
+    "roman": "Seeda, ba'dain yameen.",
+    "en": "Straight, then right.",
+    "ur": "سیدھا، پھر دائیں۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "والحمام؟",
+    "roman": "W al-hammaam?",
+    "en": "And the washroom?",
+    "ur": "اور واش روم؟"
+   },
+   {
+    "who": "Guard",
+    "g": "m",
+    "ar": "هناك، على اليسار.",
+    "roman": "Hnaak, 'ala al-yasaar.",
+    "en": "Over there, on the left.",
+    "ur": "وہاں، بائیں طرف۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "شكراً وايد.",
+    "roman": "Shukran waayed.",
+    "en": "Thank you very much.",
+    "ur": "بہت شکریہ۔"
+   },
+   {
+    "who": "Guard",
+    "g": "m",
+    "ar": "العفو.",
+    "roman": "Al-'afu.",
+    "en": "You're welcome.",
+    "ur": "کوئی بات نہیں۔"
+   }
+  ]
+ },
+ {
+  "id": "sd05",
+  "type": "dialogue",
+  "level": "Starter",
+  "day": 5,
+  "title": "When is the meeting?",
+  "scene": "Your colleague Sara asks about a meeting.",
+  "lines": [
+   {
+    "who": "Sara",
+    "g": "f",
+    "ar": "متى الاجتماع؟",
+    "roman": "Mita al-ijtimaa'?",
+    "en": "When is the meeting?",
+    "ur": "میٹنگ کب ہے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "يوم الثلاثاء.",
+    "roman": "Yoam ath-thalaathaa.",
+    "en": "On Tuesday.",
+    "ur": "منگل کو۔"
+   },
+   {
+    "who": "Sara",
+    "g": "f",
+    "ar": "الساعة كم؟",
+    "roman": "As-saa'a kam?",
+    "en": "At what time?",
+    "ur": "کتنے بجے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الساعة عشر الصبح.",
+    "roman": "As-saa'a 'ashar as-subh.",
+    "en": "At ten in the morning.",
+    "ur": "صبح دس بجے۔"
+   },
+   {
+    "who": "Sara",
+    "g": "f",
+    "ar": "زين، إن شاء الله.",
+    "roman": "Zain, inshallah.",
+    "en": "Good, God willing.",
+    "ur": "ٹھیک ہے، ان شاء اللہ۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إن شاء الله. مع السلامة.",
+    "roman": "Inshallah. Ma'a as-salaama.",
+    "en": "God willing. Goodbye.",
+    "ur": "ان شاء اللہ۔ خدا حافظ۔"
+   }
+  ]
+ },
+ {
+  "id": "sd06",
+  "type": "dialogue",
+  "level": "Starter",
+  "day": 6,
+  "title": "A short phone call",
+  "scene": "You call a client's office and ask for Mr. Ahmed.",
+  "lines": [
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "ألو، السلام عليكم.",
+    "roman": "Alo, as-salaamu 'alaykum.",
+    "en": "Hello, peace be upon you.",
+    "ur": "ہیلو، السلام علیکم۔"
+   },
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "وعليكم السلام، تفضل.",
+    "roman": "Wa 'alaykum as-salaam, tfaddal.",
+    "en": "And upon you peace. Go ahead.",
+    "ur": "وعلیکم السلام، جی فرمائیے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "أنا شكيل من سمارت كيوب. ممكن أكلم الأستاذ أحمد؟",
+    "roman": "Ana Shakeel min SmartCube. Mumkin akallim al-ustaadh Ahmad?",
+    "en": "This is Shakeel from SmartCube. Can I speak to Mr. Ahmed?",
+    "ur": "میں سمارٹ کیوب سے شکیل ہوں۔ کیا احمد صاحب سے بات ہو سکتی ہے؟"
+   },
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "لحظة لو سمحت... هو مب موجود الحين.",
+    "roman": "Lahdha law samaht... huwa mob mawjood al-heen.",
+    "en": "One moment please... he isn't here right now.",
+    "ur": "ایک لمحہ... وہ ابھی موجود نہیں ہیں۔",
+    "note": "'Mawjood' and 'lahza' are the same words in Urdu."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "ما عليه، بتصل فيه بعدين. شكراً.",
+    "roman": "Ma 'alaih, bittasil feeh ba'dain. Shukran.",
+    "en": "No problem, I'll call him later. Thanks.",
+    "ur": "کوئی بات نہیں، میں بعد میں کال کر لوں گا۔ شکریہ۔"
+   },
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "العفو، مع السلامة.",
+    "roman": "Al-'afu, ma'a as-salaama.",
+    "en": "You're welcome. Goodbye.",
+    "ur": "کوئی بات نہیں، خدا حافظ۔"
+   }
+  ]
+ }
+]
