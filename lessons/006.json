@@ -1,0 +1,104 @@
+{
+  "day": 6,
+  "level": "Starter",
+  "date": "4 Oct 2026",
+  "title": "Days of the week & time words",
+  "phrases": [
+    {
+      "ar": "الأحد",
+      "roman": "Al-ahad",
+      "en": "Sunday",
+      "ur": "اتوار",
+      "note": "From 'ahad' (one): the first day."
+    },
+    {
+      "ar": "الاثنين",
+      "roman": "Al-ithnain",
+      "en": "Monday",
+      "ur": "پیر",
+      "note": "From 'ithnain' (two)."
+    },
+    {
+      "ar": "الثلاثاء",
+      "roman": "Ath-thalaathaa",
+      "en": "Tuesday",
+      "ur": "منگل",
+      "note": "From 'thalaatha' (three)."
+    },
+    {
+      "ar": "الأربعاء",
+      "roman": "Al-arbi'aa",
+      "en": "Wednesday",
+      "ur": "بدھ",
+      "note": "From 'arba'a' (four)."
+    },
+    {
+      "ar": "الخميس",
+      "roman": "Al-khamees",
+      "en": "Thursday",
+      "ur": "جمعرات",
+      "note": "From 'khamsa' (five)."
+    },
+    {
+      "ar": "الجمعة",
+      "roman": "Al-jum'a",
+      "en": "Friday",
+      "ur": "جمعہ",
+      "note": "Same as Urdu 'jumma'."
+    },
+    {
+      "ar": "السبت",
+      "roman": "As-sabt",
+      "en": "Saturday",
+      "ur": "ہفتہ",
+      "note": "UAE weekend is Saturday and Sunday."
+    },
+    {
+      "ar": "اليوم",
+      "roman": "Al-yoam",
+      "en": "Today",
+      "ur": "آج"
+    },
+    {
+      "ar": "باكر",
+      "roman": "Baakir",
+      "en": "Tomorrow",
+      "ur": "آنے والا کل",
+      "note": "Many Emiratis say 'baachir'."
+    },
+    {
+      "ar": "أمس",
+      "roman": "Ams",
+      "en": "Yesterday",
+      "ur": "گزرا کل",
+      "note": "Emiratis also say البارحة – al-baarha."
+    },
+    {
+      "ar": "الأسبوع",
+      "roman": "Al-usboo'",
+      "en": "The week",
+      "ur": "ہفتہ (سات دن)"
+    },
+    {
+      "ar": "الشهر",
+      "roman": "Ash-shahar",
+      "en": "The month",
+      "ur": "مہینہ",
+      "note": "Careful: Urdu 'shehr' means city."
+    },
+    {
+      "ar": "السنة",
+      "roman": "As-sana",
+      "en": "The year",
+      "ur": "سال",
+      "note": "Same as Urdu 'sanah' (as in 'san 2026')."
+    },
+    {
+      "ar": "إجازة",
+      "roman": "Ijaaza",
+      "en": "Holiday / leave",
+      "ur": "چھٹی",
+      "note": "Same root as Urdu 'ijaazat' (permission). 'Ana fi ijaaza' = I'm on leave."
+    }
+  ]
+}
