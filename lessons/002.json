@@ -1,0 +1,91 @@
+{
+  "day": 2,
+  "date": "4 Oct 2026",
+  "title": "At the office & in meetings",
+  "phrases": [
+    {
+      "ar": "وين المكتب؟",
+      "roman": "Wain al-maktab?",
+      "en": "Where is the office?",
+      "ur": "دفتر کہاں ہے؟",
+      "note": "'Maktab' comes from k-t-b, the same root as 'kitaab'."
+    },
+    {
+      "ar": "عندنا اجتماع الساعة عشر",
+      "roman": "'Indana ijtimaa' as-saa'a 'ashar",
+      "en": "We have a meeting at ten",
+      "ur": "ہماری دس بجے میٹنگ ہے",
+      "note": "'Indana' = we have. 'Saa'a' = hour, like Urdu 'saa'at'."
+    },
+    {
+      "ar": "الاجتماع تأجل لين الأسبوع الياي",
+      "roman": "Al-ijtimaa' ta'ajjal lain al-usboo' al-yaay",
+      "en": "The meeting was postponed to next week",
+      "ur": "میٹنگ اگلے ہفتے تک ملتوی ہو گئی",
+      "note": "Emiratis say 'yaay' for 'jaay' (coming)."
+    },
+    {
+      "ar": "ممكن نبدأ؟",
+      "roman": "Mumkin nibda?",
+      "en": "Can we start?",
+      "ur": "کیا ہم شروع کر سکتے ہیں؟",
+      "note": "'Mumkin' is the same word as in Urdu."
+    },
+    {
+      "ar": "خلنا نشوف",
+      "roman": "Khallna nshoof",
+      "en": "Let's see",
+      "ur": "دیکھتے ہیں",
+      "note": "'Khallna' = let us. You will hear it all day."
+    },
+    {
+      "ar": "شو رايك؟",
+      "roman": "Shu raayak?",
+      "en": "What do you think?",
+      "ur": "آپ کی کیا رائے ہے؟",
+      "note": "'Raay' = Urdu 'raaye' (opinion)."
+    },
+    {
+      "ar": "أنا موافق",
+      "roman": "Ana muwaafiq",
+      "en": "I agree",
+      "ur": "میں متفق ہوں",
+      "note": "Same as Urdu 'muwaafiq'."
+    },
+    {
+      "ar": "عندي سؤال",
+      "roman": "'Indi su'aal",
+      "en": "I have a question",
+      "ur": "میرا ایک سوال ہے",
+      "note": "'Indi' = I have. 'Su'aal' = sawaal."
+    },
+    {
+      "ar": "ما فهمت، ممكن تعيد؟",
+      "roman": "Ma fehamt, mumkin t'eed?",
+      "en": "I didn't understand, can you repeat?",
+      "ur": "سمجھ نہیں آیا، کیا دوبارہ بتا سکتے ہیں؟",
+      "note": "'Fehm' is the same root as Urdu 'fehm'."
+    },
+    {
+      "ar": "شوي شوي لو سمحت",
+      "roman": "Shway shway law samaht",
+      "en": "Slowly, please",
+      "ur": "آہستہ آہستہ، مہربانی",
+      "note": "The most useful phrase for a learner."
+    },
+    {
+      "ar": "المشروع ماشي زين",
+      "roman": "Al-mashroo' maashi zain",
+      "en": "The project is going well",
+      "ur": "پروجیکٹ اچھا چل رہا ہے",
+      "note": "'Zain' = good in Gulf Arabic."
+    },
+    {
+      "ar": "بنخلص الشغل باكر",
+      "roman": "Bnkhallis ash-shughl baakir",
+      "en": "We will finish the work tomorrow",
+      "ur": "ہم کل کام ختم کر لیں گے",
+      "note": "'Shughl' = work, like Urdu 'mashghala'. Many Emiratis say 'baachir'."
+    }
+  ]
+}
