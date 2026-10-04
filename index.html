@@ -50,7 +50,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .row .lbl{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:2px}
 .speed button{padding:5px 10px;font-size:13px;font-variant-numeric:tabular-nums}
 .tabs{display:flex;gap:4px;overflow-x:auto}
-.tabs button{border:none;background:none;border-bottom:3px solid transparent;border-radius:0;padding:8px 12px;font-weight:700;color:var(--muted)}
+.tabs button{white-space:nowrap;border:none;background:none;border-bottom:3px solid transparent;border-radius:0;padding:8px 12px;font-weight:700;color:var(--muted)}
 .tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
 h2{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .panel{display:flex;flex-direction:column;gap:16px}
@@ -67,6 +67,8 @@ h2{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:v
 .chips button{font-size:13px;padding:4px 10px;border-radius:999px}
 .progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
 .progress i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+.pick{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted);margin-left:auto}
+.pick select{font:inherit;font-size:14px;font-weight:700;color:var(--ink);background:var(--surface);border:1px solid var(--accent);border-radius:8px;padding:7px 10px;max-width:72vw}
 .cards{display:flex;flex-direction:column;gap:10px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
 .card.learned{border-color:var(--good)}
@@ -116,6 +118,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       <p>Gulf Arabic for the office · Arabic · Roman · English · اردو</p>
     </div>
     <div class="stats">
+      <div class="stat">Level <b>Starter</b></div>
       <div class="stat"><b id="stStreak">0</b> day streak</div>
       <div class="stat"><b id="stLearned">0</b> / <span id="stTotal">0</span> learned</div>
       <div class="stat">Best quiz <b id="stBest">–</b></div>
@@ -130,6 +133,7 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       </span>
       <button id="btnLoop" aria-pressed="false" title="Repeat the phrase until you stop it">Repeat</button>
       <button id="btnHide" aria-pressed="false" title="Blur meanings to test yourself">Test me</button>
+      <label class="pick" for="lessonSel">Lesson <select id="lessonSel"></select></label>
     </div>
     <nav class="tabs" role="tablist">
       <button role="tab" data-tab="learn" aria-selected="true">Learn</button>
@@ -152,13 +156,8 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
         <h2>Phrases</h2>
         <p class="lesson-title" id="lessonTitle">Loading…</p>
       </div>
-      <div class="nav">
-        <button id="prev" aria-label="Previous lesson">‹ Prev</button>
-        <span id="pos">–</span>
-        <button id="next" aria-label="Next lesson">Next ›</button>
-      </div>
+      <span class="hint small" id="pos"></span>
     </div>
-    <div class="chips" id="lessonChips" aria-label="Jump to lesson"></div>
     <div class="progress" aria-hidden="true"><i id="lessonBar"></i></div>
     <p class="hint small">Tap <b>Record me</b>, say the phrase, tap again. You hear the native voice, then yourself. Tick <b>Learned</b> when you can say it without looking.</p>
     <div class="cards" id="cards"></div>
@@ -345,18 +344,16 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     if (!lessons.length){ $("#lessonTitle").textContent="No lessons yet"; box.append(el("div","empty","Lessons will appear here soon.")); return; }
     const L = lessons[idx];
     $("#lessonTitle").textContent = `Lesson ${L.day}: ${L.title||""}`;
-    $("#pos").textContent = `${idx+1} of ${lessons.length}`;
-    $("#prev").disabled = idx<=0; $("#next").disabled = idx>=lessons.length-1;
+    $("#pos").textContent = `${L.level||"Starter"} level · lesson ${idx+1} of ${lessons.length}`;
+    $("#lessonSel").value = L.id;
     $("#carInfo").textContent = `Lesson ${L.day} (${L.phrases.length} phrases): Arabic, slow Arabic, English, Urdu, then a pause for you to repeat.`;
     if (track.dataset.id !== L.id){ track.src = L.track; track.dataset.id = L.id; }
     if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({title:`Lesson ${L.day}: ${L.title||""}`, artist:"Yalla Arabic"});
     put("ya-lesson", L.id);
-    $$("#lessonChips button").forEach((b,i) => b.setAttribute("aria-pressed", String(i===idx)));
     L.phrases.forEach((p,i) => box.append(card(p, L, i)));
     updateStats();
   }
-  $("#prev").onclick = () => { if(idx>0){idx--;render();} };
-  $("#next").onclick = () => { if(idx<lessons.length-1){idx++;render();} };
+  $("#lessonSel").onchange = e => { idx = lessons.findIndex(l => l.id === e.target.value); showTab("learn"); render(); $("#lessonTitle").scrollIntoView({block:"center"}); };
   $("#btnHide").onclick = e => { const on = e.currentTarget.getAttribute("aria-pressed")!=="true"; e.currentTarget.setAttribute("aria-pressed",String(on)); document.body.classList.toggle("hide",on); };
   const auto = $("#autoNext"); auto.checked = !!get("ya-auto", false);
   auto.onchange = () => put("ya-auto", auto.checked);
@@ -481,8 +478,8 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   fetch("lessons.json", {cache:"no-cache"}).then(r=>r.json()).then(data => {
     lessons = data;
     all = lessons.flatMap(L => L.phrases.map((p,i) => ({p, L, i, id: pid(L,i)})));
-    const chips = $("#lessonChips");
-    lessons.forEach((L,i) => { const b = el("button",null,`${L.day}. ${L.title||""}`); b.onclick = () => { idx = i; render(); }; chips.append(b); });
+    const sel = $("#lessonSel"), groups = {};
+    lessons.forEach(L => { const lv = L.level || "Starter"; if (!groups[lv]) { groups[lv] = document.createElement("optgroup"); groups[lv].label = lv + " level"; sel.append(groups[lv]); } const o = document.createElement("option"); o.value = L.id; o.textContent = `${L.day}. ${L.title||""}`; groups[lv].append(o); });
     const saved = get("ya-lesson", null), si = lessons.findIndex(l => l.id === saved);
     idx = si >= 0 ? si : lessons.length - 1;
     render();
