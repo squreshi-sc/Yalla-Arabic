@@ -38,7 +38,25 @@ h1 .ar{font-size:34px}
 header p{margin:4px 0 0;color:var(--muted)}
 .stats{display:flex;gap:8px;flex-wrap:wrap}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;color:var(--muted)}
-.stat b{color:var(--ink);font-size:16px;font-variant-numeric:tabular-nums}
+.stat b{display:block;color:var(--ink);font-size:18px;line-height:1.2;font-variant-numeric:tabular-nums}
+.stat{text-align:center;min-width:92px}
+.toolbar{display:grid;grid-template-columns:150px minmax(0,1fr) 96px auto auto;grid-template-areas:"level lesson speed rep test";gap:8px;align-items:end}
+.f-level{grid-area:level}.f-lesson{grid-area:lesson}.f-speed{grid-area:speed}.f-rep{grid-area:rep}.f-test{grid-area:test}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field span{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.field select{width:100%;min-width:0;font:inherit;font-size:14px;font-weight:600;color:var(--ink);background-color:var(--surface);border:1px solid var(--line);border-radius:8px;height:38px;padding:0 30px 0 10px;appearance:none;-webkit-appearance:none;text-overflow:ellipsis;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%237d8f88' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.field select:hover,.field select:focus{border-color:var(--accent);outline:none}
+.tog{height:38px;justify-content:center;font-size:14px;font-weight:600}
+@media (max-width:640px){
+  h1{font-size:26px} h1 .ar{font-size:28px}
+  header p{font-size:13px}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .stat{min-width:0;padding:6px 4px;font-size:12px}
+  .toolbar{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"lesson lesson lesson lesson" "level speed rep test";gap:8px 6px}
+  .field select{font-size:13px;padding:0 24px 0 8px;background-position:right 7px center}
+  .tog{font-size:13px;padding:0 6px}
+  .tabs button{flex:1;padding:8px 4px}
+}
 button,.btn{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 button:hover,.btn:hover{border-color:var(--accent)}
 button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -129,27 +147,24 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       <p>Gulf Arabic for the office · Arabic · Roman · English · اردو</p>
     </div>
     <div class="stats">
-      <div class="stat">Level <b>Starter</b></div>
       <div class="stat"><b id="stStreak">0</b> day streak</div>
-      <div class="stat"><b id="stLearned">0</b> / <span id="stTotal">0</span> learned</div>
-      <div class="stat">Best quiz <b id="stBest">–</b></div>
+      <div class="stat"><b><span id="stLearned">0</span> / <span id="stTotal">0</span></b> learned</div>
+      <div class="stat"><b id="stBest">–</b> best quiz</div>
     </div>
   </header>
 
   <div class="bar">
-    <div class="row">
-      <span class="lbl">Speed</span>
-      <span class="row speed" id="speed" role="group" aria-label="Playback speed">
-        <button data-r="0.5">0.5×</button><button data-r="0.75">0.75×</button><button data-r="1">1×</button><button data-r="1.5">1.5×</button><button data-r="2">2×</button>
-      </span>
-      <button id="btnLoop" aria-pressed="false" title="Repeat the phrase until you stop it">Repeat</button>
-      <button id="btnHide" aria-pressed="false" title="Blur meanings to test yourself">Test me</button>
-      <label class="pick" for="lessonSel">Lesson <select id="lessonSel"></select></label>
+    <div class="toolbar">
+      <label class="field f-level"><span>Level</span><select id="levelSel"><option value="Starter">Starter</option><option value="Medium" disabled>Medium</option><option value="Advanced" disabled>Advanced</option></select></label>
+      <label class="field f-lesson"><span>Lesson</span><select id="lessonSel"></select></label>
+      <label class="field f-speed"><span>Speed</span><select id="speedSel"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
+      <button class="tog f-rep" id="btnLoop" aria-pressed="false" title="Repeat the phrase until you stop it">Repeat</button>
+      <button class="tog f-test" id="btnHide" aria-pressed="false" title="Blur meanings to test yourself">Test me</button>
     </div>
     <nav class="tabs" role="tablist">
       <button role="tab" data-tab="learn" aria-selected="true">Learn</button>
       <button role="tab" data-tab="quiz" aria-selected="false">Quiz</button>
-      <button role="tab" data-tab="speak" aria-selected="false">Speak &amp; translate</button>
+      <button role="tab" data-tab="speak" aria-selected="false">Speak</button>
       <button role="tab" data-tab="search" aria-selected="false">Search</button>
     </nav>
   </div>
@@ -275,9 +290,9 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   function setRate(r){
     rate = r; put("ya-rate", r);
     clip.playbackRate = r; track.playbackRate = r;
-    $$("#speed button").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.r === r)));
+    $("#speedSel").value = String(r);
   }
-  $$("#speed button").forEach(b => b.onclick = () => setRate(+b.dataset.r));
+  $("#speedSel").onchange = e => setRate(+e.target.value);
   $("#btnLoop").onclick = e => { loop = !loop; e.currentTarget.setAttribute("aria-pressed", String(loop)); clip.loop = loop; };
   function stopClip(){ clip.pause(); clip.onended = null; if (playingBtn) playingBtn.classList.remove("playing"); playingBtn = null; }
   function play(src, btn, then){
@@ -561,10 +576,13 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
   fetch("lessons.json", {cache:"no-cache"}).then(r=>r.json()).then(data => {
     lessons = data;
     all = lessons.flatMap(L => L.phrases.map((p,i) => ({p, L, i, id: pid(L,i)})));
-    const sel = $("#lessonSel"), groups = {};
-    lessons.forEach(L => { const lv = L.level || "Starter"; if (!groups[lv]) { groups[lv] = document.createElement("optgroup"); groups[lv].label = lv + " level"; sel.append(groups[lv]); } const o = document.createElement("option"); o.value = L.id; o.textContent = `${L.day}. ${L.title||""}`; groups[lv].append(o); });
+    const sel = $("#lessonSel"), lvSel = $("#levelSel"), lvOf = L => L.level || "Starter";
+    [...lvSel.options].forEach(o => { const n = lessons.filter(L => lvOf(L) === o.value).length; o.disabled = !n; o.textContent = n ? o.value : `${o.value} (coming soon)`; });
+    const fillLessons = lv => sel.replaceChildren(...lessons.filter(L => lvOf(L) === lv).map(L => { const o = document.createElement("option"); o.value = L.id; o.textContent = `${L.day}. ${L.title||""}`; return o; }));
+    lvSel.onchange = () => { fillLessons(lvSel.value); idx = lessons.findIndex(L => lvOf(L) === lvSel.value); render(); };
     const saved = get("ya-lesson", null), si = lessons.findIndex(l => l.id === saved);
     idx = si >= 0 ? si : lessons.length - 1;
+    lvSel.value = lvOf(lessons[idx]); fillLessons(lvSel.value);
     render();
   }).catch(() => { $("#lessonTitle").textContent = "Couldn't load lessons. Check your connection and reload."; });
 })();
