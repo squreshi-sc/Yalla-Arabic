@@ -1,12 +1,13 @@
-"""Build the Yalla Arabic site.
+"""Build the Yalla Arabic site (Arabic, German, French).
 
 Reads lessons/*.json and dialogues/*.json (each file holds one unit or a list
 of units), makes MP3 audio for every phrase or dialogue line (Arabic, slow
 Arabic, English, Urdu) plus one "car mode" track per unit, and writes the
 finished site into ./_site for GitHub Pages.
 
-Dialogue lines use different Arabic voices per speaker:
-  g = "you" -> Emirati male (you), "m" -> second male, "f" -> Emirati female.
+Each unit has "lang" ("ar" default, "de", "fr"). The target-language text is
+always in the "ar" field. Dialogue lines use different voices per speaker:
+  g = "you" -> male (you), "m" -> second male, "f" -> female.
 
 Audio is cached in ./audio-cache by a hash of (voice, speed, text).
 Set TTS_MOCK=1 to make silent clips instead (for testing without internet).
@@ -19,10 +20,14 @@ CACHE = ROOT / "audio-cache"
 SITE = ROOT / "_site"
 MOCK = os.environ.get("TTS_MOCK") == "1"
 
-AR_VOICE = {"you": "ar-AE-HamdanNeural", "m": "ar-KW-FahedNeural", "f": "ar-AE-FatimaNeural"}
+VOICES = {
+    "ar": {"you": "ar-AE-HamdanNeural", "m": "ar-KW-FahedNeural", "f": "ar-AE-FatimaNeural"},
+    "de": {"you": "de-DE-ConradNeural", "m": "de-DE-KillianNeural", "f": "de-DE-KatjaNeural"},
+    "fr": {"you": "fr-FR-HenriNeural", "m": "fr-FR-RemyMultilingualNeural", "f": "fr-FR-DeniseNeural"},
+}
 EN_VOICE = "en-GB-RyanNeural"
 UR_VOICE = "ur-PK-AsadNeural"
-GTTS_LANG = {"ar": "ar", "en": "en", "ur": "ur"}
+GTTS_LANG = {"ar": "ar", "en": "en", "ur": "ur", "de": "de", "fr": "fr"}
 
 
 def sh(*args):
@@ -147,12 +152,14 @@ def main():
     built = []
     for unit in load_units():
         is_dialogue = unit["type"] == "dialogue"
+        lang = unit.setdefault("lang", "ar")
         lines = unit.get("lines" if is_dialogue else "phrases", [])
-        print(f"{unit['level']} {unit['type']} {unit.get('day')}: {unit.get('title')} ({len(lines)})")
+        print(f"{lang} {unit['level']} {unit['type']} {unit.get('day')}: {unit.get('title')} ({len(lines)})")
         clips = []
         for p in lines:
-            v = AR_VOICE.get(p.get("g", "you"), AR_VOICE["you"])
-            c = {"ar": make_clip("ar", p["ar"], v), "ar_slow": make_clip("ar", p["ar"], v, "-35%")}
+            vs = VOICES[lang]
+            v = vs.get(p.get("g", "you"), vs["you"])
+            c = {"ar": make_clip(lang, p["ar"], v), "ar_slow": make_clip(lang, p["ar"], v, "-35%")}
             if p.get("en"): c["en"] = make_clip("en", p["en"], EN_VOICE)
             if p.get("ur"): c["ur"] = make_clip("ur", p["ur"], UR_VOICE)
             clips.append(c)
@@ -168,7 +175,8 @@ def main():
         built.append(unit)
 
     order = {"Starter": 0, "Medium": 1, "Advanced": 2}
-    built.sort(key=lambda u: (order.get(u["level"], 9), u["type"], u.get("day", 0), u["id"]))
+    langs = {"ar": 0, "de": 1, "fr": 2}
+    built.sort(key=lambda u: (langs.get(u["lang"], 9), order.get(u["level"], 9), u["type"], u.get("day", 0), u["id"]))
     (SITE / "lessons.json").write_text(json.dumps(built, ensure_ascii=False), encoding="utf-8")
     for w in CACHE.glob("*.wav"):
         if not w.name.startswith("silence"):
