@@ -4,6 +4,12 @@ Every version is saved as a GitHub release (tag). To go back to an older
 version: open **Releases**, pick the version, and restore its files (or ask
 Claude to roll back to that tag).
 
+## v2.3 – 4 Oct 2026
+- **Offline mode.** New "Offline mode" box: download Arabic, German or French once on Wi-Fi, then lessons, dialogues, all audio, car mode, quiz, role-play and Record me work with no internet.
+- The app itself is saved on the phone, so it opens in airplane mode (best after "Add to Home Screen").
+- Shows a notice when you're offline. Check me and the Speak tab explain that they need internet.
+- Remove a language's download any time to free space. Updated lessons show "Finish download" to fetch only the new audio.
+
 ## v2.2 – 4 Oct 2026
 - New **Language** menu: Arabic, **German** (Germany) and **French** (France) in one app.
 - German and French Starter: 10 lessons each (112 phrases: greetings, numbers, days and time, airport, hotel, café and restaurant incl. halal/vegetarian, shopping, directions and trains, small talk and work) and 6 dialogues each (colleague, café, hotel check-in, directions, train ticket, buying a jacket).
