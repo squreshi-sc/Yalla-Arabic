@@ -145,7 +145,7 @@ def main():
     if SITE.exists():
         shutil.rmtree(SITE)
     (SITE / "audio").mkdir(parents=True)
-    for f in ["index.html", "manifest.webmanifest", "icon.svg", "CHANGELOG.md"]:
+    for f in ["index.html", "manifest.webmanifest", "icon.svg", "CHANGELOG.md", "sw.js"]:
         if (ROOT / f).exists():
             shutil.copy(ROOT / f, SITE / f)
 
@@ -167,7 +167,9 @@ def main():
             for k, src in c.items():
                 shutil.copy(src, SITE / "audio" / src.name)
                 p["audio"][k] = f"audio/{src.name}"
-        track = SITE / "audio" / f"track-{unit['id']}.mp3"
+        # The track name includes a hash of its clips, so a saved offline copy is never out of date.
+        tag = hashlib.sha1("|".join(f"{c[k].name}" for c in clips for k in sorted(c)).encode() + unit.get("title", "").encode()).hexdigest()[:8]
+        track = SITE / "audio" / f"track-{unit['id']}-{tag}.mp3"
         (dialogue_track(unit, lines, clips, track) if is_dialogue else lesson_track(unit, clips, track))
         unit["track"] = f"audio/{track.name}"
         if is_dialogue:
@@ -178,6 +180,15 @@ def main():
     langs = {"ar": 0, "de": 1, "fr": 2}
     built.sort(key=lambda u: (langs.get(u["lang"], 9), order.get(u["level"], 9), u["type"], u.get("day", 0), u["id"]))
     (SITE / "lessons.json").write_text(json.dumps(built, ensure_ascii=False), encoding="utf-8")
+    # offline.json: every audio file per language with its size, for the "Download for offline" button.
+    offline = {}
+    for u in built:
+        o = offline.setdefault(u["lang"], {"files": [], "bytes": 0})
+        for f in [u["track"]] + [src for p in u["phrases"] for src in p["audio"].values()]:
+            if f not in o["files"]:
+                o["files"].append(f)
+                o["bytes"] += (SITE / f).stat().st_size
+    (SITE / "offline.json").write_text(json.dumps(offline), encoding="utf-8")
     for w in CACHE.glob("*.wav"):
         if not w.name.startswith("silence"):
             w.unlink()
