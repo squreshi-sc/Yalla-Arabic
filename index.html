@@ -12,10 +12,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Noto+Nastaliq+Urdu:wght@400;600&family=Reem+Kufi:wght@600&family=Manrope:wght@400;600;700&display=swap">
 <style>
-/* Layout: one narrow column — header, car-mode player, lesson cards. Palm green + date brown on pale sand. */
+/* Layout: one narrow column — header with progress, sticky audio controls, four tabs (Learn, Quiz, Speak, Search). Palm green + date brown on pale sand. */
 :root{
   --bg:#F2F4F1; --surface:#FFFFFF; --ink:#18231F; --muted:#5C6B65; --line:#DCE3DE;
   --accent:#0E6A57; --accent-soft:#E1EFEA; --date:#8E5226; --date-soft:#F5E9DF; --on-accent:#FFFFFF;
+  --good:#1E7F4F; --good-soft:#E2F3E9; --bad:#B23A2E; --bad-soft:#FBE7E4;
   --f-ar:"Noto Naskh Arabic","Geeza Pro",Arial,serif;
   --f-ur:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Noto Naskh Arabic",serif;
   --f-kufi:"Reem Kufi","Noto Naskh Arabic",sans-serif;
@@ -24,57 +25,87 @@
 }
 @media (prefers-color-scheme: dark){:root{
   --bg:#0F1614; --surface:#17211E; --ink:#E6EEEA; --muted:#93A39C; --line:#2A3833;
-  --accent:#4FC2A5; --accent-soft:#183A31; --date:#E0A26F; --date-soft:#3A2818; --on-accent:#0F1614; color-scheme:dark}}
+  --accent:#4FC2A5; --accent-soft:#183A31; --date:#E0A26F; --date-soft:#3A2818; --on-accent:#0F1614;
+  --good:#5FD39A; --good-soft:#163527; --bad:#F08A7E; --bad-soft:#3D1F1B; color-scheme:dark}}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;
-  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:22px 64px;display:flex;flex-direction:column;gap:24px}
-header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:18px 64px;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:env(safe-area-inset-top,0px)}
 h1{margin:0;font-family:var(--f-kufi);font-size:30px;color:var(--accent);line-height:1.1;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
 h1 .ar{font-size:34px}
 header p{margin:4px 0 0;color:var(--muted)}
-.tools{display:flex;gap:8px;flex-wrap:wrap}
+.stats{display:flex;gap:8px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;color:var(--muted)}
+.stat b{color:var(--ink);font-size:16px;font-variant-numeric:tabular-nums}
 button,.btn{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 button:hover,.btn:hover{border-color:var(--accent)}
-button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:700}
 button:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary,button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.row .lbl{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.speed button{padding:5px 10px;font-size:13px;font-variant-numeric:tabular-nums}
+.tabs{display:flex;gap:4px;overflow-x:auto}
+.tabs button{border:none;background:none;border-bottom:3px solid transparent;border-radius:0;padding:8px 12px;font-weight:700;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
 h2{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.panel{display:flex;flex-direction:column;gap:16px}
 .car{background:var(--accent);color:var(--on-accent);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
 .car h2{color:var(--on-accent);opacity:.85}
 .car p{margin:0;font-size:14px;opacity:.9}
 .car audio{width:100%}
 .car label{display:flex;gap:8px;align-items:center;font-size:14px}
-.lesson-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.lesson-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
 .lesson-title{font-size:20px;font-weight:700;margin:2px 0 0;text-wrap:balance}
 .nav{display:flex;gap:6px;align-items:center}
 .nav span{color:var(--muted);font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font-size:13px;padding:4px 10px;border-radius:999px}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
 .cards{display:flex;flex-direction:column;gap:10px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.card.learned{border-color:var(--good)}
 .arabic{font-family:var(--f-ar);font-size:28px;font-weight:700;direction:rtl;text-align:right;line-height:1.6}
 .roman{font-weight:700;color:var(--accent);font-size:16px}
 .ur{font-family:var(--f-ur);direction:rtl;text-align:right;font-size:18px;line-height:2.1;color:var(--muted)}
 .note{font-size:13px;color:var(--date);background:var(--date-soft);border-radius:6px;padding:5px 9px;align-self:flex-start}
+.from{font-size:12px;color:var(--muted)}
 .speak{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.speak button{padding:6px 11px;font-size:13px;font-weight:700}
+.speak button{padding:6px 10px;font-size:13px;font-weight:700}
 .speak button.playing{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-.hide .en,.hide .ur,.hide .note{filter:blur(6px)}
+.speak .rec.on{background:var(--bad);border-color:var(--bad);color:#fff}
+.speak .done[aria-pressed="true"]{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.spacer{flex:1}
+.hide .card .en,.hide .card .ur,.hide .card .note{filter:blur(6px)}
 .hide .card:hover .en,.hide .card:hover .ur,.hide .card:hover .note,
 .hide .card:focus-within .en,.hide .card:focus-within .ur,.hide .card:focus-within .note{filter:none}
 .empty{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:20px;color:var(--muted)}
-.talk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
 .hint{margin:0;color:var(--muted);font-size:14px}.hint.small{font-size:13px}
-.seg{display:flex;flex-wrap:wrap;gap:6px}
-.seg button{font-size:14px}
+textarea,input[type="search"]{width:100%;min-width:0;font:inherit;font-size:17px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
 .talk-row{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
-.talk-row textarea{flex:1 1 240px;min-width:0;font:inherit;font-size:17px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.talk-row textarea{flex:1 1 240px;resize:vertical}
 .mic{font-weight:700;padding:10px 16px}
 .mic.on{background:var(--date);border-color:var(--date);color:var(--on-accent)}
-.talk-actions{display:flex;flex-wrap:wrap;gap:8px}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
 .status{font-size:13px;color:var(--muted);min-height:1.2em}
-footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:6px}
+.q-prompt{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.q-prompt .big{font-size:22px;font-weight:700}
+.q-prompt .big.arabic{align-self:stretch}
+.q-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.opts{display:grid;grid-template-columns:1fr;gap:8px}
+.opts button{justify-content:flex-start;text-align:left;padding:12px 14px;font-size:16px}
+.opts button.ar{font-family:var(--f-ar);font-size:22px;justify-content:flex-end;direction:rtl}
+.opts button:disabled{opacity:1;cursor:default}
+.opts button.right{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+.opts button.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.score{font-size:40px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -84,43 +115,41 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
       <h1><span>Yalla Arabic</span><span class="ar">يلا عربي</span></h1>
       <p>Gulf Arabic for the office · Arabic · Roman · English · اردو</p>
     </div>
-    <div class="tools">
-      <button id="btnHide" aria-pressed="false">Test me</button>
-      <a class="btn" id="askLink" href="https://claude.ai/artifact/UTgbqsAWC8WmdJ9x3Uo8F7" target="_blank" rel="noopener">How do I say…?</a>
+    <div class="stats">
+      <div class="stat"><b id="stStreak">0</b> day streak</div>
+      <div class="stat"><b id="stLearned">0</b> / <span id="stTotal">0</span> learned</div>
+      <div class="stat">Best quiz <b id="stBest">–</b></div>
     </div>
   </header>
 
-  <section class="car" aria-labelledby="hCar">
-    <h2 id="hCar">Car mode</h2>
-    <p id="carInfo">Plays the whole lesson: Arabic, slow Arabic, English, Urdu, then a pause for you to repeat.</p>
-    <audio id="track" controls preload="none"></audio>
-    <label><input type="checkbox" id="autoNext"> Continue to the next lesson when one ends</label>
-  </section>
+  <div class="bar">
+    <div class="row">
+      <span class="lbl">Speed</span>
+      <span class="row speed" id="speed" role="group" aria-label="Playback speed">
+        <button data-r="0.5">0.5×</button><button data-r="0.75">0.75×</button><button data-r="1">1×</button><button data-r="1.5">1.5×</button><button data-r="2">2×</button>
+      </span>
+      <button id="btnLoop" aria-pressed="false" title="Repeat the phrase until you stop it">Repeat</button>
+      <button id="btnHide" aria-pressed="false" title="Blur meanings to test yourself">Test me</button>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="learn" aria-selected="true">Learn</button>
+      <button role="tab" data-tab="quiz" aria-selected="false">Quiz</button>
+      <button role="tab" data-tab="speak" aria-selected="false">Speak &amp; translate</button>
+      <button role="tab" data-tab="search" aria-selected="false">Search</button>
+    </nav>
+  </div>
 
-  <section class="talk" aria-labelledby="hTalk">
-    <h2 id="hTalk">Speak &amp; translate</h2>
-    <p class="hint">Speak in English or Urdu to get the Arabic. Speak in Arabic, even broken Arabic, to get corrected.</p>
-    <div class="seg" role="group" aria-label="Language you will speak">
-      <button data-lang="en-US" aria-pressed="true">I speak English</button>
-      <button data-lang="ur-PK" aria-pressed="false">اردو</button>
-      <button data-lang="ar-AE" aria-pressed="false">عربي (correct me)</button>
+  <!-- LEARN -->
+  <section class="panel" id="tab-learn" role="tabpanel">
+    <div class="car">
+      <h2>Car mode</h2>
+      <p id="carInfo">Plays the whole lesson: Arabic, slow Arabic, English, Urdu, then a pause for you to repeat.</p>
+      <audio id="track" controls preload="none"></audio>
+      <label><input type="checkbox" id="autoNext"> Continue to the next lesson when one ends</label>
     </div>
-    <div class="talk-row">
-      <button id="mic" class="mic" aria-label="Start speaking"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span id="micLabel">Tap and speak</span></button>
-      <textarea id="said" rows="2" placeholder="Or type here…"></textarea>
-    </div>
-    <div class="status" id="micStatus" role="status"></div>
-    <div class="talk-actions">
-      <a class="btn primary" id="toClaude" target="_blank" rel="noopener" href="#">Ask Claude teacher</a>
-      <a class="btn" id="toGoogle" target="_blank" rel="noopener" href="#">Google Translate (with voice)</a>
-    </div>
-    <p class="hint small">Claude gives you the Gulf (spoken) Arabic with Roman letters and explains your mistakes. Google gives a quick translation with a speaker button to hear it.</p>
-  </section>
-
-  <section aria-labelledby="hLesson">
     <div class="lesson-head">
       <div>
-        <h2 id="hLesson">Phrases</h2>
+        <h2>Phrases</h2>
         <p class="lesson-title" id="lessonTitle">Loading…</p>
       </div>
       <div class="nav">
@@ -129,80 +158,296 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
         <button id="next" aria-label="Next lesson">Next ›</button>
       </div>
     </div>
+    <div class="chips" id="lessonChips" aria-label="Jump to lesson"></div>
+    <div class="progress" aria-hidden="true"><i id="lessonBar"></i></div>
+    <p class="hint small">Tap <b>Record me</b>, say the phrase, tap again. You hear the native voice, then yourself. Tick <b>Learned</b> when you can say it without looking.</p>
     <div class="cards" id="cards"></div>
   </section>
 
+  <!-- QUIZ -->
+  <section class="panel" id="tab-quiz" role="tabpanel" hidden>
+    <div class="box" id="quizSetup">
+      <h2>Quiz</h2>
+      <div class="row"><span class="lbl">Phrases</span>
+        <span class="chips" id="qScope"><button data-v="lesson" aria-pressed="true">This lesson</button><button data-v="all" aria-pressed="false">All lessons</button><button data-v="weak" aria-pressed="false">Not learned yet</button></span></div>
+      <div class="row"><span class="lbl">Type</span>
+        <span class="chips" id="qType"><button data-v="mix" aria-pressed="true">Mixed</button><button data-v="listen" aria-pressed="false">Listen → meaning</button><button data-v="read" aria-pressed="false">Meaning → Arabic</button></span></div>
+      <button class="primary" id="qStart" style="align-self:flex-start">Start 10 questions</button>
+    </div>
+    <div class="box" id="quizRun" hidden>
+      <div class="q-meta"><span id="qNum">1 / 10</span><span id="qScore">Score 0</span></div>
+      <div class="q-prompt" id="qPrompt"></div>
+      <div class="opts" id="qOpts"></div>
+      <div class="status" id="qFeedback"></div>
+      <button class="primary" id="qNext" hidden style="align-self:flex-start">Next</button>
+    </div>
+    <div class="box" id="quizEnd" hidden>
+      <h2>Result</h2>
+      <div class="score" id="qFinal">0 / 10</div>
+      <p class="hint" id="qMsg"></p>
+      <div class="cards" id="qReview"></div>
+      <button class="primary" id="qAgain" style="align-self:flex-start">Try again</button>
+    </div>
+  </section>
+
+  <!-- SPEAK -->
+  <section class="panel" id="tab-speak" role="tabpanel" hidden>
+    <div class="box">
+      <h2>Speak &amp; translate</h2>
+      <p class="hint">Speak in English or Urdu to get the Arabic. Speak in Arabic, even broken Arabic, to get corrected.</p>
+      <div class="chips" id="seg" role="group" aria-label="Language you will speak">
+        <button data-lang="en-US" aria-pressed="true">I speak English</button>
+        <button data-lang="ur-PK" aria-pressed="false">اردو</button>
+        <button data-lang="ar-AE" aria-pressed="false">عربي (correct me)</button>
+      </div>
+      <div class="talk-row">
+        <button id="mic" class="mic" aria-label="Start speaking"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span id="micLabel">Tap and speak</span></button>
+        <textarea id="said" rows="2" placeholder="Or type here…"></textarea>
+      </div>
+      <div class="status" id="micStatus" role="status"></div>
+      <div class="row">
+        <a class="btn primary" id="toClaude" target="_blank" rel="noopener" href="#">Ask Claude teacher</a>
+        <a class="btn" id="toGoogle" target="_blank" rel="noopener" href="#">Google Translate (with voice)</a>
+      </div>
+      <p class="hint small">Claude gives the Gulf (spoken) Arabic with Roman letters and explains your mistakes. Google gives a quick translation with a speaker button.</p>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section class="panel" id="tab-search" role="tabpanel" hidden>
+    <input type="search" id="q" placeholder="Search any word: meeting, شكراً, شکریہ, shukran…" aria-label="Search all phrases">
+    <p class="hint small" id="qCount"></p>
+    <div class="cards" id="results"></div>
+  </section>
+
   <footer>
-    <span>Tip: on your phone, use "Add to Home Screen" to open this like an app.</span>
-    <span>Car mode keeps playing with the screen locked.</span>
+    <span>On your phone, use "Add to Home Screen" to open this like an app. Car mode keeps playing with the screen locked.</span>
+    <span>Your progress is saved on this device.</span>
   </footer>
 </div>
 
 <script>
 (function(){
-  const $ = s => document.querySelector(s);
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const el = (t,c,x) => { const e=document.createElement(t); if(c) e.className=c; if(x!=null) e.textContent=x; return e; };
-  let lessons = [], idx = 0;
-  const clip = new Audio();
-  let playingBtn = null;
+  const get = (k,d) => { try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v);}catch(e){return d;} };
+  const put = (k,v) => { try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} };
+  const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+
+  let lessons = [], idx = 0, all = [];
+  let learned = new Set(get("ya-learned", []));
+  let rate = get("ya-rate", 1), loop = false;
+  const clip = new Audio(); let playingBtn = null;
   const track = $("#track");
+  const pid = (L,i) => `${L.id}:${i}`;
 
-  function store(k,v){ try{ v===undefined ? null : localStorage.setItem(k,v); return localStorage.getItem(k);}catch(e){return null;} }
-
-  function play(src, btn){
-    if (playingBtn) playingBtn.classList.remove("playing");
-    track.pause();
-    clip.src = src; clip.play().catch(()=>{});
-    playingBtn = btn; btn.classList.add("playing");
-    clip.onended = () => btn.classList.remove("playing");
+  /* ---------- Streak ---------- */
+  (function(){
+    const today = new Date().toISOString().slice(0,10);
+    const s = get("ya-streak", {last:null,count:0});
+    if (s.last !== today){
+      const y = new Date(Date.now()-864e5).toISOString().slice(0,10);
+      s.count = s.last === y ? s.count+1 : 1; s.last = today; put("ya-streak", s);
+    }
+    $("#stStreak").textContent = s.count;
+    const b = get("ya-best", null); $("#stBest").textContent = b==null ? "–" : b+"/10";
+  })();
+  function updateStats(){
+    $("#stLearned").textContent = all.filter(x => learned.has(x.id)).length;
+    $("#stTotal").textContent = all.length;
+    if (lessons.length){
+      const L = lessons[idx]; const n = L.phrases.filter((p,i)=>learned.has(pid(L,i))).length;
+      $("#lessonBar").style.width = (100*n/L.phrases.length)+"%";
+    }
   }
 
+  /* ---------- Audio ---------- */
+  function setRate(r){
+    rate = r; put("ya-rate", r);
+    clip.playbackRate = r; track.playbackRate = r;
+    $$("#speed button").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.r === r)));
+  }
+  $$("#speed button").forEach(b => b.onclick = () => setRate(+b.dataset.r));
+  $("#btnLoop").onclick = e => { loop = !loop; e.currentTarget.setAttribute("aria-pressed", String(loop)); clip.loop = loop; };
+  function stopClip(){ clip.pause(); clip.onended = null; if (playingBtn) playingBtn.classList.remove("playing"); playingBtn = null; }
+  function play(src, btn, then){
+    stopClip(); track.pause();
+    clip.src = src; clip.loop = loop && !then; clip.playbackRate = rate; clip.defaultPlaybackRate = rate;
+    clip.play().catch(()=>{});
+    if (btn){ playingBtn = btn; btn.classList.add("playing"); }
+    clip.onended = () => { if (btn) btn.classList.remove("playing"); if (then) then(); };
+  }
+  track.addEventListener("play", () => { stopClip(); track.playbackRate = rate; });
+  track.addEventListener("loadedmetadata", () => track.playbackRate = rate);
+
+  /* ---------- Recording ---------- */
+  let recState = null; const myTakes = new Map();
+  async function toggleRecord(p, key, btn, mineBtn){
+    if (recState && recState.btn === btn){ recState.rec.stop(); return; }
+    if (recState) recState.rec.stop();
+    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder){ btn.textContent = "Not supported"; btn.disabled = true; return; }
+    let stream;
+    try { stream = await navigator.mediaDevices.getUserMedia({audio:true}); }
+    catch(e){ btn.textContent = "Mic blocked"; return; }
+    stopClip(); track.pause();
+    const rec = new MediaRecorder(stream), chunks = [];
+    rec.ondataavailable = e => chunks.push(e.data);
+    rec.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      btn.classList.remove("on"); btn.textContent = "Record me"; recState = null;
+      const url = URL.createObjectURL(new Blob(chunks, {type: rec.mimeType || "audio/webm"}));
+      if (myTakes.get(key)) URL.revokeObjectURL(myTakes.get(key));
+      myTakes.set(key, url); mineBtn.hidden = false;
+      compare(p, url, mineBtn);
+    };
+    rec.start(); recState = {rec, btn};
+    btn.classList.add("on"); btn.textContent = "Stop";
+    setTimeout(() => { if (recState && recState.rec === rec) rec.stop(); }, 8000);
+  }
+  function compare(p, url, mineBtn){
+    if (p.audio?.ar) play(p.audio.ar, null, () => setTimeout(() => play(url, mineBtn), 400));
+    else play(url, mineBtn);
+  }
+
+  /* ---------- Card ---------- */
+  function card(p, L, i, showFrom){
+    const key = pid(L,i);
+    const c = el("article","card"); if (learned.has(key)) c.classList.add("learned");
+    if (showFrom) c.append(el("div","from",`Lesson ${L.day}: ${L.title||""}`));
+    c.append(el("div","arabic",p.ar), el("div","roman",p.roman||""), el("div","en",p.en||""));
+    if (p.ur){ const u=el("div","ur",p.ur); u.lang="ur"; c.append(u); }
+    if (p.note) c.append(el("div","note",p.note));
+    const s = el("div","speak");
+    [["AR","ar"],["AR slow","ar_slow"],["EN","en"],["اردو","ur"]].forEach(([lab,k])=>{
+      if (!p.audio||!p.audio[k]) return;
+      const b = el("button",null,lab); b.onclick = () => play(p.audio[k], b); s.append(b);
+    });
+    const rec = el("button","rec","Record me");
+    const mine = el("button",null,"Play mine"); mine.hidden = !myTakes.get(key);
+    rec.onclick = () => toggleRecord(p, key, rec, mine);
+    mine.onclick = () => compare(p, myTakes.get(key), mine);
+    s.append(rec, mine, el("span","spacer"));
+    const done = el("button","done", "Learned");
+    done.setAttribute("aria-pressed", String(learned.has(key)));
+    done.onclick = () => {
+      learned.has(key) ? learned.delete(key) : learned.add(key);
+      put("ya-learned", [...learned]);
+      done.setAttribute("aria-pressed", String(learned.has(key)));
+      c.classList.toggle("learned", learned.has(key)); updateStats();
+    };
+    s.append(done); c.append(s);
+    return c;
+  }
+
+  /* ---------- Learn ---------- */
   function render(){
     const box = $("#cards"); box.replaceChildren();
     if (!lessons.length){ $("#lessonTitle").textContent="No lessons yet"; box.append(el("div","empty","Lessons will appear here soon.")); return; }
     const L = lessons[idx];
-    $("#lessonTitle").textContent = `Lesson ${L.day}: ${L.title||""}` + (L.date?` · ${L.date}`:"");
+    $("#lessonTitle").textContent = `Lesson ${L.day}: ${L.title||""}`;
     $("#pos").textContent = `${idx+1} of ${lessons.length}`;
     $("#prev").disabled = idx<=0; $("#next").disabled = idx>=lessons.length-1;
     $("#carInfo").textContent = `Lesson ${L.day} (${L.phrases.length} phrases): Arabic, slow Arabic, English, Urdu, then a pause for you to repeat.`;
     if (track.dataset.id !== L.id){ track.src = L.track; track.dataset.id = L.id; }
     if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({title:`Lesson ${L.day}: ${L.title||""}`, artist:"Yalla Arabic"});
-    store("ya-lesson", L.id);
-    L.phrases.forEach(p => {
-      const c = el("article","card");
-      c.append(el("div","arabic",p.ar), el("div","roman",p.roman||""), el("div","en",p.en||""));
-      if (p.ur){ const u=el("div","ur",p.ur); u.lang="ur"; c.append(u); }
-      if (p.note) c.append(el("div","note",p.note));
-      const s = el("div","speak");
-      [["AR","ar"],["AR slow","ar_slow"],["EN","en"],["اردو","ur"]].forEach(([lab,k])=>{
-        if (!p.audio||!p.audio[k]) return;
-        const b = el("button",null,lab); b.onclick = () => play(p.audio[k], b); s.append(b);
-      });
-      c.append(s); box.append(c);
-    });
+    put("ya-lesson", L.id);
+    $$("#lessonChips button").forEach((b,i) => b.setAttribute("aria-pressed", String(i===idx)));
+    L.phrases.forEach((p,i) => box.append(card(p, L, i)));
+    updateStats();
   }
-
   $("#prev").onclick = () => { if(idx>0){idx--;render();} };
   $("#next").onclick = () => { if(idx<lessons.length-1){idx++;render();} };
   $("#btnHide").onclick = e => { const on = e.currentTarget.getAttribute("aria-pressed")!=="true"; e.currentTarget.setAttribute("aria-pressed",String(on)); document.body.classList.toggle("hide",on); };
-  const auto = $("#autoNext"); auto.checked = store("ya-auto")==="1";
-  auto.onchange = () => store("ya-auto", auto.checked?"1":"0");
-  track.addEventListener("play", () => clip.pause());
+  const auto = $("#autoNext"); auto.checked = !!get("ya-auto", false);
+  auto.onchange = () => put("ya-auto", auto.checked);
   track.addEventListener("ended", () => { if (auto.checked && idx<lessons.length-1){ idx++; render(); track.play().catch(()=>{}); } });
 
+  /* ---------- Tabs ---------- */
+  function showTab(name){
+    $$(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab===name)));
+    $$(".panel").forEach(p => p.hidden = p.id !== "tab-"+name);
+    put("ya-tab", name);
+  }
+  $$(".tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
+
+  /* ---------- Quiz ---------- */
+  const pick = (groupSel) => $(groupSel+' button[aria-pressed="true"]').dataset.v;
+  ["#qScope","#qType"].forEach(g => $$(g+" button").forEach(b => b.onclick = () => $$(g+" button").forEach(x => x.setAttribute("aria-pressed", String(x===b)))));
+  let Q = [], qi = 0, score = 0, wrong = [];
+  function startQuiz(){
+    const scope = pick("#qScope"), type = pick("#qType");
+    let pool = scope === "lesson" ? all.filter(x => x.L === lessons[idx]) : scope === "weak" ? all.filter(x => !learned.has(x.id)) : all;
+    if (pool.length < 4) pool = all;
+    if (all.length < 4) return;
+    Q = shuffle(pool).slice(0, Math.min(10, pool.length)).map(x => {
+      const t = type === "mix" ? (Math.random() < .5 ? "listen" : "read") : type;
+      const distract = shuffle(all.filter(y => y.p.en !== x.p.en)).slice(0,3);
+      return {x, t, opts: shuffle([x, ...distract])};
+    });
+    qi = 0; score = 0; wrong = [];
+    $("#quizSetup").hidden = true; $("#quizEnd").hidden = true; $("#quizRun").hidden = false;
+    showQ();
+  }
+  function showQ(){
+    const q = Q[qi]; const pr = $("#qPrompt"), op = $("#qOpts");
+    pr.replaceChildren(); op.replaceChildren(); $("#qFeedback").textContent = ""; $("#qNext").hidden = true;
+    $("#qNum").textContent = `${qi+1} / ${Q.length}`; $("#qScore").textContent = `Score ${score}`;
+    if (q.t === "listen"){
+      pr.append(el("div","hint","Listen and choose the meaning"));
+      const b = el("button","primary","Play again"); b.onclick = () => q.x.p.audio?.ar && play(q.x.p.audio.ar, b); pr.append(b);
+      if (q.x.p.audio?.ar) play(q.x.p.audio.ar, b);
+    } else {
+      pr.append(el("div","hint","Choose the Arabic for"), el("div","big", q.x.p.en));
+    }
+    q.opts.forEach(o => {
+      const b = el("button", q.t==="read" ? "ar" : null, q.t==="read" ? o.p.ar : o.p.en);
+      b.onclick = () => answer(o, b); op.append(b);
+    });
+  }
+  function answer(o, b){
+    const q = Q[qi]; const ok = o === q.x;
+    $$("#qOpts button").forEach((x,i) => { x.disabled = true; if (q.opts[i] === q.x) x.classList.add("right"); });
+    if (!ok){ b.classList.add("wrong"); wrong.push(q.x); } else score++;
+    $("#qScore").textContent = `Score ${score}`;
+    $("#qFeedback").textContent = (ok ? "Correct. " : "Not quite. ") + `${q.x.p.ar} – ${q.x.p.roman} – ${q.x.p.en}`;
+    if (q.t === "read" && q.x.p.audio?.ar) play(q.x.p.audio.ar);
+    $("#qNext").hidden = false; $("#qNext").textContent = qi === Q.length-1 ? "See result" : "Next";
+    $("#qNext").focus();
+  }
+  $("#qNext").onclick = () => { if (qi < Q.length-1){ qi++; showQ(); } else endQuiz(); };
+  function endQuiz(){
+    $("#quizRun").hidden = true; $("#quizEnd").hidden = false;
+    $("#qFinal").textContent = `${score} / ${Q.length}`;
+    const pct = score / Q.length;
+    $("#qMsg").textContent = pct === 1 ? "Mumtaaz! Perfect score." : pct >= .7 ? "Zain! Good work. Review the ones below." : "Keep going. Listen to these again, then try once more.";
+    if (Q.length === 10){ const best = get("ya-best", 0); if (score > best){ put("ya-best", score); $("#stBest").textContent = score+"/10"; } }
+    const r = $("#qReview"); r.replaceChildren();
+    wrong.forEach(x => r.append(card(x.p, x.L, x.i, true)));
+  }
+  $("#qStart").onclick = startQuiz;
+  $("#qAgain").onclick = () => { $("#quizEnd").hidden = true; $("#quizSetup").hidden = false; };
+
+  /* ---------- Search ---------- */
+  const norm = s => (s||"").toLowerCase().replace(/[\u064B-\u0652\u0670']/g,"").replace(/[أإآ]/g,"ا");
+  $("#q").addEventListener("input", () => {
+    const t = norm($("#q").value.trim()); const r = $("#results"); r.replaceChildren();
+    if (!t){ $("#qCount").textContent = ""; return; }
+    const hits = all.filter(x => [x.p.ar,x.p.roman,x.p.en,x.p.ur,x.p.note].some(f => norm(f).includes(t)));
+    $("#qCount").textContent = hits.length ? `${hits.length} phrase${hits.length>1?"s":""} found` : "Nothing found. Try another word.";
+    hits.slice(0,40).forEach(x => r.append(card(x.p, x.L, x.i, true)));
+  });
+
   /* ---------- Speak & translate ---------- */
-  let talkLang = store("ya-talk") || "en-US";
-  const segBtns = document.querySelectorAll(".seg button");
+  let talkLang = get("ya-talk", "en-US");
   const said = $("#said"), micBtn = $("#mic"), micStatus = $("#micStatus"), micLabel = $("#micLabel");
   function setLang(l){
-    talkLang = l; store("ya-talk", l);
-    segBtns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
+    talkLang = l; put("ya-talk", l);
+    $$("#seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
     said.dir = l.startsWith("en") ? "ltr" : "rtl";
     said.placeholder = l.startsWith("en") ? "Or type here… e.g. Can we meet tomorrow at 10?" : l.startsWith("ur") ? "یا یہاں لکھیں…" : "أو اكتب هنا…";
     updateLinks();
   }
-  segBtns.forEach(b => b.onclick = () => setLang(b.dataset.lang));
-
+  $$("#seg button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
   function claudePrompt(text){
     const who = "I am Shakeel, a Pakistani IT professional in Dubai (I speak Urdu, Punjabi, English and read Arabic script). I am learning to SPEAK Gulf/Emirati Arabic for the office.";
     if (talkLang.startsWith("ar")) return `${who}\n\nHere is my attempt at saying something in Arabic (it came from speech recognition, so it may have errors):\n"${text}"\n\nPlease:\n1. Guess what I meant, in English.\n2. Give the correct Gulf Arabic version in Arabic script, plus easy Roman letters.\n3. Briefly explain my mistakes in simple English with Urdu hints.\n4. Give the formal (MSA) version too.\nKeep it short.`;
@@ -210,53 +455,36 @@ footer{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:
     return `${who}\n\nHow do I say this (${from}) in Gulf Arabic?\n"${text}"\n\nGive: the Gulf Arabic in Arabic script, easy Roman letters, the formal (MSA) version, and the key words with meanings (mention Urdu words that share the root). Keep it short.`;
   }
   function updateLinks(){
-    const t = said.value.trim();
-    const c = $("#toClaude"), g = $("#toGoogle");
-    [c,g].forEach(a => a.setAttribute("aria-disabled", String(!t)));
+    const t = said.value.trim(); const c = $("#toClaude"), g = $("#toGoogle");
     if (!t){ c.href = "#"; g.href = "#"; return; }
     c.href = "https://claude.ai/new?q=" + encodeURIComponent(claudePrompt(t));
     const sl = talkLang.slice(0,2), tl = sl === "ar" ? "en" : "ar";
     g.href = `https://translate.google.com/?sl=${sl}&tl=${tl}&text=${encodeURIComponent(t)}&op=translate`;
   }
   said.addEventListener("input", updateLinks);
-  ["toClaude","toGoogle"].forEach(id => $("#"+id).addEventListener("click", e => {
-    if (!said.value.trim()){ e.preventDefault(); micStatus.textContent = "Speak or type something first."; }
-  }));
-
+  ["#toClaude","#toGoogle"].forEach(id => $(id).addEventListener("click", e => { if (!said.value.trim()){ e.preventDefault(); micStatus.textContent = "Speak or type something first."; } }));
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  let rec = null, listening = false;
-  if (!SR){
-    micBtn.disabled = true; micLabel.textContent = "Mic not supported here";
-    micStatus.textContent = "Voice input needs Chrome, Edge or Safari. You can still type.";
-  } else {
-    micBtn.onclick = () => {
-      if (listening){ rec && rec.stop(); return; }
-      rec = new SR();
-      rec.lang = talkLang; rec.interimResults = true; rec.continuous = false;
-      let base = "";
-      rec.onstart = () => { listening = true; micBtn.classList.add("on"); micLabel.textContent = "Listening… tap to stop"; micStatus.textContent = ""; said.value = ""; };
-      rec.onresult = e => {
-        let txt = "";
-        for (let i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript;
-        said.value = base + txt; updateLinks();
-      };
-      rec.onerror = e => {
-        micStatus.textContent = e.error === "not-allowed" || e.error === "service-not-allowed"
-          ? "Microphone is blocked. Allow the mic for this site in your browser settings."
-          : e.error === "no-speech" ? "Didn't hear anything. Tap and try again." : "Voice input stopped. Tap to try again.";
-      };
-      rec.onend = () => { listening = false; micBtn.classList.remove("on"); micLabel.textContent = "Tap and speak"; updateLinks(); };
-      try { rec.start(); } catch(err){ micStatus.textContent = "Couldn't start the mic. Try again."; }
-    };
-  }
-  setLang(talkLang);
+  let srec = null, listening = false;
+  if (!SR){ micBtn.disabled = true; micLabel.textContent = "Mic not supported here"; micStatus.textContent = "Voice input needs Chrome, Edge or Safari. You can still type."; }
+  else micBtn.onclick = () => {
+    if (listening){ srec && srec.stop(); return; }
+    srec = new SR(); srec.lang = talkLang; srec.interimResults = true; srec.continuous = false;
+    srec.onstart = () => { listening = true; micBtn.classList.add("on"); micLabel.textContent = "Listening… tap to stop"; micStatus.textContent = ""; said.value = ""; };
+    srec.onresult = e => { let t = ""; for (let i=0;i<e.results.length;i++) t += e.results[i][0].transcript; said.value = t; updateLinks(); };
+    srec.onerror = e => { micStatus.textContent = e.error==="not-allowed"||e.error==="service-not-allowed" ? "Microphone is blocked. Allow the mic for this site in your browser settings." : e.error==="no-speech" ? "Didn't hear anything. Tap and try again." : "Voice input stopped. Tap to try again."; };
+    srec.onend = () => { listening = false; micBtn.classList.remove("on"); micLabel.textContent = "Tap and speak"; updateLinks(); };
+    try { srec.start(); } catch(err){ micStatus.textContent = "Couldn't start the mic. Try again."; }
+  };
 
+  /* ---------- Boot ---------- */
+  setRate(rate); setLang(talkLang); showTab(get("ya-tab","learn"));
   fetch("lessons.json", {cache:"no-cache"}).then(r=>r.json()).then(data => {
     lessons = data;
-    const saved = store("ya-lesson");
-    const i = lessons.findIndex(l => l.id === saved);
-    idx = lessons.length - 1;               // newest lesson by default
-    if (location.hash === "#continue" && i >= 0) idx = i;
+    all = lessons.flatMap(L => L.phrases.map((p,i) => ({p, L, i, id: pid(L,i)})));
+    const chips = $("#lessonChips");
+    lessons.forEach((L,i) => { const b = el("button",null,`${L.day}. ${L.title||""}`); b.onclick = () => { idx = i; render(); }; chips.append(b); });
+    const saved = get("ya-lesson", null), si = lessons.findIndex(l => l.id === saved);
+    idx = si >= 0 ? si : lessons.length - 1;
     render();
   }).catch(() => { $("#lessonTitle").textContent = "Couldn't load lessons. Check your connection and reload."; });
 })();
