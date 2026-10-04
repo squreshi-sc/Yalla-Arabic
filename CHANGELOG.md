@@ -4,6 +4,16 @@ Every version is saved as a GitHub release (tag). To go back to an older
 version: open **Releases**, pick the version, and restore its files (or ask
 Claude to roll back to that tag).
 
+## v2.5 – 4 Oct 2026
+- **New topics in all three languages** (Starter):
+  - Arabic: Lesson 11 On the phone, Lesson 12 Pharmacy & clinic; Dialogue 7 At the pharmacy, Dialogue 8 Karak at the cafeteria.
+  - German and French: Lesson 11 Health & pharmacy, Lesson 12 Phone & appointments; Dialogue 7 At the pharmacy, Dialogue 8 Dinner at a restaurant.
+- Offline updates happen **only when you tap Update** – nothing downloads by itself, so mobile data is never used without asking.
+- When a new version adds audio, a notice at the top shows the size with **Update** and **Later**.
+- Update replaces the offline copy: it downloads only new or changed audio and deletes old files, so the result equals a fresh download.
+- New **Re-download all** button for a completely fresh copy. The Offline box shows which version is saved.
+- (v2.4 was not released separately; its offline-update changes are part of v2.5.)
+
 ## v2.3 – 4 Oct 2026
 - **Offline mode.** New "Offline mode" box: download Arabic, German or French once on Wi-Fi, then lessons, dialogues, all audio, car mode, quiz, role-play and Record me work with no internet.
 - The app itself is saved on the phone, so it opens in airplane mode (best after "Add to Home Screen").
