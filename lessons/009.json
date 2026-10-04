@@ -1,0 +1,95 @@
+{
+  "day": 9,
+  "level": "Starter",
+  "date": "4 Oct 2026",
+  "title": "Tea, food & the cafeteria",
+  "phrases": [
+    {
+      "ar": "أبي چاي",
+      "roman": "Abi chaay",
+      "en": "I want tea",
+      "ur": "مجھے چائے چاہیے",
+      "note": "'Abi' = I want (Emirati). 'Chaay' = chai."
+    },
+    {
+      "ar": "قهوة",
+      "roman": "Gahwa",
+      "en": "Coffee",
+      "ur": "کافی",
+      "note": "Gulf 'g' for 'q'. Urdu 'qahwa' is the same word."
+    },
+    {
+      "ar": "ماي",
+      "roman": "Maay",
+      "en": "Water",
+      "ur": "پانی",
+      "note": "Gulf word. Formal: ماء – maa'."
+    },
+    {
+      "ar": "بدون سكر",
+      "roman": "Bidoon sukkar",
+      "en": "Without sugar",
+      "ur": "چینی کے بغیر",
+      "note": "'Bidoon' = without, like Urdu 'bedun'. 'Sukkar' = shakar."
+    },
+    {
+      "ar": "شوي سكر",
+      "roman": "Shway sukkar",
+      "en": "A little sugar",
+      "ur": "تھوڑی چینی",
+      "note": "'Shway' = a little."
+    },
+    {
+      "ar": "حليب",
+      "roman": "Haleeb",
+      "en": "Milk",
+      "ur": "دودھ"
+    },
+    {
+      "ar": "خبز",
+      "roman": "Khubz",
+      "en": "Bread",
+      "ur": "روٹی"
+    },
+    {
+      "ar": "عيش",
+      "roman": "'Aish",
+      "en": "Rice",
+      "ur": "چاول",
+      "note": "In the Emirates, 'aish' means rice. Formal: رز – ruzz."
+    },
+    {
+      "ar": "دياي",
+      "roman": "Diyaay",
+      "en": "Chicken",
+      "ur": "مرغی",
+      "note": "Emirati 'y' for 'j': dajaaj → diyaay."
+    },
+    {
+      "ar": "لحم",
+      "roman": "Laham",
+      "en": "Meat",
+      "ur": "گوشت"
+    },
+    {
+      "ar": "لذيذ",
+      "roman": "Ladheedh",
+      "en": "Delicious",
+      "ur": "مزیدار",
+      "note": "Same as Urdu 'lazeez'."
+    },
+    {
+      "ar": "كم السعر؟",
+      "roman": "Kam as-si'r?",
+      "en": "How much is it?",
+      "ur": "کتنے کا ہے؟"
+    },
+    {
+      "ar": "الحساب لو سمحت",
+      "roman": "Al-hisaab law samaht",
+      "en": "The bill, please",
+      "ur": "بل دے دیں، مہربانی",
+      "note": "'Hisaab' is the same as Urdu 'hisaab'."
+    }
+  ]
+}
