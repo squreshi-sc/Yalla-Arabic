@@ -1,0 +1,1084 @@
+[
+ {
+  "id": "md01",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 1,
+  "title": "First day: meeting the team",
+  "scene": "Your first day at a new office. Ahmed, the project manager, welcomes you.",
+  "lines": [
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "هلا وغلا! إنت الموظف الجديد؟",
+    "roman": "Hala w ghala! Inta al-muwadhaf al-yadeed?",
+    "en": "Welcome! Are you the new employee?",
+    "ur": "خوش آمدید! کیا آپ نئے ملازم ہیں؟",
+    "note": "'Muwazzaf' (employee) is also used in Urdu."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إيه، اسمي شكيل. أنا مهندس شبكات.",
+    "roman": "Ee, ismi Shakeel. Ana muhandis shabakaat.",
+    "en": "Yes, my name is Shakeel. I'm a network engineer.",
+    "ur": "جی، میرا نام شکیل ہے۔ میں نیٹ ورک انجینئر ہوں۔",
+    "note": "'Muhandis' = engineer."
+   },
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "حياك الله. أنا أحمد، مدير المشروع.",
+    "roman": "Hayyaak Allah. Ana Ahmad, mudeer al-mashroo'.",
+    "en": "Welcome. I'm Ahmed, the project manager.",
+    "ur": "خوش آمدید۔ میں احمد ہوں، پروجیکٹ مینیجر۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "تشرفنا يا أحمد. وين مكتبي؟",
+    "roman": "Tsharrafna ya Ahmad. Wain maktabi?",
+    "en": "Nice to meet you, Ahmed. Where is my desk?",
+    "ur": "آپ سے مل کر خوشی ہوئی۔ میری سیٹ کہاں ہے؟"
+   },
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "مكتبك هناك، يمب الدريشة.",
+    "roman": "Maktabak hnaak, yamb ad-dareesha.",
+    "en": "Your desk is over there, next to the window.",
+    "ur": "آپ کی سیٹ وہاں ہے، کھڑکی کے ساتھ۔",
+    "note": "Emirati: 'yamb' = next to, 'dareesha' = window."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "زين. متى اجتماع الفريق؟",
+    "roman": "Zain. Mita ijtimaa' al-fareeg?",
+    "en": "Good. When is the team meeting?",
+    "ur": "ٹھیک ہے۔ ٹیم میٹنگ کب ہوتی ہے؟"
+   },
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "كل يوم اثنين الساعة تسع.",
+    "roman": "Kil yoam ithnain as-saa'a tis'.",
+    "en": "Every Monday at nine.",
+    "ur": "ہر پیر کو نو بجے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "تمام. إذا احتجت شي، بسألك.",
+    "roman": "Tamaam. Idha htijt shay, bas'alak.",
+    "en": "OK. If I need anything, I'll ask you.",
+    "ur": "ٹھیک ہے۔ اگر کچھ چاہیے ہوا تو آپ سے پوچھوں گا۔"
+   },
+   {
+    "who": "Ahmed",
+    "g": "m",
+    "ar": "أكيد، بابي مفتوح.",
+    "roman": "Akeed, baabi maftooh.",
+    "en": "Of course, my door is open.",
+    "ur": "ضرور، میرا دروازہ کھلا ہے۔"
+   }
+  ]
+ },
+ {
+  "id": "md02",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 2,
+  "title": "Moving a meeting",
+  "scene": "Your colleague Fatima wants to meet, but you're busy.",
+  "lines": [
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "صباح الخير شكيل، عندك وقت الساعة عشر؟",
+    "roman": "Sabaah al-khair Shakeel, 'indak wagt as-saa'a 'ashar?",
+    "en": "Good morning Shakeel, do you have time at ten?",
+    "ur": "صبح بخیر شکیل، کیا دس بجے وقت ہے؟",
+    "note": "'Wagt' = waqt."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "آسف، الساعة عشر عندي اجتماع مع العميل.",
+    "roman": "Aasif, as-saa'a 'ashar 'indi ijtimaa' ma'a al-'ameel.",
+    "en": "Sorry, at ten I have a meeting with the client.",
+    "ur": "معذرت، دس بجے کلائنٹ کے ساتھ میٹنگ ہے۔"
+   },
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "زين، شو رايك بعد الظهر؟",
+    "roman": "Zain, shu raayak ba'd adh-dhuhr?",
+    "en": "OK, what about the afternoon?",
+    "ur": "ٹھیک ہے، ظہر کے بعد کیسا رہے گا؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الساعة ثنتين يناسبني.",
+    "roman": "As-saa'a thintain ynaasibni.",
+    "en": "Two o'clock suits me.",
+    "ur": "دو بجے میرے لیے مناسب ہے۔",
+    "note": "Same root as Urdu 'munaasib'."
+   },
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "ممتاز. بنتكلم عن تحديث النظام.",
+    "roman": "Mumtaaz. Bnitkallam 'an tahdeeth an-nidhaam.",
+    "en": "Excellent. We'll talk about the system update.",
+    "ur": "بہت اچھا۔ ہم سسٹم اپڈیٹ پر بات کریں گے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إن شاء الله. بجهز العرض.",
+    "roman": "Inshallah. Bajahhiz al-'ardh.",
+    "en": "God willing. I'll prepare the presentation.",
+    "ur": "ان شاء اللہ۔ میں پریزنٹیشن تیار کر لوں گا۔"
+   },
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "مشكور. لا تتأخر!",
+    "roman": "Mashkoor. La tit'akhkhar!",
+    "en": "Thanks. Don't be late!",
+    "ur": "شکریہ۔ دیر مت کرنا!"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "لا تشيلين هم.",
+    "roman": "La tsheeleen ham.",
+    "en": "Don't worry.",
+    "ur": "فکر نہ کریں۔",
+    "note": "To a woman: tsheeleen. To a man: tsheel."
+   }
+  ]
+ },
+ {
+  "id": "md03",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 3,
+  "title": "IT support call",
+  "scene": "Mariam calls you because her computer is slow.",
+  "lines": [
+   {
+    "who": "Mariam",
+    "g": "f",
+    "ar": "ألو شكيل؟ النظام عندي بطيء وايد.",
+    "roman": "Alo Shakeel? An-nidhaam 'indi bati' waayed.",
+    "en": "Hello, Shakeel? My system is very slow.",
+    "ur": "ہیلو شکیل؟ میرا سسٹم بہت سست ہے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "هلا مريم. من متى المشكلة؟",
+    "roman": "Hala Maryam. Min mita al-mushkila?",
+    "en": "Hi Mariam. Since when has this been happening?",
+    "ur": "جی مریم۔ یہ مسئلہ کب سے ہے؟"
+   },
+   {
+    "who": "Mariam",
+    "g": "f",
+    "ar": "من الصبح.",
+    "roman": "Min as-subh.",
+    "en": "Since the morning.",
+    "ur": "صبح سے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "سويتي ريستارت للجهاز؟",
+    "roman": "Sawweiti restart lil-yihaaz?",
+    "en": "Did you restart the computer?",
+    "ur": "کیا آپ نے کمپیوٹر ری اسٹارٹ کیا؟",
+    "note": "Emirati 'yihaaz' = jihaaz (device)."
+   },
+   {
+    "who": "Mariam",
+    "g": "f",
+    "ar": "لا، ما سويت.",
+    "roman": "Laa, ma sawweit.",
+    "en": "No, I didn't.",
+    "ur": "نہیں، نہیں کیا۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "سوي ريستارت لو سمحتي، وخبريني.",
+    "roman": "Sawwi restart law samahti, w khabreeni.",
+    "en": "Please restart it and let me know.",
+    "ur": "مہربانی ری اسٹارٹ کریں اور مجھے بتائیں۔",
+    "note": "'Khabar' as in Urdu."
+   },
+   {
+    "who": "Mariam",
+    "g": "f",
+    "ar": "سويته... الحين أحسن، الحمد لله.",
+    "roman": "Sawweita... al-heen ahsan, al-hamdu lillaah.",
+    "en": "Done... now it's better, thank God.",
+    "ur": "کر دیا... اب بہتر ہے، الحمدللہ۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "زين. إذا رجعت المشكلة، اتصلي فيني.",
+    "roman": "Zain. Idha rij'at al-mushkila, ittasli feeni.",
+    "en": "Good. If the problem comes back, call me.",
+    "ur": "ٹھیک ہے۔ اگر مسئلہ دوبارہ ہو تو مجھے کال کریں۔"
+   },
+   {
+    "who": "Mariam",
+    "g": "f",
+    "ar": "مشكور، ما قصرت.",
+    "roman": "Mashkoor, ma gassart.",
+    "en": "Thanks, you were a great help.",
+    "ur": "شکریہ، آپ نے بہت مدد کی۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "العفو، هذا واجبي.",
+    "roman": "Al-'afu, haadha waajbi.",
+    "en": "You're welcome, it's my job.",
+    "ur": "کوئی بات نہیں، یہ میرا فرض ہے۔",
+    "note": "'Waajib' as in Urdu."
+   }
+  ]
+ },
+ {
+  "id": "md04",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 4,
+  "title": "Lunch at a restaurant",
+  "scene": "You go for lunch with a colleague.",
+  "lines": [
+   {
+    "who": "Waiter",
+    "g": "m",
+    "ar": "مساء الخير، كم شخص؟",
+    "roman": "Masaa' al-khair, kam shakhs?",
+    "en": "Good afternoon, how many people?",
+    "ur": "السلام علیکم، کتنے لوگ ہیں؟",
+    "note": "'Shakhs' = person, as in Urdu."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "شخصين لو سمحت.",
+    "roman": "Shakhsain law samaht.",
+    "en": "Two, please.",
+    "ur": "دو لوگ، مہربانی۔"
+   },
+   {
+    "who": "Waiter",
+    "g": "m",
+    "ar": "تفضلوا. هذا المنيو.",
+    "roman": "Tfaddalu. Haadha al-menu.",
+    "en": "Please come in. Here's the menu.",
+    "ur": "تشریف لائیں۔ یہ مینو ہے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "شو تنصحنا؟",
+    "roman": "Shu tinsahna?",
+    "en": "What do you recommend?",
+    "ur": "آپ کیا مشورہ دیں گے؟",
+    "note": "Same root as Urdu 'naseehat'."
+   },
+   {
+    "who": "Waiter",
+    "g": "m",
+    "ar": "المچبوس دياي لذيذ وايد.",
+    "roman": "Al-machboos diyaay ladheedh waayed.",
+    "en": "The chicken machboos is very tasty.",
+    "ur": "چکن مچبوس بہت مزیدار ہے۔",
+    "note": "Machboos is an Emirati spiced rice dish, like biryani."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "زين، نبي ثنتين مچبوس، وعصير ليمون.",
+    "roman": "Zain, nabi thintain machboos, w 'aseer leemoon.",
+    "en": "OK, we'll have two machboos and a lemon juice.",
+    "ur": "ٹھیک ہے، دو مچبوس اور ایک لیموں کا جوس۔"
+   },
+   {
+    "who": "Waiter",
+    "g": "m",
+    "ar": "حار ولا عادي؟",
+    "roman": "Haar walla 'aadi?",
+    "en": "Spicy or regular?",
+    "ur": "تیز مرچ یا عام؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "شوي حار.",
+    "roman": "Shway haar.",
+    "en": "A little spicy.",
+    "ur": "تھوڑا تیز۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الحساب لو سمحت.",
+    "roman": "Al-hisaab law samaht.",
+    "en": "The bill, please.",
+    "ur": "بل لے آئیں۔"
+   },
+   {
+    "who": "Waiter",
+    "g": "m",
+    "ar": "مية وعشرين درهم.",
+    "roman": "Miya w 'ishreen dirham.",
+    "en": "A hundred and twenty dirhams.",
+    "ur": "ایک سو بیس درہم۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "تفضل. الأكل كان لذيذ.",
+    "roman": "Tfaddal. Al-akil kaan ladheedh.",
+    "en": "Here you go. The food was delicious.",
+    "ur": "یہ لیجیے۔ کھانا مزیدار تھا۔"
+   }
+  ]
+ },
+ {
+  "id": "md05",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 5,
+  "title": "Parent–teacher meeting",
+  "scene": "You meet your son Ali's teacher, Ms. Aisha, at school.",
+  "lines": [
+   {
+    "who": "Teacher",
+    "g": "f",
+    "ar": "أهلاً، إنت أبو علي؟",
+    "roman": "Ahlan, inta abu 'Ali?",
+    "en": "Hello, are you Ali's father?",
+    "ur": "السلام علیکم، کیا آپ علی کے والد ہیں؟",
+    "note": "In the Gulf, a father is politely called 'Abu' + his child's name."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إيه، أنا أبو علي. كيف مستواه؟",
+    "roman": "Ee, ana abu 'Ali. Kaif mustawaah?",
+    "en": "Yes, I'm Ali's father. How is he doing?",
+    "ur": "جی، میں علی کا والد ہوں۔ اس کی کارکردگی کیسی ہے؟"
+   },
+   {
+    "who": "Teacher",
+    "g": "f",
+    "ar": "علي شاطر في الرياضيات.",
+    "roman": "'Ali shaatir fir-riyaadhiyyaat.",
+    "en": "Ali is very good at maths.",
+    "ur": "علی ریاضی میں بہت اچھا ہے۔",
+    "note": "In Arabic 'shaatir' means clever, a compliment."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الحمد لله. وفي العربي؟",
+    "roman": "Al-hamdu lillaah. W fil-'arabi?",
+    "en": "Thank God. And in Arabic?",
+    "ur": "الحمدللہ۔ اور عربی میں؟"
+   },
+   {
+    "who": "Teacher",
+    "g": "f",
+    "ar": "يحتاج يقرأ أكثر في البيت.",
+    "roman": "Yihtaaj yigra akthar fil-bait.",
+    "en": "He needs to read more at home.",
+    "ur": "اسے گھر پر زیادہ پڑھنے کی ضرورت ہے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إن شاء الله، بساعده كل يوم.",
+    "roman": "Inshallah, basaa'da kil yoam.",
+    "en": "God willing, I'll help him every day.",
+    "ur": "ان شاء اللہ، میں روز اس کی مدد کروں گا۔"
+   },
+   {
+    "who": "Teacher",
+    "g": "f",
+    "ar": "ممتاز. وعنده واجبات كل أسبوع.",
+    "roman": "Mumtaaz. W 'inda waajibaat kil usboo'.",
+    "en": "Excellent. And he has homework every week.",
+    "ur": "بہت اچھا۔ اور ہر ہفتے ہوم ورک ہوتا ہے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "متى الامتحان الياي؟",
+    "roman": "Mita al-imtihaan al-yaay?",
+    "en": "When is the next exam?",
+    "ur": "اگلا امتحان کب ہے؟",
+    "note": "'Imtihaan' is the same word in Urdu."
+   },
+   {
+    "who": "Teacher",
+    "g": "f",
+    "ar": "الأسبوع الياي، يوم الأربعاء.",
+    "roman": "Al-usboo' al-yaay, yoam al-arbi'aa.",
+    "en": "Next week, on Wednesday.",
+    "ur": "اگلے ہفتے، بدھ کو۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "شكراً على تعبچ يا أستاذة.",
+    "roman": "Shukran 'ala ta'bich ya ustaadha.",
+    "en": "Thank you for your effort, teacher.",
+    "ur": "آپ کی محنت کا شکریہ، استانی صاحبہ۔",
+    "note": "'Ustaadha' = female teacher."
+   }
+  ]
+ },
+ {
+  "id": "md06",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 6,
+  "title": "Buying a shirt at the mall",
+  "scene": "You need a formal shirt for work.",
+  "lines": [
+   {
+    "who": "Seller",
+    "g": "m",
+    "ar": "هلا، أي خدمة؟",
+    "roman": "Hala, ay khidma?",
+    "en": "Hi, can I help you?",
+    "ur": "جی، کیا خدمت کروں؟",
+    "note": "Same as Urdu 'khidmat'."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "أبي قميص رسمي للشغل.",
+    "roman": "Abi gamees rasmi lish-shughl.",
+    "en": "I want a formal shirt for work.",
+    "ur": "مجھے دفتر کے لیے فارمل شرٹ چاہیے۔",
+    "note": "'Qamees' and 'rasmi' as in Urdu."
+   },
+   {
+    "who": "Seller",
+    "g": "m",
+    "ar": "شو مقاسك؟",
+    "roman": "Shu magaasak?",
+    "en": "What's your size?",
+    "ur": "آپ کا سائز کیا ہے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "لارج. عندكم لون أزرق؟",
+    "roman": "Large. 'Indakum loon azrag?",
+    "en": "Large. Do you have blue?",
+    "ur": "لارج۔ نیلا رنگ ہے؟"
+   },
+   {
+    "who": "Seller",
+    "g": "m",
+    "ar": "إيه، تفضل. غرفة القياس هناك.",
+    "roman": "Ee, tfaddal. Ghurfat al-giyaas hnaak.",
+    "en": "Yes, here you go. The fitting room is there.",
+    "ur": "جی، یہ لیجیے۔ ٹرائی روم وہاں ہے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "بكم هذا؟",
+    "roman": "Bkam haadha?",
+    "en": "How much is this?",
+    "ur": "یہ کتنے کا ہے؟"
+   },
+   {
+    "who": "Seller",
+    "g": "m",
+    "ar": "مية وخمسين درهم.",
+    "roman": "Miya w khamseen dirham.",
+    "en": "A hundred and fifty dirhams.",
+    "ur": "ایک سو پچاس درہم۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "غالي شوي. في خصم؟",
+    "roman": "Ghaali shway. Fi khasm?",
+    "en": "A bit expensive. Any discount?",
+    "ur": "تھوڑا مہنگا ہے۔ کوئی رعایت؟"
+   },
+   {
+    "who": "Seller",
+    "g": "m",
+    "ar": "أعطيك عشرين بالمية خصم.",
+    "roman": "A'teek 'ishreen bil-miya khasm.",
+    "en": "I'll give you twenty percent off.",
+    "ur": "آپ کو بیس فیصد رعایت دیتا ہوں۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "زين، باخذه. أدفع بالبطاقة.",
+    "roman": "Zain, baakhdha. Adfa' bil-bitaaqa.",
+    "en": "OK, I'll take it. I'll pay by card.",
+    "ur": "ٹھیک ہے، لے لیتا ہوں۔ کارڈ سے ادائیگی کروں گا۔"
+   }
+  ]
+ },
+ {
+  "id": "md07",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 7,
+  "title": "Taxi to Dubai Mall",
+  "scene": "You take a taxi.",
+  "lines": [
+   {
+    "who": "Driver",
+    "g": "m",
+    "ar": "السلام عليكم، وين رايح؟",
+    "roman": "As-salaamu 'alaykum, wain raayih?",
+    "en": "Hello, where are you going?",
+    "ur": "السلام علیکم، کہاں جانا ہے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "وعليكم السلام. دبي مول لو سمحت.",
+    "roman": "Wa 'alaykum as-salaam. Dubai Mall law samaht.",
+    "en": "Hello. Dubai Mall, please.",
+    "ur": "وعلیکم السلام۔ دبئی مال، مہربانی۔"
+   },
+   {
+    "who": "Driver",
+    "g": "m",
+    "ar": "من شارع الشيخ زايد؟",
+    "roman": "Min shaari' ash-Shaikh Zaayid?",
+    "en": "Via Sheikh Zayed Road?",
+    "ur": "شیخ زاید روڈ سے؟",
+    "note": "Same as Urdu 'shaara'."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إيه، أسرع. كم ياخذ وقت؟",
+    "roman": "Ee, asra'. Kam yaakhidh wagt?",
+    "en": "Yes, it's faster. How long will it take?",
+    "ur": "جی، وہ تیز ہے۔ کتنا وقت لگے گا؟"
+   },
+   {
+    "who": "Driver",
+    "g": "m",
+    "ar": "عشرين دقيقة إذا ما في زحمة.",
+    "roman": "'Ishreen dageega idha ma fi zahma.",
+    "en": "Twenty minutes if there's no traffic.",
+    "ur": "اگر ٹریفک نہ ہو تو بیس منٹ۔",
+    "note": "'Daqeeqa' (minute) is also used in Urdu."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "شغل المكيف لو سمحت.",
+    "roman": "Shaghghil al-mukayyif law samaht.",
+    "en": "Please turn on the AC.",
+    "ur": "مہربانی، اے سی چلا دیں۔"
+   },
+   {
+    "who": "Driver",
+    "g": "m",
+    "ar": "وصلنا. أي مدخل؟",
+    "roman": "Wsalna. Ay madkhal?",
+    "en": "We're here. Which entrance?",
+    "ur": "پہنچ گئے۔ کون سا دروازہ؟",
+    "note": "Same root as Urdu 'daakhla'."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "هني زين. وقف هني.",
+    "roman": "Hni zain. Waggif hni.",
+    "en": "Here is fine. Stop here.",
+    "ur": "یہیں ٹھیک ہے۔ یہاں روک دیں۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "كم الأجرة؟",
+    "roman": "Kam al-uyra?",
+    "en": "How much is the fare?",
+    "ur": "کرایہ کتنا ہوا؟",
+    "note": "Emirati 'uyra' = ujra, like Urdu 'ujrat'."
+   },
+   {
+    "who": "Driver",
+    "g": "m",
+    "ar": "خمسة وثلاثين درهم.",
+    "roman": "Khamsa w thalaatheen dirham.",
+    "en": "Thirty-five dirhams.",
+    "ur": "پینتیس درہم۔"
+   }
+  ]
+ },
+ {
+  "id": "md08",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 8,
+  "title": "At a government service centre",
+  "scene": "You renew your driving licence.",
+  "lines": [
+   {
+    "who": "Employee",
+    "g": "f",
+    "ar": "رقمك لو سمحت؟",
+    "roman": "Ragmak law samaht?",
+    "en": "Your number, please?",
+    "ur": "آپ کا نمبر؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "رقمي مية وخمسة.",
+    "roman": "Ragmi miya w khamsa.",
+    "en": "My number is 105.",
+    "ur": "میرا نمبر ایک سو پانچ ہے۔"
+   },
+   {
+    "who": "Employee",
+    "g": "f",
+    "ar": "تفضل. شو المعاملة؟",
+    "roman": "Tfaddal. Shu al-mu'aamala?",
+    "en": "Go ahead. What is the transaction?",
+    "ur": "جی فرمائیے۔ کیا کام ہے؟",
+    "note": "Same as Urdu 'mu'aamla'."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "أبي أجدد رخصة السواقة.",
+    "roman": "Abi ajaddid rukhsat as-siwaaga.",
+    "en": "I want to renew my driving licence.",
+    "ur": "مجھے ڈرائیونگ لائسنس کی تجدید کروانی ہے۔",
+    "note": "'Tajdeed' and 'rukhsat' are Urdu words too."
+   },
+   {
+    "who": "Employee",
+    "g": "f",
+    "ar": "عندك الهوية والصور؟",
+    "roman": "'Indak al-hawiyya w as-suwar?",
+    "en": "Do you have your ID and photos?",
+    "ur": "آپ کے پاس شناختی کارڈ اور تصویریں ہیں؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إيه، هذي الأوراق.",
+    "roman": "Ee, haadhi al-awraag.",
+    "en": "Yes, here are the papers.",
+    "ur": "جی، یہ کاغذات ہیں۔",
+    "note": "'Auraaq' as in Urdu."
+   },
+   {
+    "who": "Employee",
+    "g": "f",
+    "ar": "ناقص شهادة الفحص الطبي.",
+    "roman": "Naagis shahaadat al-fahs at-tibbi.",
+    "en": "The medical test certificate is missing.",
+    "ur": "میڈیکل ٹیسٹ کا سرٹیفکیٹ کم ہے۔",
+    "note": "'Naaqis', 'shahaadat', 'tibbi': all Urdu words."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "وين أسويه؟",
+    "roman": "Wain asawweeh?",
+    "en": "Where do I get it done?",
+    "ur": "یہ کہاں سے کرواؤں؟"
+   },
+   {
+    "who": "Employee",
+    "g": "f",
+    "ar": "في العيادة، الدور الأول.",
+    "roman": "Fil-'iyaada, ad-door al-awwal.",
+    "en": "At the clinic, first floor.",
+    "ur": "کلینک میں، پہلی منزل پر۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "مشكورة. برجع بعد شوي.",
+    "roman": "Mashkoora. Barja' ba'd shway.",
+    "en": "Thank you. I'll be back shortly.",
+    "ur": "شکریہ۔ تھوڑی دیر میں واپس آتا ہوں۔"
+   }
+  ]
+ },
+ {
+  "id": "md09",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 9,
+  "title": "Booking a clinic appointment",
+  "scene": "You call a clinic to see a doctor.",
+  "lines": [
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "العيادة، تفضل.",
+    "roman": "Al-'iyaada, tfaddal.",
+    "en": "Clinic, how can I help?",
+    "ur": "کلینک، جی فرمائیے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "أبي موعد مع الدكتور.",
+    "roman": "Abi maw'id ma'a ad-diktoor.",
+    "en": "I'd like an appointment with the doctor.",
+    "ur": "مجھے ڈاکٹر سے وقت چاہیے۔"
+   },
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "شو المشكلة؟",
+    "roman": "Shu al-mushkila?",
+    "en": "What's the problem?",
+    "ur": "کیا مسئلہ ہے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "عندي حرارة وكحة من أمس.",
+    "roman": "'Indi haraara w kahha min ams.",
+    "en": "I've had a fever and a cough since yesterday.",
+    "ur": "کل سے بخار اور کھانسی ہے۔",
+    "note": "'Haraarat' as in Urdu."
+   },
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "باكر الساعة أربع العصر يناسبك؟",
+    "roman": "Baakir as-saa'a arba' al-'asr ynaasbak?",
+    "en": "Does tomorrow at four in the afternoon suit you?",
+    "ur": "کل عصر چار بجے ٹھیک رہے گا؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "ما في شي اليوم؟",
+    "roman": "Ma fi shay al-yoam?",
+    "en": "Is there nothing today?",
+    "ur": "آج کوئی وقت نہیں؟"
+   },
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "اليوم الساعة سبع المسا.",
+    "roman": "Al-yoam as-saa'a sab' al-masa.",
+    "en": "Today at seven in the evening.",
+    "ur": "آج شام سات بجے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "زين، احجزيه لي.",
+    "roman": "Zain, ihjizeeh li.",
+    "en": "OK, book it for me.",
+    "ur": "ٹھیک ہے، میرے لیے بک کر دیں۔"
+   },
+   {
+    "who": "Receptionist",
+    "g": "f",
+    "ar": "اسمك ورقم التلفون؟",
+    "roman": "Ismak w ragm at-tilifoon?",
+    "en": "Your name and phone number?",
+    "ur": "آپ کا نام اور فون نمبر؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "شكيل، وهذا رقمي.",
+    "roman": "Shakeel, w haadha ragmi.",
+    "en": "Shakeel, and this is my number.",
+    "ur": "شکیل، اور یہ میرا نمبر ہے۔"
+   }
+  ]
+ },
+ {
+  "id": "md10",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 10,
+  "title": "Calling a client about a site visit",
+  "scene": "You call Mr. Khalid to schedule an installation visit.",
+  "lines": [
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "السلام عليكم أستاذ خالد، معك شكيل من سمارت كيوب.",
+    "roman": "As-salaamu 'alaykum ustaadh Khaalid, ma'ak Shakeel min SmartCube.",
+    "en": "Hello Mr. Khalid, this is Shakeel from SmartCube.",
+    "ur": "السلام علیکم خالد صاحب، میں سمارٹ کیوب سے شکیل بات کر رہا ہوں۔"
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "هلا شكيل، شلونك؟",
+    "roman": "Hala Shakeel, shloonak?",
+    "en": "Hi Shakeel, how are you?",
+    "ur": "جی شکیل، کیسے ہیں؟",
+    "note": "'Shloonak' = how are you (Gulf)."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "بخير الحمد لله. نبي نزوركم عشان نركب الأجهزة.",
+    "roman": "Bikhair al-hamdu lillaah. Nabi nzoorkum 'ashaan nrakkib al-ayhiza.",
+    "en": "Fine, thank God. We'd like to visit you to install the equipment.",
+    "ur": "الحمدللہ ٹھیک ہوں۔ ہم آلات لگانے کے لیے آنا چاہتے ہیں۔",
+    "note": "'Ziyaarat' and 'tarkeeb' are Urdu words too."
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "أي يوم يناسبكم؟",
+    "roman": "Ay yoam ynaasibkum?",
+    "en": "Which day suits you?",
+    "ur": "آپ کو کون سا دن مناسب ہے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "يوم الخميس الصبح؟",
+    "roman": "Yoam al-khamees as-subh?",
+    "en": "Thursday morning?",
+    "ur": "جمعرات صبح؟"
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "الخميس عندنا تدريب. شو رايك الأربعاء؟",
+    "roman": "Al-khamees 'indana tadreeb. Shu raayak al-arbi'aa?",
+    "en": "On Thursday we have training. How about Wednesday?",
+    "ur": "جمعرات کو ہماری ٹریننگ ہے۔ بدھ کیسا رہے گا؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الأربعاء الساعة عشر تمام.",
+    "roman": "Al-arbi'aa as-saa'a 'ashar tamaam.",
+    "en": "Wednesday at ten is fine.",
+    "ur": "بدھ دس بجے ٹھیک ہے۔"
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "زين. أرسل لي أسماء الفريق عشان التصريح.",
+    "roman": "Zain. Arsil li asmaa' al-fareeg 'ashaan at-tasreeh.",
+    "en": "Good. Send me the team's names for the access permit.",
+    "ur": "ٹھیک ہے۔ اجازت نامے کے لیے ٹیم کے نام بھیج دیں۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "أكيد، برسلها اليوم بالإيميل.",
+    "roman": "Akeed, barsilha al-yoam bil-email.",
+    "en": "Sure, I'll send them by email today.",
+    "ur": "ضرور، آج ای میل کر دوں گا۔"
+   },
+   {
+    "who": "Khalid",
+    "g": "m",
+    "ar": "مشكور، نشوفكم الأربعاء.",
+    "roman": "Mashkoor, nshoofkum al-arbi'aa.",
+    "en": "Thanks, see you on Wednesday.",
+    "ur": "شکریہ، بدھ کو ملتے ہیں۔"
+   }
+  ]
+ },
+ {
+  "id": "md11",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 11,
+  "title": "Visiting a colleague's majlis",
+  "scene": "Your colleague invites you to his home. Includes Emirati coffee manners.",
+  "lines": [
+   {
+    "who": "Host",
+    "g": "m",
+    "ar": "حياك الله، تفضل ادخل.",
+    "roman": "Hayyaak Allah, tfaddal idkhil.",
+    "en": "Welcome, please come in.",
+    "ur": "خوش آمدید، اندر تشریف لائیں۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "الله يحييك. ما شاء الله، البيت حلو.",
+    "roman": "Allah yhayyeek. Maashallah, al-bait hilw.",
+    "en": "Thank you. Mashallah, the house is beautiful.",
+    "ur": "شکریہ۔ ماشاءاللہ، گھر بہت خوبصورت ہے۔"
+   },
+   {
+    "who": "Host",
+    "g": "m",
+    "ar": "تفضل اقعد. تشرب قهوة؟",
+    "roman": "Tfaddal ag'ad. Tishrab gahwa?",
+    "en": "Please sit. Will you have coffee?",
+    "ur": "تشریف رکھیں۔ قہوہ پئیں گے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "إيه، مشكور.",
+    "roman": "Ee, mashkoor.",
+    "en": "Yes, thank you.",
+    "ur": "جی، شکریہ۔"
+   },
+   {
+    "who": "Host",
+    "g": "m",
+    "ar": "تفضل التمر.",
+    "roman": "Tfaddal at-tamar.",
+    "en": "Please have some dates.",
+    "ur": "کھجور لیجیے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "خلاص، مشكور.",
+    "roman": "Khalaas, mashkoor.",
+    "en": "That's enough, thank you.",
+    "ur": "بس، شکریہ۔",
+    "note": "Gently shake your small coffee cup when you don't want more. That's the Emirati custom."
+   },
+   {
+    "who": "Host",
+    "g": "m",
+    "ar": "إنت من متى في الإمارات؟",
+    "roman": "Inta min mita fil-Imaaraat?",
+    "en": "How long have you been in the UAE?",
+    "ur": "آپ کب سے امارات میں ہیں؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "من سنين وايد. أحب الإمارات.",
+    "roman": "Min sineen waayed. Ahibb al-Imaaraat.",
+    "en": "For many years. I love the Emirates.",
+    "ur": "بہت سالوں سے۔ مجھے امارات سے محبت ہے۔"
+   },
+   {
+    "who": "Host",
+    "g": "m",
+    "ar": "نورتنا.",
+    "roman": "Nawwartna.",
+    "en": "Thank you for coming (lit. you lit up our home).",
+    "ur": "آپ کے آنے سے رونق ہو گئی۔",
+    "note": "From 'noor' (light)."
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "البيت منور بأهله.",
+    "roman": "Al-bait mnawwar b-ahla.",
+    "en": "The home shines because of its people.",
+    "ur": "گھر اپنے گھر والوں سے روشن ہے۔",
+    "note": "The classic polite reply."
+   }
+  ]
+ },
+ {
+  "id": "md12",
+  "type": "dialogue",
+  "level": "Medium",
+  "day": 12,
+  "title": "Eid greetings at the office",
+  "scene": "Your colleague greets you after Eid.",
+  "lines": [
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "عيدكم مبارك!",
+    "roman": "'Eedkum mubaarak!",
+    "en": "Eid Mubarak!",
+    "ur": "عید مبارک!"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "علينا وعليكم! عساكم من عواده.",
+    "roman": "'Alaina w 'alaikum! 'Asaakum min 'awwaada.",
+    "en": "To us and you! May you see it many more times.",
+    "ur": "ہم پر بھی اور آپ پر بھی! اللہ آپ کو بار بار یہ دن دکھائے۔",
+    "note": "The classic Gulf Eid reply."
+   },
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "كيف قضيت العيد؟",
+    "roman": "Kaif gadheit al-'eed?",
+    "en": "How did you spend Eid?",
+    "ur": "عید کیسے گزری؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "زرت الأهل والربع.",
+    "roman": "Zirt al-ahal w ar-rab'.",
+    "en": "I visited family and friends.",
+    "ur": "گھر والوں اور دوستوں سے ملنے گیا۔",
+    "note": "Emirati 'rab'' = friends."
+   },
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "حلو! وين رحتوا؟",
+    "roman": "Hilw! Wain ruhtu?",
+    "en": "Nice! Where did you go?",
+    "ur": "اچھا! کہاں گئے؟"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "رحنا الحديقة وتغدينا مع بعض.",
+    "roman": "Ruhna al-hadeega w tghaddaina ma'a ba'adh.",
+    "en": "We went to the park and had lunch together.",
+    "ur": "ہم پارک گئے اور اکٹھے کھانا کھایا۔"
+   },
+   {
+    "who": "Fatima",
+    "g": "f",
+    "ar": "الله يديم الفرحة.",
+    "roman": "Allah ydeem al-farha.",
+    "en": "May God keep the joy.",
+    "ur": "اللہ یہ خوشی قائم رکھے۔"
+   },
+   {
+    "who": "You",
+    "g": "you",
+    "ar": "آمين، وعليكم.",
+    "roman": "Aameen, w 'alaikum.",
+    "en": "Amen, and to you.",
+    "ur": "آمین، آپ پر بھی۔"
+   }
+  ]
+ }
+]
