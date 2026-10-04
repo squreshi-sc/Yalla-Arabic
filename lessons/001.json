@@ -1,0 +1,77 @@
+{
+  "day": 1,
+  "date": "4 Oct 2026",
+  "title": "Introduce yourself",
+  "phrases": [
+    {
+      "ar": "السلام عليكم",
+      "roman": "As-salaamu alaykum",
+      "en": "Peace be upon you (hello)",
+      "ur": "السلام علیکم",
+      "note": "Reply: وعليكم السلام – Wa alaykum as-salaam"
+    },
+    {
+      "ar": "صباح الخير",
+      "roman": "Sabaah al-khair",
+      "en": "Good morning",
+      "ur": "صبح بخیر",
+      "note": "Reply: صباح النور – Sabaah an-noor (morning of light). 'Noor' as in Urdu."
+    },
+    {
+      "ar": "كيف حالك؟",
+      "roman": "Kaif haalak?",
+      "en": "How are you? (to a man)",
+      "ur": "آپ کیسے ہیں؟",
+      "note": "To a woman: Kaif haalich? 'Haal' is the same word as Urdu 'haal'."
+    },
+    {
+      "ar": "الحمد لله، بخير",
+      "roman": "Al-hamdu lillaah, bikhair",
+      "en": "Praise God, I'm fine",
+      "ur": "الحمدللہ، ٹھیک ہوں",
+      "note": "'Khair' as in Urdu 'khairiyat'."
+    },
+    {
+      "ar": "شو اسمك؟",
+      "roman": "Shu ismak?",
+      "en": "What is your name?",
+      "ur": "آپ کا نام کیا ہے؟",
+      "note": "'Shu' = what (Emirati). 'Ism' as in Urdu 'ism-e-girami'."
+    },
+    {
+      "ar": "اسمي شكيل",
+      "roman": "Ismi Shakeel",
+      "en": "My name is Shakeel",
+      "ur": "میرا نام شکیل ہے",
+      "note": "Add -i to a word for 'my': ism → ismi (my name)."
+    },
+    {
+      "ar": "أنا من باكستان",
+      "roman": "Ana min Baakistaan",
+      "en": "I am from Pakistan",
+      "ur": "میں پاکستان سے ہوں",
+      "note": "Arabic has no 'P' sound, so many Arabs say 'Baakistaan'. Both are fine."
+    },
+    {
+      "ar": "أشتغل في شركة آي تي",
+      "roman": "Ashtaghil fi sharikat IT",
+      "en": "I work in an IT company",
+      "ur": "میں ایک آئی ٹی کمپنی میں کام کرتا ہوں",
+      "note": "'Shirkat/sharikah' = company, as in Urdu 'shirkat' (partnership)."
+    },
+    {
+      "ar": "تشرفنا",
+      "roman": "Tsharrafna",
+      "en": "Nice to meet you (honoured)",
+      "ur": "آپ سے مل کر خوشی ہوئی",
+      "note": "From 'sharaf' (honour), the same as Urdu 'sharaf'."
+    },
+    {
+      "ar": "مع السلامة",
+      "roman": "Ma'a as-salaama",
+      "en": "Goodbye",
+      "ur": "خدا حافظ",
+      "note": "Reply: الله يسلمك – Allah ysallimak"
+    }
+  ]
+}
