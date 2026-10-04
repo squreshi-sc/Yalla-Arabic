@@ -1,0 +1,89 @@
+{
+  "day": 3,
+  "date": "4 Oct 2026",
+  "title": "Polite requests & phone calls",
+  "phrases": [
+    {
+      "ar": "لو سمحت",
+      "roman": "Law samaht",
+      "en": "Please / excuse me",
+      "ur": "براہ کرم",
+      "note": "Use it to start any request."
+    },
+    {
+      "ar": "ممكن تساعدني؟",
+      "roman": "Mumkin tsaa'idni?",
+      "en": "Can you help me?",
+      "ur": "کیا آپ میری مدد کر سکتے ہیں؟",
+      "note": "Same root as Urdu 'musaa'id' (helper)."
+    },
+    {
+      "ar": "شكراً وايد",
+      "roman": "Shukran waayed",
+      "en": "Thank you very much",
+      "ur": "بہت شکریہ",
+      "note": "'Waayed' = a lot (Emirati)."
+    },
+    {
+      "ar": "ما عليه",
+      "roman": "Ma 'alaih",
+      "en": "No problem / never mind",
+      "ur": "کوئی بات نہیں"
+    },
+    {
+      "ar": "آسف، تأخرت",
+      "roman": "Aasif, ta'akhkhart",
+      "en": "Sorry, I'm late",
+      "ur": "معذرت، مجھے دیر ہو گئی",
+      "note": "Same root as Urdu 'taakheer' (delay)."
+    },
+    {
+      "ar": "ألو، منو معاي؟",
+      "roman": "Alo, minu ma'aay?",
+      "en": "Hello, who is speaking?",
+      "ur": "ہیلو، کون بات کر رہا ہے؟",
+      "note": "'Minu' = who (Gulf)."
+    },
+    {
+      "ar": "أنا شكيل من سمارت كيوب",
+      "roman": "Ana Shakeel min SmartCube",
+      "en": "This is Shakeel from SmartCube",
+      "ur": "میں سمارٹ کیوب سے شکیل بات کر رہا ہوں"
+    },
+    {
+      "ar": "ممكن أكلم الأستاذ أحمد؟",
+      "roman": "Mumkin akallim al-ustaadh Ahmad?",
+      "en": "Can I speak to Mr. Ahmad?",
+      "ur": "کیا میں احمد صاحب سے بات کر سکتا ہوں؟",
+      "note": "'Ustaadh' is a polite title, like Urdu 'ustaad'."
+    },
+    {
+      "ar": "بتصل فيك بعدين",
+      "roman": "Bittasil feek ba'dain",
+      "en": "I will call you later",
+      "ur": "میں آپ کو بعد میں کال کروں گا",
+      "note": "Same root as Urdu 'ittisaal' (contact)."
+    },
+    {
+      "ar": "أرسلت لك إيميل",
+      "roman": "Arsalt lik email",
+      "en": "I sent you an email",
+      "ur": "میں نے آپ کو ای میل بھیجی ہے",
+      "note": "Same root as Urdu 'irsaal' (sending)."
+    },
+    {
+      "ar": "إن شاء الله",
+      "roman": "Inshallah",
+      "en": "God willing (yes, I will)",
+      "ur": "ان شاء اللہ",
+      "note": "At work it usually means 'yes, will do'."
+    },
+    {
+      "ar": "يعطيك العافية",
+      "roman": "Ya'teek al-'aafya",
+      "en": "Thanks for your effort (lit. God give you health)",
+      "ur": "اللہ آپ کو صحت دے",
+      "note": "Say it to someone working. Reply: الله يعافيك – Allah y'aafeek."
+    }
+  ]
+}
